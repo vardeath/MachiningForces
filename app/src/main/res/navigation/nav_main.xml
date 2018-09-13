@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/blankFragment">
+
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment"
+        android:label="@string/Conditions"
+        tools:layout="@layout/fragment_blank">
+        <action
+            android:id="@+id/action_blankFragment_to_CONDITION_MAIN_menu"
+            app:destination="@+id/CONDITION_MAIN_menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragment2"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment2"
+        android:label="@string/Tolerances"
+        tools:layout="@layout/fragment_tolerances"></fragment>
+    <fragment
+        android:id="@+id/blankFragment3"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment3"
+        android:label="@string/Materials"
+        tools:layout="@layout/fragment_materials" />
+    <fragment
+        android:id="@+id/blankFragment4"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment4"
+        android:label="@string/Toolsearch"
+        tools:layout="@layout/fragment_tool_search" />
+    <fragment
+        android:id="@+id/blankFragment5"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment5"
+        android:label="@string/Information"
+        tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/blankFragment6"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment6"
+        android:label="@string/Send"
+        tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/CONDITION_MAIN_menu"
+        android:name="com.example.stayi.myapplication.CONDITION_MAIN_menu"
+        android:label="@string/simple_mill"
+        tools:layout="@layout/fragment_condition__main_menu" />
+</navigation>

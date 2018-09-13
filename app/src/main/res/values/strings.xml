@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Machining Forces</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_fr1">Тут будут режимы обработки</string>
+    <string name="hello_fr2">Тут будут допуски и посадки</string>
+    <string name="hello_fr3">Тут будет марочник материалов</string>
+    <string name="hello_fr4">Тут будет поиск инструмента</string>
+    <string name="hello_fr5">Тут будет информация о нас</string>
+    <string name="hello_fr6">Тут будет обратная связь</string>
+    <string name="hello_mill_simple">Простой расчет</string>
+
+    <string name="Conditions">Режимы обработки</string>
+    <string name="Tolerances">Допуски и посадки</string>
+    <string name="Materials">Марочник материалов</string>
+    <string name="Toolsearch">Поиск инструмента</string>
+    <string name="Information">Информация о нас</string>
+    <string name="Send">Написать нам</string>
+    <string name="Feedback">Обратная связь</string>
+    <string name="simple_mill">Фрезерная обработка</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Go_to_MILL">Go_to_MILL</string>
+</resources>

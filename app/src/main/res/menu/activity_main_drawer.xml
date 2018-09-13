@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/blankFragment"
+            android:checkable="true"
+            android:enabled="true"
+            android:icon="@drawable/conditions"
+            android:title="@string/Conditions"
+            android:visible="true" />
+        <item
+            android:id="@+id/blankFragment2"
+            android:checkable="true"
+            android:enabled="true"
+            android:icon="@drawable/tolerances"
+            android:title="@string/Tolerances"
+            android:visible="true" />
+        <item
+            android:id="@+id/blankFragment3"
+            android:checkable="true"
+            android:enabled="true"
+            android:icon="@drawable/materials"
+            android:title="@string/Materials"
+            android:visible="true" />
+        <item
+            android:id="@+id/blankFragment4"
+            android:checkable="true"
+            android:enabled="true"
+            android:icon="@drawable/toolsearch"
+            android:title="@string/Toolsearch"
+            android:visible="true" />
+        <item
+            android:checkable="false"
+            android:enabled="false"
+            android:title="@string/Feedback"
+            android:visible="true" />
+        <item
+            android:id="@+id/blankFragment5"
+            android:checkable="true"
+            android:enabled="true"
+            android:icon="@drawable/information"
+            android:title="@string/Information"
+            android:visible="true" />
+        <item
+            android:id="@+id/blankFragment6"
+            android:checkable="true"
+            android:enabled="true"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/Send"
+            android:visible="true" />
+    </group>
+</menu>
