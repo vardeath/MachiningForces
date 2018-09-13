@@ -3,7 +3,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
@@ -28,9 +29,14 @@ public class MainActivity extends AppCompatActivity
         BlankFragment6.OnFragmentInteractionListener, CONDITION_MAIN_menu.OnFragmentInteractionListener{
 
     private NavController navController;
+    private boolean mState;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_COUNTER = "condition_mode_state";
+    private SharedPreferences mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
         Toolbar toolbar = findViewById (R.id.toolbar);
@@ -107,9 +113,17 @@ public class MainActivity extends AppCompatActivity
     public void onClick() {
 
     }
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        super.onPause();
+        // Запоминаем данные
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putBoolean(APP_PREFERENCES_COUNTER, mState);
+        editor.apply();
     }
 }
