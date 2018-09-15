@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 //Хранилище переменных, которые используются в навигации приложения.
-class localsettings {
+public class nav_var_storage {
     private static final String STORAGE_NAME = "StorageName";
 
     private static SharedPreferences settings = null;
@@ -13,7 +13,7 @@ class localsettings {
     @SuppressLint("StaticFieldLeak")
     private static Context context = null;
 
-    static void init(Context cntxt){
+    public static void init(Context cntxt){
         context = cntxt;
     }
 
@@ -22,7 +22,7 @@ class localsettings {
         editor = settings.edit();
     }
 
-    static void addProperty(String name, boolean value){
+    public static void addProperty(String name, boolean value){
         if( settings == null ){
             init();
         }
@@ -30,7 +30,7 @@ class localsettings {
         editor.commit();
     }
 
-    static boolean getProperty(String name, boolean b){
+    public static boolean getProperty(String name, boolean b){
         if( settings == null ){
             init();
         }

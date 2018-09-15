@@ -4,11 +4,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.widget.Toast;
 
-import com.example.stayi.myapplication.BASIC_MENU.BlankFragment;
+import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail;
+import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple;
+import com.example.stayi.myapplication.BASIC_MENU.MAIN_MENU_CONDITIONS;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment4;
@@ -30,12 +30,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, BlankFragment.OnFragmentInteractionListener, BlankFragment2.OnFragmentInteractionListener,
+        implements NavigationView.OnNavigationItemSelectedListener, MAIN_MENU_CONDITIONS.OnFragmentInteractionListener, BlankFragment2.OnFragmentInteractionListener,
         BlankFragment3.OnFragmentInteractionListener, BlankFragment4.OnFragmentInteractionListener, BlankFragment5.OnFragmentInteractionListener,
-        BlankFragment6.OnFragmentInteractionListener, CONDITION_MAIN_menu.OnFragmentInteractionListener{
+        BlankFragment6.OnFragmentInteractionListener, MILL_calc_simple.OnFragmentInteractionListener, MILL_calc_detail.OnFragmentInteractionListener{
 
     private NavController navController;
-    static final String APP_PREFERENCES = "mysettings"; //Имя хранилища локальных настроек приложения.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,27 +50,22 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener (toggle);
         toggle.syncState ();
+
+        //Инициализируем навигационный контроллер для боковой панели навигации.
+
         NavigationView navigationView = findViewById (R.id.nav_view);
         navigationView.setNavigationItemSelectedListener (this);
         NavigationUI.setupWithNavController (navigationView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, drawer);
 
-        /*SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        boolean  hasVisited = mSettings.getBoolean("hasVisited", false);
+        //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.
+
+        nav_var_storage.init(this);
+        boolean  hasVisited = nav_var_storage.getProperty("hasVisited", false);
         if (!hasVisited) {
-            Toast.makeText(this, "first run", Toast.LENGTH_SHORT).show();
-            SharedPreferences.Editor e = mSettings.edit();
-            e.putBoolean("hasVisited", true);
-            e.apply(); // не забудьте подтвердить изменения
+            //Toast.makeText(this, "first run", Toast.LENGTH_SHORT).show();
+            nav_var_storage.addProperty("hasVisited", true);
         }
-        Toast.makeText(this, "visit state: " + hasVisited, Toast.LENGTH_SHORT).show();*/
-        localsettings.init(this);
-        boolean  hasVisited = localsettings.getProperty("hasVisited", false);
-        if (!hasVisited) {
-            Toast.makeText(this, "first run", Toast.LENGTH_SHORT).show();
-            localsettings.addProperty("hasVisited", true);
-        }
-        Toast.makeText(this, "menu state: " + hasVisited, Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

@@ -1,27 +1,26 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.stayi.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CONDITION_MAIN_menu.OnFragmentInteractionListener} interface
+ * {@link MILL_calc_detail.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CONDITION_MAIN_menu#newInstance} factory method to
+ * Use the {@link MILL_calc_detail#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CONDITION_MAIN_menu extends Fragment {
+public class MILL_calc_detail extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +32,7 @@ public class CONDITION_MAIN_menu extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CONDITION_MAIN_menu() {
+    public MILL_calc_detail() {
         // Required empty public constructor
     }
 
@@ -43,55 +42,55 @@ public class CONDITION_MAIN_menu extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CONDITION_MAIN_menu.
+     * @return A new instance of fragment MILL_calc_detail.
      */
     // TODO: Rename and change types and number of parameters
-    public static CONDITION_MAIN_menu newInstance(String param1, String param2) {
-        CONDITION_MAIN_menu fragment = new CONDITION_MAIN_menu ();
-        Bundle args = new Bundle ();
-        args.putString (ARG_PARAM1, param1);
-        args.putString (ARG_PARAM2, param2);
-        fragment.setArguments (args);
+    public static MILL_calc_detail newInstance(String param1, String param2) {
+        MILL_calc_detail fragment = new MILL_calc_detail();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
-        if (getArguments () != null) {
-            mParam1 = getArguments ().getString (ARG_PARAM1);
-            mParam2 = getArguments ().getString (ARG_PARAM2);
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate (R.layout.fragment_condition__main_menu, container, false);
+        return inflater.inflate(R.layout.mill_calc_detail, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction (uri);
+            mListener.onFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
-        super.onAttach (context);
+        super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException (context.toString ()
+            throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
 
     @Override
     public void onDetach() {
-        super.onDetach ();
+        super.onDetach();
         mListener = null;
     }
 
@@ -108,7 +107,5 @@ public class CONDITION_MAIN_menu extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-
-        void onClick();
     }
 }

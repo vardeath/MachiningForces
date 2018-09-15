@@ -15,7 +15,8 @@
     <string name="hello_fr4">Тут будет поиск инструмента</string>
     <string name="hello_fr5">Тут будет информация о нас</string>
     <string name="hello_fr6">Тут будет обратная связь</string>
-    <string name="hello_mill_simple">Простой расчет</string>
+    <string name="hello_mill_simple">Упрощенный расчет</string>
+    <string name="hello_mill_detail">Расширенный расчет</string>
 
     <string name="Conditions">Режимы обработки</string>
     <string name="Tolerances">Допуски и посадки</string>

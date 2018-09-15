@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/blankFragment">
+    app:startDestination="@id/MAIN_MENU_CONDITIONS">
 
     <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment"
+        android:id="@+id/MAIN_MENU_CONDITIONS"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.MAIN_MENU_CONDITIONS"
         android:label="@string/Conditions"
-        tools:layout="@layout/fragment_blank">
+        tools:layout="@layout/main_menu_conditions">
         <action
             android:id="@+id/action_blankFragment_to_CONDITION_MAIN_menu"
-            app:destination="@+id/CONDITION_MAIN_menu" />
+            app:destination="@+id/MILL_calc_simple" />
     </fragment>
     <fragment
         android:id="@+id/blankFragment2"
@@ -40,8 +40,8 @@
         android:label="@string/Send"
         tools:layout="@layout/fragment_send" />
     <fragment
-        android:id="@+id/CONDITION_MAIN_menu"
-        android:name="com.example.stayi.myapplication.CONDITION_MAIN_menu"
+        android:id="@+id/MILL_calc_simple"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple"
         android:label="@string/simple_mill"
-        tools:layout="@layout/fragment_condition__main_menu" />
+        tools:layout="@layout/mill_calc_simple" />
 </navigation>
