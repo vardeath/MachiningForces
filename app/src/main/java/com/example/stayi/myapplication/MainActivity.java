@@ -61,11 +61,11 @@ public class MainActivity extends AppCompatActivity
         //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.
 
         nav_var_storage.init(this);
-        boolean  hasVisited = nav_var_storage.getProperty("hasVisited", false);
+        boolean  hasVisited = nav_var_storage.getProperty("hasVisited", true);
         if (!hasVisited) {
-            //Toast.makeText(this, "first run", Toast.LENGTH_SHORT).show();
-            nav_var_storage.addProperty("hasVisited", true);
+            nav_var_storage.addProperty("hasVisited", false);
         }
+        Toast.makeText(this, "visit_status: " + hasVisited, Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

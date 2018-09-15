@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail;
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
 
@@ -23,7 +22,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import static com.example.stayi.myapplication.R.id.MILL_calc_simple;
-
+import static com.example.stayi.myapplication.R.id.MILL_calc_detail;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,13 +89,14 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
                 NavController navController;
                 navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
                 nav_var_storage.init(getContext());
+                //nav_var_storage.addProperty("hasVisited", false);
                 boolean mill_menu_state = nav_var_storage.getProperty("hasVisited", false);
                 if (mill_menu_state) {
-                    Toast.makeText(getContext(), "mill_simple", Toast.LENGTH_SHORT).show();
                     navController.navigate (MILL_calc_simple);
+                    Toast.makeText(getContext(), "mill_simple", Toast.LENGTH_SHORT).show();
                 } else{
+                    navController.navigate (MILL_calc_detail);
                     Toast.makeText(getContext(), "mill_detail", Toast.LENGTH_SHORT).show();
-                    //navController.navigate (MILL_calc_detail);
                 }
                 //Toast.makeText(getActivity(), "You Clicked the button!", Toast.LENGTH_LONG).show();
             }
