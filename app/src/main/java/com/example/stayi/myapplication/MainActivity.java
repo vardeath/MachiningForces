@@ -35,11 +35,10 @@ public class MainActivity extends AppCompatActivity
         BlankFragment6.OnFragmentInteractionListener, CONDITION_MAIN_menu.OnFragmentInteractionListener{
 
     private NavController navController;
-    static final String APP_PREFERENCES = "mysettings";
+    static final String APP_PREFERENCES = "mysettings"; //Имя хранилища локальных настроек приложения.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupWithNavController (navigationView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, drawer);
 
+        /*SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         boolean  hasVisited = mSettings.getBoolean("hasVisited", false);
         if (!hasVisited) {
             Toast.makeText(this, "first run", Toast.LENGTH_SHORT).show();
@@ -64,7 +64,14 @@ public class MainActivity extends AppCompatActivity
             e.putBoolean("hasVisited", true);
             e.apply(); // не забудьте подтвердить изменения
         }
-        Toast.makeText(this, "visit state: " + hasVisited, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "visit state: " + hasVisited, Toast.LENGTH_SHORT).show();*/
+        localsettings.init(this);
+        boolean  hasVisited = localsettings.getProperty("hasVisited", false);
+        if (!hasVisited) {
+            Toast.makeText(this, "first run", Toast.LENGTH_SHORT).show();
+            localsettings.addProperty("hasVisited", true);
+        }
+        Toast.makeText(this, "menu state: " + hasVisited, Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
