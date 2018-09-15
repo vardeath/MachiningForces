@@ -1,10 +1,13 @@
 package com.example.stayi.myapplication;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
@@ -13,7 +16,10 @@ import com.example.stayi.myapplication.BASIC_MENU.BlankFragment5;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment6;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,14 +35,12 @@ public class MainActivity extends AppCompatActivity
         BlankFragment6.OnFragmentInteractionListener, CONDITION_MAIN_menu.OnFragmentInteractionListener{
 
     private NavController navController;
-    private boolean mState;
-    public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_COUNTER = "condition_mode_state";
-    private SharedPreferences mSettings;
+    static final String APP_PREFERENCES = "mysettings";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
         Toolbar toolbar = findViewById (R.id.toolbar);
@@ -52,15 +56,25 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener (this);
         NavigationUI.setupWithNavController (navigationView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, drawer);
+
+        boolean  hasVisited = mSettings.getBoolean("hasVisited", false);
+        if (!hasVisited) {
+            Toast.makeText(this, "first run", Toast.LENGTH_SHORT).show();
+            SharedPreferences.Editor e = mSettings.edit();
+            e.putBoolean("hasVisited", true);
+            e.apply(); // не забудьте подтвердить изменения
+        }
+        Toast.makeText(this, "visit state: " + hasVisited, Toast.LENGTH_SHORT).show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (navController.getCurrentDestination ().getId () == navController.getGraph ().getStartDestination ()) {
+            if (Objects.requireNonNull(navController.getCurrentDestination()).getId () == navController.getGraph ().getStartDestination ()) {
                 super.onBackPressed();
             }
             navController.popBackStack ();
@@ -116,14 +130,5 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        super.onPause();
-        // Запоминаем данные
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putBoolean(APP_PREFERENCES_COUNTER, mState);
-        editor.apply();
     }
 }
