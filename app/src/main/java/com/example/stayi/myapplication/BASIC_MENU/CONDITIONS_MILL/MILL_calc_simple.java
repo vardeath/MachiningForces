@@ -19,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
@@ -36,6 +38,7 @@ import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MI
  * create an instance of this fragment.
  */
 public class MILL_calc_simple extends Fragment {
+    private EditText editText;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -83,7 +86,9 @@ public class MILL_calc_simple extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate (R.layout.mill_calc_simple, container, false);
+        View rootView = inflater.inflate (R.layout.mill_calc_simple, container, false);
+        editText = rootView.findViewById(R.id.editText_Mill_Diameter);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

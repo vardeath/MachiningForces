@@ -17,7 +17,7 @@
     <string name="hello_fr4">Тут будет поиск инструмента</string>
     <string name="hello_fr5">Тут будет информация о нас</string>
     <string name="hello_fr6">Тут будет обратная связь</string>
-    <string name="hello_mill_simple">Базовый расчет</string>
+    <string name="hello_mill_simple">Базовый расчет режимов фрезерования</string>
     <string name="hello_mill_detail">Расширенный расчет</string>
 
     <string name="Conditions">Режимы обработки</string>
@@ -32,4 +32,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Go_to_MILL">Go_to_MILL</string>
+    <string name="textview_name_diameter">Диаметр инструмента</string>
+    <string name="Cutting_speed">Скорость резания</string>
+    <string name="Spendle_speed">Число оборотов</string>
+    <string name="Teeth_number">Число зубьев</string>
+    <string name="Feed_per_tooth">Подача на зуб</string>
+    <string name="Minute_feed">Минутная подача</string>
+    <string name="zero">0</string>
 </resources>
