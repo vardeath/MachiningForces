@@ -90,7 +90,7 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
                 NavController navController;
                 navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
                 nav_var_storage.init(getContext());
-                //nav_var_storage.addProperty("hasVisited", false);
+                nav_var_storage.addProperty("hasVisited", true); // TODO Тестовая строка, после тестирования убрать.
                 boolean mill_menu_state = nav_var_storage.getProperty("hasVisited", false);
                 if (mill_menu_state) {
                     navController.navigate (action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple);

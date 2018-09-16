@@ -2,12 +2,16 @@ package com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -63,6 +67,7 @@ public class MILL_calc_simple extends Fragment {
             mParam1 = getArguments ().getString (ARG_PARAM1);
             mParam2 = getArguments ().getString (ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -111,5 +116,11 @@ public class MILL_calc_simple extends Fragment {
         void onFragmentInteraction(Uri uri);
 
         void onClick();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.main, menu);
     }
 }
