@@ -6,7 +6,9 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="mill_simple_mode">Упрощенный</string>
+    <string name="mill_detail_mode">Подробный</string>
+    <string name="action_settings">Режим расчета</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_fr1">Тут будут режимы обработки</string>

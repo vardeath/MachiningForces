@@ -11,7 +11,7 @@
         android:label="@string/Conditions"
         tools:layout="@layout/main_menu_conditions">
         <action
-            android:id="@+id/action_blankFragment_to_CONDITION_MAIN_menu"
+            android:id="@+id/action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple"
             app:destination="@+id/MILL_calc_simple" />
         <action
             android:id="@+id/action_MAIN_MENU_CONDITIONS_to_MILL_calc_detail"

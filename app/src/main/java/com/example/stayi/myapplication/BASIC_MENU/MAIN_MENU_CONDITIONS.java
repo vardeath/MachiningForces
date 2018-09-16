@@ -23,7 +23,8 @@ import androidx.navigation.Navigation;
 
 import static com.example.stayi.myapplication.R.id.MILL_calc_simple;
 import static com.example.stayi.myapplication.R.id.MILL_calc_detail;
-
+import static com.example.stayi.myapplication.R.id.action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple;
+import static com.example.stayi.myapplication.R.id.action_MAIN_MENU_CONDITIONS_to_MILL_calc_detail;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -92,10 +93,10 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
                 //nav_var_storage.addProperty("hasVisited", false);
                 boolean mill_menu_state = nav_var_storage.getProperty("hasVisited", false);
                 if (mill_menu_state) {
-                    navController.navigate (MILL_calc_simple);
+                    navController.navigate (action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple);
                     Toast.makeText(getContext(), "mill_simple", Toast.LENGTH_SHORT).show();
                 } else{
-                    navController.navigate (MILL_calc_detail);
+                    navController.navigate (action_MAIN_MENU_CONDITIONS_to_MILL_calc_detail);
                     Toast.makeText(getContext(), "mill_detail", Toast.LENGTH_SHORT).show();
                 }
                 //Toast.makeText(getActivity(), "You Clicked the button!", Toast.LENGTH_LONG).show();
