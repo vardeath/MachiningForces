@@ -17,8 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
+import com.example.stayi.myapplication.nav_var_storage;
 
 import java.util.Objects;
 
@@ -131,10 +133,15 @@ public class MILL_calc_detail extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        NavController navController;
-        navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
-        navController.navigate(action_MILL_calc_detail_to_MILL_calc_simple);
-        //item.setChecked(true);
+        //Запоминаем состояние меню фрагмента.
+        if (id !=R.id.action_mill_detail) {
+            nav_var_storage.init(getContext());
+            nav_var_storage.addProperty("hasVisited", true);
+            NavController navController;
+            navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.fragment);
+            navController.navigate(action_MILL_calc_detail_to_MILL_calc_simple);
+            //item.setChecked(true);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

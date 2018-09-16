@@ -28,7 +28,7 @@ public class nav_var_storage {
             init();
         }
         editor.putBoolean( name, value );
-        editor.commit();
+        editor.apply();
     }
 
     public static boolean getProperty(String name, boolean b){

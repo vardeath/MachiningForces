@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
@@ -23,8 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import static com.example.stayi.myapplication.R.id.MILL_calc_simple;
-import static com.example.stayi.myapplication.R.id.MILL_calc_detail;
 import static com.example.stayi.myapplication.R.id.action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple;
 import static com.example.stayi.myapplication.R.id.action_MAIN_MENU_CONDITIONS_to_MILL_calc_detail;
 /**
@@ -94,16 +90,14 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
                 navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
                 //Подгружаем состояние навигационных путей из хранилища.
                 nav_var_storage.init(getContext());
-                nav_var_storage.addProperty("hasVisited", true); // TODO Тестовая строка, после тестирования убрать.
                 boolean mill_menu_state = nav_var_storage.getProperty("hasVisited", false);
                 if (mill_menu_state) {
                     navController.navigate (action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple);
-                    Toast.makeText(getContext(), "mill_simple", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "mill_simple", Toast.LENGTH_SHORT).show();
                 } else{
                     navController.navigate (action_MAIN_MENU_CONDITIONS_to_MILL_calc_detail);
-                    Toast.makeText(getContext(), "mill_detail", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "mill_detail", Toast.LENGTH_SHORT).show();
                 }
-                //Toast.makeText(getActivity(), "You Clicked the button!", Toast.LENGTH_LONG).show();
             }
         });
 
