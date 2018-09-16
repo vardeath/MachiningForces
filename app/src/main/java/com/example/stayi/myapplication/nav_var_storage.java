@@ -17,6 +17,7 @@ public class nav_var_storage {
         context = cntxt;
     }
 
+    @SuppressLint("CommitPrefEdits")
     private static void init(){
         settings = context.getSharedPreferences(STORAGE_NAME, Context.MODE_PRIVATE);
         editor = settings.edit();

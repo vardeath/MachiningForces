@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
@@ -87,8 +89,10 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
+                //Вешаю навигационный контроллер на кнопку.
                 NavController navController;
                 navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
+                //Подгружаем состояние навигационных путей из хранилища.
                 nav_var_storage.init(getContext());
                 nav_var_storage.addProperty("hasVisited", true); // TODO Тестовая строка, после тестирования убрать.
                 boolean mill_menu_state = nav_var_storage.getProperty("hasVisited", false);
@@ -102,8 +106,8 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
                 //Toast.makeText(getActivity(), "You Clicked the button!", Toast.LENGTH_LONG).show();
             }
         });
-        return rootViewA;
 
+        return rootViewA;
     }
 
     @Override

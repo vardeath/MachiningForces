@@ -7,16 +7,24 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
 
+import java.util.Objects;
+import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MILL_calc_detail2;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -122,5 +130,17 @@ public class MILL_calc_simple extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.action_mill_simple);
+        item.setChecked(true);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        NavController navController;
+        navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
+        navController.navigate(action_MILL_calc_simple_to_MILL_calc_detail2);
+        //item.setChecked(true);
+        return super.onOptionsItemSelected(item);
     }
 }
