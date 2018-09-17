@@ -1,5 +1,6 @@
 package com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +29,8 @@ import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
 
 import java.util.Objects;
+import static android.view.KeyEvent.*;
+
 import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MILL_calc_detail2;
 
 /**
@@ -38,7 +42,10 @@ import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MI
  * create an instance of this fragment.
  */
 public class MILL_calc_simple extends Fragment {
-    private EditText editText;
+    View rootView;
+    private EditText editText_tool_diameter;
+    private EditText editText_tool_speed;
+    private EditText editText_tool_rev;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -86,8 +93,36 @@ public class MILL_calc_simple extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate (R.layout.mill_calc_simple, container, false);
-        editText = rootView.findViewById(R.id.editText_Mill_Diameter);
+        rootView = inflater.inflate (R.layout.mill_calc_simple, container, false);
+
+        editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
+        editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
+        editText_tool_rev = rootView.findViewById(R.id.editText3_rev);
+        /*View.OnKeyListener K_listener = new View.OnKeyListener(){
+            @SuppressLint("ShowToast")
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Toast.makeText(getContext(), "uuy",Toast.LENGTH_SHORT);
+                return false;
+            }
+        };*/
+
+        editText_tool_diameter.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                String val = editText_tool_diameter.getText().toString();
+                String zero = "0";
+                String empty = "";
+                String temp = String.valueOf(event.getUnicodeChar());
+                if ((val.equals(zero) && keyCode == KEYCODE_0) || val.equals(zero) && keyCode == KEYCODE_DEL || val.equals(zero) && keyCode == KEYCODE_CUT) {
+                    return true;
+                }
+                if (editText_tool_diameter.getText().length() == 0) {editText_tool_diameter.setText(zero); return false;}
+                if (val.equals(zero) && keyCode != KEYCODE_CUT) editText_tool_diameter.setText(empty);
+                return false;
+            }
+        });
         return rootView;
     }
 
