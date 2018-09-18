@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,7 +44,8 @@ import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MI
  * create an instance of this fragment.
  */
 public class MILL_calc_simple extends Fragment {
-    View rootView;
+
+    boolean use_var = true;
     private EditText editText_tool_diameter;
     private EditText editText_tool_speed;
     private EditText editText_tool_rev;
@@ -93,33 +96,54 @@ public class MILL_calc_simple extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate (R.layout.mill_calc_simple, container, false);
+        View rootView = inflater.inflate (R.layout.mill_calc_simple, container, false);
 
         editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
         editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
         editText_tool_rev = rootView.findViewById(R.id.editText3_rev);
-        /*View.OnKeyListener K_listener = new View.OnKeyListener(){
-            @SuppressLint("ShowToast")
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                Toast.makeText(getContext(), "uuy",Toast.LENGTH_SHORT);
-                return false;
-            }
-        };*/
 
+        editText_tool_diameter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (editText_tool_diameter.getText().length() == 0 && use_var) {
+                    editText_tool_diameter.setText("0");
+                    editText_tool_diameter.setSelection(editText_tool_diameter.getText().length());
+                }
+                use_var = true;
+            }
+        });
         editText_tool_diameter.setOnKeyListener(new View.OnKeyListener()
         {
             public boolean onKey(View v, int keyCode, KeyEvent event)
             {
-                String val = editText_tool_diameter.getText().toString();
+                String ret = String.valueOf(keyCode);
+                Toast.makeText(getContext(), ret, Toast.LENGTH_LONG).show();
                 String zero = "0";
                 String empty = "";
-                String temp = String.valueOf(event.getUnicodeChar());
-                if ((val.equals(zero) && keyCode == KEYCODE_0) || val.equals(zero) && keyCode == KEYCODE_DEL || val.equals(zero) && keyCode == KEYCODE_CUT) {
+                String val = String.valueOf(editText_tool_diameter.getText());
+                if (val.equals(zero) && (keyCode == KEYCODE_0 || keyCode == KEYCODE_DEL)) return true;
+                if (val.equals(zero) && keyCode != KEYCODE_NUMPAD_DOT) {
+                    use_var = false;
+                    editText_tool_diameter.setText(empty);
+                }
+                if (keyCode == KEYCODE_NUMPAD_DOT) {
+                    for (int i = 0; i < val.length(); ++i) {
+                        if (val.charAt(i) == '.') return true;
+                    }
+                }
+                if (val.charAt(0) == '0' && keyCode == KEYCODE_0) {
                     return true;
                 }
-                if (editText_tool_diameter.getText().length() == 0) {editText_tool_diameter.setText(zero); return false;}
-                if (val.equals(zero) && keyCode != KEYCODE_CUT) editText_tool_diameter.setText(empty);
                 return false;
             }
         });
