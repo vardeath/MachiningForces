@@ -96,7 +96,7 @@ public class MILL_calc_simple extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate (R.layout.mill_calc_simple, container, false);
+        View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
         editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
         editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
@@ -122,26 +122,29 @@ public class MILL_calc_simple extends Fragment {
                 use_var = true;
             }
         });
-        editText_tool_diameter.setOnKeyListener(new View.OnKeyListener()
-        {
-            public boolean onKey(View v, int keyCode, KeyEvent event)
-            {
+        editText_tool_diameter.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
                 String ret = String.valueOf(keyCode);
-                Toast.makeText(getContext(), ret, Toast.LENGTH_LONG).show();
-                String zero = "0";
+                //Toast.makeText(getContext(), ret, Toast.LENGTH_LONG).show();
+                char zero = '0';
+                char point = '.';
                 String empty = "";
                 String val = String.valueOf(editText_tool_diameter.getText());
-                if (val.equals(zero) && (keyCode == KEYCODE_0 || keyCode == KEYCODE_DEL)) return true;
-                if (val.equals(zero) && keyCode != KEYCODE_NUMPAD_DOT) {
+                if (val.equals(String.valueOf(zero)) && (keyCode == KEYCODE_0 || keyCode == KEYCODE_DEL))
+                    return true;
+                if (val.equals(String.valueOf(zero)) && keyCode != KEYCODE_NUMPAD_DOT && editText_tool_diameter.getSelectionEnd() == 1) {
                     use_var = false;
                     editText_tool_diameter.setText(empty);
                 }
                 if (keyCode == KEYCODE_NUMPAD_DOT) {
                     for (int i = 0; i < val.length(); ++i) {
-                        if (val.charAt(i) == '.') return true;
+                        if (val.charAt(i) == point) return true;
                     }
                 }
-                if (val.charAt(0) == '0' && keyCode == KEYCODE_0) {
+                if (val.charAt(0) == zero && val.charAt(0) != point && editText_tool_diameter.getSelectionEnd() == 1 && keyCode == KEYCODE_0) {
+                    return true;
+                }
+                if (val.charAt(0) == zero && editText_tool_diameter.getSelectionEnd() == 0 && keyCode == KEYCODE_0) {
                     return true;
                 }
                 return false;

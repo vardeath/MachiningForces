@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         if (!hasVisited) {
             nav_var_storage.addProperty("hasVisited", false);
         }
-        Toast.makeText(this, "visit_status: " + hasVisited, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "visit_status: " + hasVisited, Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
