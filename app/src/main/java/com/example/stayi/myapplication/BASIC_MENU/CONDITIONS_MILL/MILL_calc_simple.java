@@ -1,22 +1,14 @@
 package com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,15 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import com.example.stayi.myapplication.EDIT_txt_listener;
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
-
 import java.util.Objects;
-import static android.view.KeyEvent.*;
-
 import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MILL_calc_detail2;
 
 /**
@@ -45,19 +32,16 @@ import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MI
  */
 public class MILL_calc_simple extends Fragment {
 
-    boolean use_var = true;
-    private EditText editText_tool_diameter;
-    private EditText editText_tool_speed;
-    private EditText editText_tool_rev;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private final ThreadLocal<EDIT_txt_listener> list_edit1_diam = new ThreadLocal<>(); //набор слушателей для поля ввода диаметра инструмента.
+    private final ThreadLocal<EDIT_txt_listener> list_edit2_vc = new ThreadLocal<>(); //набор слушателей для поля ввода скорости резания.
+    private final ThreadLocal<EDIT_txt_listener> list_edit3_rev = new ThreadLocal<>(); //набор слушателей для поля ввода числа оборотов.
+    private final ThreadLocal<EDIT_txt_listener> list_edit4_z = new ThreadLocal<>(); //набор слушателей для поля ввода числа режущих кромок.
+    private final ThreadLocal<EDIT_txt_listener> list_edit5_fz = new ThreadLocal<>(); //набор слушателей для поля ввода подачи на зуб.
+    private final ThreadLocal<EDIT_txt_listener> list_edit_fm = new ThreadLocal<>(); //набор слушателей для поля ввода минутной подачи.
     private OnFragmentInteractionListener mListener;
 
     public MILL_calc_simple() {
@@ -86,8 +70,6 @@ public class MILL_calc_simple extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         if (getArguments () != null) {
-            mParam1 = getArguments ().getString (ARG_PARAM1);
-            mParam2 = getArguments ().getString (ARG_PARAM2);
         }
         setHasOptionsMenu(true);
     }
@@ -98,58 +80,19 @@ public class MILL_calc_simple extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
-        editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
-        editText_tool_rev = rootView.findViewById(R.id.editText3_rev);
+        EditText editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
+        EditText editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
+        EditText editText_tool_rev = rootView.findViewById(R.id.editText3_rev);
+        EditText editText_tool_teeth = rootView.findViewById(R.id.editText4_teeth);
+        EditText editText_tool_fz = rootView.findViewById(R.id.editText5_tooth_feed);
+        EditText editText_tool_fm = rootView.findViewById(R.id.editText6);
 
-        editText_tool_diameter.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (editText_tool_diameter.getText().length() == 0 && use_var) {
-                    editText_tool_diameter.setText("0");
-                    editText_tool_diameter.setSelection(editText_tool_diameter.getText().length());
-                }
-                use_var = true;
-            }
-        });
-        editText_tool_diameter.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                String ret = String.valueOf(keyCode);
-                //Toast.makeText(getContext(), ret, Toast.LENGTH_LONG).show();
-                char zero = '0';
-                char point = '.';
-                String empty = "";
-                String val = String.valueOf(editText_tool_diameter.getText());
-                if (val.equals(String.valueOf(zero)) && (keyCode == KEYCODE_0 || keyCode == KEYCODE_DEL))
-                    return true;
-                if (val.equals(String.valueOf(zero)) && keyCode != KEYCODE_NUMPAD_DOT && editText_tool_diameter.getSelectionEnd() == 1) {
-                    use_var = false;
-                    editText_tool_diameter.setText(empty);
-                }
-                if (keyCode == KEYCODE_NUMPAD_DOT) {
-                    for (int i = 0; i < val.length(); ++i) {
-                        if (val.charAt(i) == point) return true;
-                    }
-                }
-                if (val.charAt(0) == zero && val.charAt(0) != point && editText_tool_diameter.getSelectionEnd() == 1 && keyCode == KEYCODE_0) {
-                    return true;
-                }
-                if (val.charAt(0) == zero && editText_tool_diameter.getSelectionEnd() == 0 && keyCode == KEYCODE_0) {
-                    return true;
-                }
-                return false;
-            }
-        });
+        list_edit1_diam.set(new EDIT_txt_listener(editText_tool_diameter));
+        list_edit2_vc.set(new EDIT_txt_listener(editText_tool_speed));
+        list_edit3_rev.set(new EDIT_txt_listener(editText_tool_rev));
+        list_edit4_z.set(new EDIT_txt_listener(editText_tool_teeth));
+        list_edit5_fz.set(new EDIT_txt_listener(editText_tool_fz));
+        list_edit_fm.set(new EDIT_txt_listener(editText_tool_fm));
         return rootView;
     }
 
@@ -177,6 +120,30 @@ public class MILL_calc_simple extends Fragment {
         mListener = null;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.action_mill_simple);
+        item.setChecked(true);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id != R.id.action_mill_simple) {
+        //Запоминаем состояние меню фрагмента.
+        nav_var_storage.init(getContext());
+        nav_var_storage.addProperty("hasVisited", false);
+        NavController navController;
+        navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
+        navController.navigate(action_MILL_calc_simple_to_MILL_calc_detail2);
+        //item.setChecked(true);
+        }
+        return super.onOptionsItemSelected(item);
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -192,28 +159,5 @@ public class MILL_calc_simple extends Fragment {
         void onFragmentInteraction(Uri uri);
 
         void onClick();
-    }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        inflater.inflate(R.menu.main, menu);
-        MenuItem item = menu.findItem(R.id.action_mill_simple);
-        item.setChecked(true);
-    }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id != R.id.action_mill_simple) {
-        //Запоминаем состояние меню фрагмента.
-        nav_var_storage.init(getContext());
-        nav_var_storage.addProperty("hasVisited", false);
-        NavController navController;
-        navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
-        navController.navigate(action_MILL_calc_simple_to_MILL_calc_detail2);
-        //item.setChecked(true);
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
