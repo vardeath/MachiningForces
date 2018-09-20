@@ -1,23 +1,25 @@
 package com.example.stayi.myapplication;
 
+import android.annotation.SuppressLint;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-
-import static android.view.KeyEvent.KEYCODE_0;
-import static android.view.KeyEvent.KEYCODE_DEL;
-import static android.view.KeyEvent.KEYCODE_ENTER;
-import static android.view.KeyEvent.KEYCODE_NUMPAD_DOT;
+import android.widget.Toast;
+import android.content.Context;
+import static android.view.KeyEvent.*;
+import static android.widget.Toast.makeText;
 
 public class EDIT_txt_listener {
 
     private boolean use_var = true;
     private EditText EDT;
 
-    public EDIT_txt_listener(EditText edtx) {
+    @SuppressLint("ClickableViewAccessibility")
+    public EDIT_txt_listener(EditText edtx, final Context cntxt) {
         EDT = edtx;
+        EDT.setCursorVisible(false);
         EDT.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -44,6 +46,9 @@ public class EDIT_txt_listener {
                 char zero = '0';
                 String empty = "";
                 String val = String.valueOf(EDT.getText());
+                EDT.setSelection(EDT.getText().length());
+                /*Toast ssd = makeText(cntxt, "ssd", Toast.LENGTH_SHORT);
+                ssd.show();*/
                 if (val.equals(String.valueOf(zero)) && (keyCode == KEYCODE_0 || keyCode == KEYCODE_DEL))
                     return true;
                 if (val.equals(String.valueOf(zero)) && keyCode != KEYCODE_ENTER) {
@@ -53,7 +58,7 @@ public class EDIT_txt_listener {
                     }
                 }
                 if (EDT.getId() == R.id.editText4_teeth) {
-                    if(keyCode == KEYCODE_NUMPAD_DOT || keyCode == KEYCODE_0){
+                    if (keyCode == KEYCODE_NUMPAD_DOT){
                         return true;
                     }
                 }

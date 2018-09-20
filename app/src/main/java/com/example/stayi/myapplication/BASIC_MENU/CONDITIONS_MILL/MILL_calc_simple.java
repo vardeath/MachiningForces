@@ -86,13 +86,13 @@ public class MILL_calc_simple extends Fragment {
         EditText editText_tool_teeth = rootView.findViewById(R.id.editText4_teeth);
         EditText editText_tool_fz = rootView.findViewById(R.id.editText5_tooth_feed);
         EditText editText_tool_fm = rootView.findViewById(R.id.editText6);
-
-        list_edit1_diam.set(new EDIT_txt_listener(editText_tool_diameter));
-        list_edit2_vc.set(new EDIT_txt_listener(editText_tool_speed));
-        list_edit3_rev.set(new EDIT_txt_listener(editText_tool_rev));
-        list_edit4_z.set(new EDIT_txt_listener(editText_tool_teeth));
-        list_edit5_fz.set(new EDIT_txt_listener(editText_tool_fz));
-        list_edit_fm.set(new EDIT_txt_listener(editText_tool_fm));
+        Context cntxt = getContext();
+        list_edit1_diam.set(new EDIT_txt_listener(editText_tool_diameter,cntxt));
+        list_edit2_vc.set(new EDIT_txt_listener(editText_tool_speed,cntxt));
+        list_edit3_rev.set(new EDIT_txt_listener(editText_tool_rev,cntxt));
+        list_edit4_z.set(new EDIT_txt_listener(editText_tool_teeth,cntxt));
+        list_edit5_fz.set(new EDIT_txt_listener(editText_tool_fz,cntxt));
+        list_edit_fm.set(new EDIT_txt_listener(editText_tool_fm,cntxt));
 
         return rootView;
     }
