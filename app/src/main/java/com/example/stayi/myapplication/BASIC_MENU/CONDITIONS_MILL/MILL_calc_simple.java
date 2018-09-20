@@ -93,6 +93,7 @@ public class MILL_calc_simple extends Fragment {
         list_edit4_z.set(new EDIT_txt_listener(editText_tool_teeth));
         list_edit5_fz.set(new EDIT_txt_listener(editText_tool_fz));
         list_edit_fm.set(new EDIT_txt_listener(editText_tool_fm));
+
         return rootView;
     }
 

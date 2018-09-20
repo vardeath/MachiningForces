@@ -94,14 +94,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="@string/Spendle_speed"
         app:layout_constraintBottom_toBottomOf="@+id/editText3_rev"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText3_rev" />
+        app:layout_constraintTop_toTopOf="@+id/editText3_rev"
+        tools:ignore="RtlHardcoded" />
 
     <EditText
         android:id="@+id/editText3_rev"
@@ -126,14 +125,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="@string/Teeth_number"
         app:layout_constraintBottom_toBottomOf="@+id/editText4_teeth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText4_teeth" />
+        app:layout_constraintTop_toTopOf="@+id/editText4_teeth"
+        tools:ignore="RtlHardcoded" />
 
     <EditText
         android:id="@+id/editText4_teeth"
@@ -144,6 +142,7 @@
         android:gravity="center_horizontal"
         android:inputType="numberDecimal"
         android:text="@string/zero"
+        android:digits="123456789"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText3_rev"
         app:layout_constraintHorizontal_bias="0.0"
