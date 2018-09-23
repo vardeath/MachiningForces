@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.stayi.myapplication.EDIT_txt_listener;
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.Objects;
 
@@ -40,13 +40,9 @@ public class MILL_calc_simple extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private final ThreadLocal<EDIT_txt_listener> list_edit1_diam = new ThreadLocal<>(); //набор слушателей для поля ввода диаметра инструмента.
-    private final ThreadLocal<EDIT_txt_listener> list_edit2_vc = new ThreadLocal<>(); //набор слушателей для поля ввода скорости резания.
-    private final ThreadLocal<EDIT_txt_listener> list_edit3_rev = new ThreadLocal<>(); //набор слушателей для поля ввода числа оборотов.
-    private final ThreadLocal<EDIT_txt_listener> list_edit4_z = new ThreadLocal<>(); //набор слушателей для поля ввода числа режущих кромок.
-    private final ThreadLocal<EDIT_txt_listener> list_edit5_fz = new ThreadLocal<>(); //набор слушателей для поля ввода подачи на зуб.
-    private final ThreadLocal<EDIT_txt_listener> list_edit_fm = new ThreadLocal<>(); //набор слушателей для поля ввода минутной подачи.
     private OnFragmentInteractionListener mListener;
+
+    private BottomSheetBehavior behavior;
 
     public MILL_calc_simple() {
         // Required empty public constructor
@@ -78,25 +74,25 @@ public class MILL_calc_simple extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        TextView editText_tool_diameter = rootView.findViewById(R.id.TW_Mill_Diameter);
-        TextView editText_tool_speed = rootView.findViewById(R.id.TW_vc_speed);
-        TextView editText_tool_rev = rootView.findViewById(R.id.TW_n_rev);
-        TextView editText_tool_teeth = rootView.findViewById(R.id.TW_n_teeth);
-        TextView editText_tool_fz = rootView.findViewById(R.id.TW_t_feed_editor);
-        TextView editText_tool_fm = rootView.findViewById(R.id.TW_m_feed_editor);
-        Context cntxt = getContext();
-        list_edit1_diam.set(new EDIT_txt_listener(editText_tool_diameter,cntxt));
-        list_edit2_vc.set(new EDIT_txt_listener(editText_tool_speed,cntxt));
-        list_edit3_rev.set(new EDIT_txt_listener(editText_tool_rev,cntxt));
-        list_edit4_z.set(new EDIT_txt_listener(editText_tool_teeth,cntxt));
-        list_edit5_fz.set(new EDIT_txt_listener(editText_tool_fz,cntxt));
-        list_edit_fm.set(new EDIT_txt_listener(editText_tool_fm,cntxt));
+        TextView TW_mill_diameter = rootView.findViewById(R.id.TW_Mill_Diameter);
+
+        View BottomSheet = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
+        behavior = BottomSheetBehavior.from(BottomSheet);
+        /*TW_mill_diameter.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(), "its works",Toast.LENGTH_LONG).show();
+
+            }
+        });*/
 
         return rootView;
     }
@@ -164,5 +160,11 @@ public class MILL_calc_simple extends Fragment {
         void onFragmentInteraction(Uri uri);
 
         void onClick();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        super.onStop();
     }
 }
