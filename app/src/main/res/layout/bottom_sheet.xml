@@ -6,14 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="@android:color/darker_gray"
+    android:gravity="center_vertical|center_horizontal|center"
     android:orientation="vertical"
-    app:behavior_peekHeight="20dp"
+    app:behavior_peekHeight="30dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TableLayout
         android:id="@+id/slide_keyboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="3dp"
         android:gravity="center_vertical|center_horizontal|center">
 
         <TableRow
@@ -21,28 +27,37 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/SL_KEY_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_1"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/SL_KEY_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_2"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/SL_KEY_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_3"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/SL_KEY_UP"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Button" />
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_UP" />
         </TableRow>
 
         <TableRow
@@ -50,28 +65,37 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/SL_KEY_4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_4"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button10"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_5"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button11"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_6"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_6"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_DOWN"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_DOWN" />
         </TableRow>
 
         <TableRow
@@ -79,28 +103,37 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_7"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_7"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button13"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_8"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_8"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button14"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_9"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_9"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button15"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_DEL"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_DEL" />
         </TableRow>
 
         <TableRow
@@ -108,28 +141,36 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_STORAGE"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_STORAGE" />
 
             <Button
-                android:id="@+id/button16"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_0"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_0"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button17"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_DOT"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_DOT"
+                android:textStyle="bold|italic" />
 
             <Button
-                android:id="@+id/button18"
-                android:layout_width="wrap_content"
+                android:id="@+id/SL_KEY_CLEAR"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/keyboard_button_behavior"
+                android:text="@string/SL_KEY_CLEAR" />
         </TableRow>
     </TableLayout>
 

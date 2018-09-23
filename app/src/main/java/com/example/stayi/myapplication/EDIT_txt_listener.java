@@ -59,7 +59,7 @@ public class EDIT_txt_listener {
                         EDT.setText(empty);
                     }
                 }
-                if (EDT.getId() == R.id.editText4_teeth) {
+                if (EDT.getId() == R.id.TW_n_teeth) {
                     if (keyCode == KEYCODE_NUMPAD_DOT){
                         return true;
                     }

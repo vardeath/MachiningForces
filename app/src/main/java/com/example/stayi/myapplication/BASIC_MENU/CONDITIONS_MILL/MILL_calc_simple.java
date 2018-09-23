@@ -84,12 +84,12 @@ public class MILL_calc_simple extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        TextView editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
-        TextView editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
-        TextView editText_tool_rev = rootView.findViewById(R.id.editText3_rev);
-        TextView editText_tool_teeth = rootView.findViewById(R.id.editText4_teeth);
-        TextView editText_tool_fz = rootView.findViewById(R.id.editText5_tooth_feed);
-        TextView editText_tool_fm = rootView.findViewById(R.id.editText6);
+        TextView editText_tool_diameter = rootView.findViewById(R.id.TW_Mill_Diameter);
+        TextView editText_tool_speed = rootView.findViewById(R.id.TW_vc_speed);
+        TextView editText_tool_rev = rootView.findViewById(R.id.TW_n_rev);
+        TextView editText_tool_teeth = rootView.findViewById(R.id.TW_n_teeth);
+        TextView editText_tool_fz = rootView.findViewById(R.id.TW_t_feed_editor);
+        TextView editText_tool_fm = rootView.findViewById(R.id.TW_m_feed_editor);
         Context cntxt = getContext();
         list_edit1_diam.set(new EDIT_txt_listener(editText_tool_diameter,cntxt));
         list_edit2_vc.set(new EDIT_txt_listener(editText_tool_speed,cntxt));

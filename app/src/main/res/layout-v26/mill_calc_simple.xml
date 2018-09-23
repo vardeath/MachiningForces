@@ -11,7 +11,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/mill_simple_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/mill_simple_header"
         app:layout_constraintVertical_bias="0.0">
 
         <TableRow
@@ -37,7 +37,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/Name_of_diameter"
+                android:id="@+id/TW_D_tool_presenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -50,7 +50,7 @@
                 tools:layout_editor_absoluteY="538dp" />
 
             <TextView
-                android:id="@+id/editText_Mill_Diameter"
+                android:id="@+id/TW_Mill_Diameter"
                 android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
@@ -67,8 +67,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/Name_of_diameter"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/TW_D_tool_presenter"
+                app:layout_constraintTop_toBottomOf="@+id/mill_simple_header"
                 app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintVertical_chainStyle="spread_inside"
                 tools:ignore="RtlHardcoded" />
@@ -89,22 +89,22 @@
             android:layout_marginTop="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:id="@+id/Cutting_speed"
+                android:id="@+id/TW_vc_presenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:text="@string/Cutting_speed"
-                app:layout_constraintBottom_toBottomOf="@+id/editText2_Speed"
+                app:layout_constraintBottom_toBottomOf="@+id/TW_vc_speed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editText2_Speed"
-                android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="@+id/TW_vc_speed"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/editText2_Speed"
+                android:id="@+id/TW_vc_speed"
                 android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
@@ -115,10 +115,10 @@
                 android:text="@string/zero"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/editText_Mill_Diameter"
+                app:layout_constraintEnd_toEndOf="@+id/TW_Mill_Diameter"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/editText_Mill_Diameter"
-                app:layout_constraintTop_toBottomOf="@+id/editText_Mill_Diameter"
+                app:layout_constraintStart_toStartOf="@+id/TW_Mill_Diameter"
+                app:layout_constraintTop_toBottomOf="@+id/TW_Mill_Diameter"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -136,22 +136,22 @@
             android:layout_marginTop="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:id="@+id/Spindle_speed"
+                android:id="@+id/TW_n_rev_presenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:text="@string/Spendle_speed"
-                app:layout_constraintBottom_toBottomOf="@+id/editText3_rev"
+                app:layout_constraintBottom_toBottomOf="@+id/TW_n_rev"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editText3_rev"
-                android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="@+id/TW_n_rev"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/editText3_rev"
+                android:id="@+id/TW_n_rev"
                 android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
@@ -162,10 +162,10 @@
                 android:text="@string/zero"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/editText2_Speed"
+                app:layout_constraintEnd_toEndOf="@+id/TW_vc_speed"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/editText2_Speed"
-                app:layout_constraintTop_toBottomOf="@+id/editText2_Speed"
+                app:layout_constraintStart_toStartOf="@+id/TW_vc_speed"
+                app:layout_constraintTop_toBottomOf="@+id/TW_vc_speed"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -183,22 +183,22 @@
             android:layout_marginTop="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:id="@+id/Number_of_teeth"
+                android:id="@+id/TW_n_teeth_presenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:text="@string/Teeth_number"
-                app:layout_constraintBottom_toBottomOf="@+id/editText4_teeth"
+                app:layout_constraintBottom_toBottomOf="@+id/TW_n_teeth"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editText4_teeth"
-                android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="@+id/TW_n_teeth"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/editText4_teeth"
+                android:id="@+id/TW_n_teeth"
                 android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
@@ -208,10 +208,10 @@
                 android:gravity="center_horizontal"
                 android:text="@string/zero"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/editText3_rev"
+                app:layout_constraintEnd_toEndOf="@+id/TW_n_rev"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/editText3_rev"
-                app:layout_constraintTop_toBottomOf="@+id/editText3_rev" />
+                app:layout_constraintStart_toStartOf="@+id/TW_n_rev"
+                app:layout_constraintTop_toBottomOf="@+id/TW_n_rev" />
 
             <TextView
                 android:id="@+id/TW_teeth"
@@ -228,22 +228,22 @@
             android:layout_marginTop="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:id="@+id/textView9_tooth_feed"
+                android:id="@+id/TW_t_feed_presenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:text="@string/Feed_per_tooth"
-                app:layout_constraintBottom_toBottomOf="@+id/editText5_tooth_feed"
+                app:layout_constraintBottom_toBottomOf="@+id/TW_t_feed_editor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editText5_tooth_feed"
-                android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="@+id/TW_t_feed_editor"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/editText5_tooth_feed"
+                android:id="@+id/TW_t_feed_editor"
                 android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
@@ -253,10 +253,10 @@
                 android:importantForAutofill="no"
                 android:text="@string/zero"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/editText4_teeth"
+                app:layout_constraintEnd_toEndOf="@+id/TW_n_teeth"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/editText4_teeth"
-                app:layout_constraintTop_toBottomOf="@+id/editText4_teeth" />
+                app:layout_constraintStart_toStartOf="@+id/TW_n_teeth"
+                app:layout_constraintTop_toBottomOf="@+id/TW_n_teeth" />
 
             <TextView
                 android:id="@+id/TW_teeth_deed"
@@ -273,22 +273,22 @@
             android:layout_marginTop="@dimen/nav_header_vertical_spacing">
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/TW_m_feed_presenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:text="@string/Minute_feed"
-                app:layout_constraintBottom_toBottomOf="@+id/editText6"
+                app:layout_constraintBottom_toBottomOf="@+id/TW_m_feed_editor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editText6"
-                android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="@+id/TW_m_feed_editor"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/editText6"
+                android:id="@+id/TW_m_feed_editor"
                 android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:maxLength="8"
@@ -298,10 +298,10 @@
                 android:importantForAutofill="no"
                 android:text="@string/zero"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/editText5_tooth_feed"
+                app:layout_constraintEnd_toEndOf="@+id/TW_t_feed_editor"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/editText5_tooth_feed"
-                app:layout_constraintTop_toBottomOf="@+id/editText5_tooth_feed" />
+                app:layout_constraintStart_toStartOf="@+id/TW_t_feed_editor"
+                app:layout_constraintTop_toBottomOf="@+id/TW_t_feed_editor" />
 
             <TextView
                 android:id="@+id/TW_m_feed"

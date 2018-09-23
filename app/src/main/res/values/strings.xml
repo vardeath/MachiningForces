@@ -45,4 +45,20 @@
     <string name="TW_teeth">шт.</string>
     <string name="TW_teeth_feed">мм.</string>
     <string name="TW_m_feed">мм/мин.</string>
+    <string name="SL_KEY_1">1</string>
+    <string name="SL_KEY_2">2</string>
+    <string name="SL_KEY_3">3</string>
+    <string name="SL_KEY_UP">UP</string>
+    <string name="SL_KEY_4">4</string>
+    <string name="SL_KEY_5">5</string>
+    <string name="SL_KEY_6">6</string>
+    <string name="SL_KEY_DOWN">DOWN</string>
+    <string name="SL_KEY_7">7</string>
+    <string name="SL_KEY_8">8</string>
+    <string name="SL_KEY_9">9</string>
+    <string name="SL_KEY_DEL">DEL</string>
+    <string name="SL_KEY_STORAGE">STORAGE</string>
+    <string name="SL_KEY_0">0</string>
+    <string name="SL_KEY_DOT">.</string>
+    <string name="SL_KEY_CLEAR">CLEAR</string>
 </resources>
