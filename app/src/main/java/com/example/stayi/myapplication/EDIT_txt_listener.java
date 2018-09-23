@@ -1,23 +1,25 @@
 package com.example.stayi.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-import android.content.Context;
-import static android.view.KeyEvent.*;
-import static android.widget.Toast.makeText;
+import android.widget.TextView;
+
+import static android.view.KeyEvent.KEYCODE_0;
+import static android.view.KeyEvent.KEYCODE_DEL;
+import static android.view.KeyEvent.KEYCODE_ENTER;
+import static android.view.KeyEvent.KEYCODE_NUMPAD_DOT;
 
 public class EDIT_txt_listener {
 
     private boolean use_var = true;
-    private EditText EDT;
+    private TextView EDT;
 
     @SuppressLint("ClickableViewAccessibility")
-    public EDIT_txt_listener(EditText edtx, final Context cntxt) {
+    public EDIT_txt_listener(TextView edtx, final Context cntxt) {
         EDT = edtx;
         EDT.setCursorVisible(false);
         EDT.addTextChangedListener(new TextWatcher() {
@@ -35,7 +37,7 @@ public class EDIT_txt_listener {
             public void afterTextChanged(Editable s) {
                 if (EDT.getText().length() == 0 && use_var) {
                     EDT.setText("0");
-                    EDT.setSelection(EDT.getText().length());
+                    //EDT.setSelection(EDT.getText().length());
                 }
                 use_var = true;
             }
@@ -46,7 +48,7 @@ public class EDIT_txt_listener {
                 char zero = '0';
                 String empty = "";
                 String val = String.valueOf(EDT.getText());
-                EDT.setSelection(EDT.getText().length());
+                //EDT.setSelection(EDT.getText().length());
                 /*Toast ssd = makeText(cntxt, "ssd", Toast.LENGTH_SHORT);
                 ssd.show();*/
                 if (val.equals(String.valueOf(zero)) && (keyCode == KEYCODE_0 || keyCode == KEYCODE_DEL))

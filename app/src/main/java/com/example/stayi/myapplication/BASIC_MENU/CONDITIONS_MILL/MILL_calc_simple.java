@@ -4,22 +4,26 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
+
 import com.example.stayi.myapplication.EDIT_txt_listener;
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
+
 import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MILL_calc_detail2;
 
 /**
@@ -80,12 +84,12 @@ public class MILL_calc_simple extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        EditText editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
-        EditText editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
-        EditText editText_tool_rev = rootView.findViewById(R.id.editText3_rev);
-        EditText editText_tool_teeth = rootView.findViewById(R.id.editText4_teeth);
-        EditText editText_tool_fz = rootView.findViewById(R.id.editText5_tooth_feed);
-        EditText editText_tool_fm = rootView.findViewById(R.id.editText6);
+        TextView editText_tool_diameter = rootView.findViewById(R.id.editText_Mill_Diameter);
+        TextView editText_tool_speed = rootView.findViewById(R.id.editText2_Speed);
+        TextView editText_tool_rev = rootView.findViewById(R.id.editText3_rev);
+        TextView editText_tool_teeth = rootView.findViewById(R.id.editText4_teeth);
+        TextView editText_tool_fz = rootView.findViewById(R.id.editText5_tooth_feed);
+        TextView editText_tool_fm = rootView.findViewById(R.id.editText6);
         Context cntxt = getContext();
         list_edit1_diam.set(new EDIT_txt_listener(editText_tool_diameter,cntxt));
         list_edit2_vc.set(new EDIT_txt_listener(editText_tool_speed,cntxt));

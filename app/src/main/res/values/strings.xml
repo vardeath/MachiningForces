@@ -39,4 +39,10 @@
     <string name="Feed_per_tooth">Подача на зуб</string>
     <string name="Minute_feed">Минутная подача</string>
     <string name="zero">0</string>
+    <string name="TW_D_mm">мм.</string>
+    <string name="TW_Vc_mmin">м/мин.</string>
+    <string name="TW_rev">об/мин.</string>
+    <string name="TW_teeth">шт.</string>
+    <string name="TW_teeth_feed">мм.</string>
+    <string name="TW_m_feed">мм/мин.</string>
 </resources>
