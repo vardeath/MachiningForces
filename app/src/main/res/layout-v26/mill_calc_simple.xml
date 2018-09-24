@@ -23,26 +23,28 @@
 
     <TableLayout
         android:layout_width="0dp"
-        android:showDividers="middle"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:showDividers="middle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mill_simple_header"
+        android:weightSum="1.0"
         app:layout_constraintVertical_bias="0.0">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/TW_D_tool_presenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_gravity="center_vertical"
                 android:text="@string/textview_name_diameter"
                 android:textSize="14sp"
                 tools:ignore="RtlHardcoded"
@@ -51,18 +53,15 @@
 
             <TextView
                 android:id="@+id/TW_Mill_Diameter"
-                android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:ems="10"
-                android:focusable="false"
+                android:background="@drawable/textstyle"
                 android:gravity="center_horizontal"
-                android:inputType="none"
                 android:maxLength="8"
                 android:singleLine="true"
                 android:text="@string/zero"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,17 +74,17 @@
 
             <TextView
                 android:id="@+id/TW_D_mm"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
                 android:text="@string/TW_D_mm" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/nav_header_vertical_spacing">
 
             <TextView
@@ -105,15 +104,15 @@
 
             <TextView
                 android:id="@+id/TW_vc_speed"
-                android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:maxLength="8"
+                android:background="@drawable/textstyle"
                 android:ems="10"
                 android:gravity="center_horizontal"
+                android:maxLength="8"
                 android:text="@string/zero"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/TW_Mill_Diameter"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -123,10 +122,10 @@
 
             <TextView
                 android:id="@+id/TW_Vc_mmin"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
                 android:text="@string/TW_Vc_mmin" />
         </TableRow>
 
@@ -152,15 +151,15 @@
 
             <TextView
                 android:id="@+id/TW_n_rev"
-                android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:maxLength="8"
+                android:background="@drawable/textstyle"
                 android:ems="10"
                 android:gravity="center_horizontal"
+                android:maxLength="8"
                 android:text="@string/zero"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/TW_vc_speed"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -170,10 +169,10 @@
 
             <TextView
                 android:id="@+id/TW_rev"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
                 android:text="@string/TW_rev" />
         </TableRow>
 
@@ -199,15 +198,15 @@
 
             <TextView
                 android:id="@+id/TW_n_teeth"
-                android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
-                android:maxLength="4"
+                android:background="@drawable/textstyle"
                 android:ems="10"
                 android:gravity="center_horizontal"
+                android:maxLength="4"
                 android:text="@string/zero"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/TW_n_rev"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/TW_n_rev"
@@ -215,10 +214,10 @@
 
             <TextView
                 android:id="@+id/TW_teeth"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
                 android:text="@string/TW_teeth" />
         </TableRow>
 
@@ -244,15 +243,15 @@
 
             <TextView
                 android:id="@+id/TW_t_feed_editor"
-                android:background="@drawable/textstyle"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/textstyle"
                 android:ems="10"
-                android:maxLength="8"
                 android:gravity="center_horizontal"
                 android:importantForAutofill="no"
+                android:maxLength="8"
                 android:text="@string/zero"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/TW_n_teeth"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/TW_n_teeth"
@@ -260,10 +259,10 @@
 
             <TextView
                 android:id="@+id/TW_teeth_deed"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
                 android:text="@string/TW_teeth_feed" />
         </TableRow>
 
@@ -289,15 +288,15 @@
 
             <TextView
                 android:id="@+id/TW_m_feed_editor"
-                android:background="@drawable/textstyle"
                 android:layout_width="85dp"
-                android:maxLength="8"
                 android:layout_height="wrap_content"
+                android:background="@drawable/textstyle"
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:importantForAutofill="no"
+                android:maxLength="8"
                 android:text="@string/zero"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/TW_t_feed_editor"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/TW_t_feed_editor"
@@ -305,10 +304,10 @@
 
             <TextView
                 android:id="@+id/TW_m_feed"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
                 android:text="@string/TW_m_feed" />
         </TableRow>
 
