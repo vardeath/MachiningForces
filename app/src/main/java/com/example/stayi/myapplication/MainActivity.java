@@ -85,13 +85,15 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-        //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.
 
+        //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.
         nav_var_storage.init(this);
         boolean hasVisited = nav_var_storage.getProperty("hasVisited", true);
         if (!hasVisited) {
             nav_var_storage.addProperty("hasVisited", false);
         }
+
+        //Инициализация слушателя кастомной виртуальной клавиатуры.
         keyboard_listener keyboard = new keyboard_listener(llBottomSheet);
         keyboard.onClick(llBottomSheet);
     }
