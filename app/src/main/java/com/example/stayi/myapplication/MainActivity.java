@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity
         //Инициализация слушателя кастомной виртуальной клавиатуры.
         keyboard_listener keyboard = new keyboard_listener(llBottomSheet);
         keyboard.onClick(llBottomSheet);
-        keyboard.set_current_position(Objects.requireNonNull(navController.getCurrentDestination()).getId());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
