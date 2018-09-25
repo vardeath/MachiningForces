@@ -3,5 +3,5 @@
     <color name="colorPrimary">#e66b00</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#e66b00</color>
-    <color name="keyboardback">#ffffff</color>
+    <color name="keyboardback">#00ffffff</color>
 </resources>

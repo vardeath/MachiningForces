@@ -1,11 +1,12 @@
 package com.example.stayi.myapplication;
 
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
@@ -25,7 +26,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity
         BlankFragment3.OnFragmentInteractionListener, BlankFragment4.OnFragmentInteractionListener, BlankFragment5.OnFragmentInteractionListener,
         BlankFragment6.OnFragmentInteractionListener, MILL_calc_simple.OnFragmentInteractionListener, MILL_calc_detail.OnFragmentInteractionListener {
 
-    CoordinatorLayout coordinatorLayout;
     BottomSheetBehavior behavior;
     private NavController navController;
 
@@ -58,41 +57,29 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorlayout);
-        View bottomSheet = findViewById(R.id.bottom_sheet);
-        behavior = BottomSheetBehavior.from(bottomSheet);
-        /*behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View view, int i) {
+        LinearLayout llBottomSheet = findViewById(R.id.bottom_sheet);
 
-            }
+        behavior = BottomSheetBehavior.from(llBottomSheet);
 
-            @Override
-            public void onSlide(@NonNull View view, float v) {
-
-            }
-        });*/
         //Инициализируем навигационный контроллер для боковой панели навигации.
-        behavior.setHideable(false);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, drawer);
+
         navController.addOnNavigatedListener(new NavController.OnNavigatedListener() {
             @Override
             public void onNavigated(@NonNull NavController controller, @NonNull NavDestination destination) {
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.MILL_calc_simple) {
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                    behavior.setHideable(false);
-                    behavior.setSkipCollapsed(false);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.MILL_calc_simple && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+
                     behavior.setPeekHeight(700);
+                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 } else {
-                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                     behavior.setPeekHeight(0);
+                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 }
             }
         });
-
         //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.
 
         nav_var_storage.init(this);

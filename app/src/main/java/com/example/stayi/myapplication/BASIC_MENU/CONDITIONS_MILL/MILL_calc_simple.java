@@ -82,17 +82,16 @@ public class MILL_calc_simple extends Fragment {
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
         TextView TW_mill_diameter = rootView.findViewById(R.id.TW_Mill_Diameter);
-
         View BottomSheet = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
         behavior = BottomSheetBehavior.from(BottomSheet);
-        /*TW_mill_diameter.setOnClickListener(new View.OnClickListener() {
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        TW_mill_diameter.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getContext(), "its works",Toast.LENGTH_LONG).show();
-
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
-        });*/
+        });
 
         return rootView;
     }
