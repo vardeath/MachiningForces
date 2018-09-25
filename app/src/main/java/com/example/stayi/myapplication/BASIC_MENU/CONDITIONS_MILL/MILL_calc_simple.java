@@ -1,6 +1,7 @@
 package com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -90,10 +91,14 @@ public class MILL_calc_simple extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         });
-
+        if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_PORTRAIT){
+            behavior.setPeekHeight(0);
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+        TW_mill_diameter.performClick();
         return rootView;
     }
 
@@ -117,6 +122,10 @@ public class MILL_calc_simple extends Fragment {
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_PORTRAIT){
+            behavior.setPeekHeight(0);
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
         super.onViewStateRestored(savedInstanceState);
     }
 
