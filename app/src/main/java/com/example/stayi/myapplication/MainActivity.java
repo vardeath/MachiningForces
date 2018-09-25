@@ -40,37 +40,35 @@ public class MainActivity extends AppCompatActivity
         BlankFragment3.OnFragmentInteractionListener, BlankFragment4.OnFragmentInteractionListener, BlankFragment5.OnFragmentInteractionListener,
         BlankFragment6.OnFragmentInteractionListener, MILL_calc_simple.OnFragmentInteractionListener, MILL_calc_detail.OnFragmentInteractionListener {
 
-    BottomSheetBehavior behavior;
-    private NavController navController;
-
-    Button button1;
+    BottomSheetBehavior behavior; //Обработчик поведения нижней панели с кастомной клавиатурой.
+    private NavController navController; //Контроллер навигации по всему приложению.
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //Стандартные инициализации.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        navController = Navigation.findNavController(this, R.id.fragment);
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //Инициализация обработчика поведения выдвижной панели с кастомной клавиатурой.
         LinearLayout llBottomSheet = findViewById(R.id.bottom_sheet);
-
         behavior = BottomSheetBehavior.from(llBottomSheet);
 
-        //Инициализируем навигационный контроллер для боковой панели навигации.
+        //Инициализируем навигационный контроллер для боковой панели навигации и всех фрагментов в графе.
+        navController = Navigation.findNavController(this, R.id.fragment);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, drawer);
 
+        //Вешаем слушатель позиции на навигационный контроллер.
         navController.addOnNavigatedListener(new NavController.OnNavigatedListener() {
             @Override
             public void onNavigated(@NonNull NavController controller, @NonNull NavDestination destination) {
@@ -96,6 +94,7 @@ public class MainActivity extends AppCompatActivity
         //Инициализация слушателя кастомной виртуальной клавиатуры.
         keyboard_listener keyboard = new keyboard_listener(llBottomSheet);
         keyboard.onClick(llBottomSheet);
+        keyboard.set_current_position(Objects.requireNonNull(navController.getCurrentDestination()).getId());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -168,7 +167,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-        }
+
     }
 }

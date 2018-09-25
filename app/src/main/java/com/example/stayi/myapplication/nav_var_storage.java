@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-//Хранилище переменных, которые используются в навигации приложения.
+//Хранилище переменных использующихся в навигации приложения.
 public class nav_var_storage {
     private static final String STORAGE_NAME = "StorageName";
 

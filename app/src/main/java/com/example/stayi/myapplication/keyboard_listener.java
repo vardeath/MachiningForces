@@ -2,20 +2,25 @@ package com.example.stayi.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
-import com.example.stayi.myapplication.R;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple;
 
-import androidx.navigation.NavController;
+import java.util.Objects;
 
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
+import static java.security.AccessController.getContext;
+
+@SuppressLint("Registered")
 public class keyboard_listener extends Activity implements View.OnClickListener {
 
+    TextView EDITABLE;
     public keyboard_listener(View view) {
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
@@ -29,13 +34,19 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void set_current_position(int frag_id){
+
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.SL_KEY_0:
+                EDITABLE.setText("0");
                 Toast.makeText(view.getContext(), "pressed 0", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.SL_KEY_1:
+                EDITABLE.setText("1");
                 Toast.makeText(view.getContext(), "pressed 1", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.SL_KEY_2:
