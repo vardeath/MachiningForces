@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity
                     behavior.setPeekHeight(700);
                     behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 } else {
+                    Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
                     behavior.setPeekHeight(0);
                     behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 }

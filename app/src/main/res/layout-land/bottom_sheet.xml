@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="215dp"
     android:background="@color/keyboardback"
     android:gravity="right|end"
@@ -12,13 +12,6 @@
     app:behavior_hideable="false"
     app:behavior_peekHeight="0dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/textview" />
 
     <TableLayout
         android:id="@+id/slide_keyboard"
@@ -30,7 +23,7 @@
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
         android:layout_marginBottom="3dp"
-        android:gravity="bottom|right|end">
+        android:gravity="bottom|right|start">
 
         <TableRow
             android:layout_width="match_parent"
@@ -235,13 +228,5 @@
                 android:text="@string/SL_KEY_CLEAR" />
         </TableRow>
     </TableLayout>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/textview" />
 
 </LinearLayout>
