@@ -28,7 +28,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void set_current_view(TextView cur_view) {
+    public void set_current_view(TextView cur_view, information_bridge bidge) {
         EDITABLE = cur_view;
     }
 

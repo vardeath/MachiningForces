@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
+import com.example.stayi.myapplication.information_bridge;
 
 import java.util.Objects;
 
@@ -43,6 +44,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM2 = "param2";
     private OnFragmentInteractionListener mListener;
 
+    public information_bridge bridge;
     public MILL_calc_simple() {
         // Required empty public constructor
     }
@@ -88,7 +90,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
             TW_MILL_SIMPLE[i] = (TextView) rootView.findViewById(TW_IDes[i]);
             TW_MILL_SIMPLE[i].setOnClickListener(this);
         }
-
+        bridge = (new information_bridge(TW_IDes, TW_MILL_SIMPLE));
         return rootView;
     }
 
