@@ -6,8 +6,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
@@ -35,12 +36,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MAIN_MENU_CONDITIONS.OnFragmentInteractionListener, BlankFragment2.OnFragmentInteractionListener,
+        implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, MAIN_MENU_CONDITIONS.OnFragmentInteractionListener, BlankFragment2.OnFragmentInteractionListener,
         BlankFragment3.OnFragmentInteractionListener, BlankFragment4.OnFragmentInteractionListener, BlankFragment5.OnFragmentInteractionListener,
         BlankFragment6.OnFragmentInteractionListener, MILL_calc_simple.OnFragmentInteractionListener, MILL_calc_detail.OnFragmentInteractionListener {
 
     BottomSheetBehavior behavior;
     private NavController navController;
+
+    Button button1;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity
                     behavior.setPeekHeight(700);
                     behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 } else {
-                    Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
                     behavior.setPeekHeight(0);
                     behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 }
@@ -89,7 +92,8 @@ public class MainActivity extends AppCompatActivity
         if (!hasVisited) {
             nav_var_storage.addProperty("hasVisited", false);
         }
-        //Toast.makeText(this, "visit_status: " + hasVisited, Toast.LENGTH_SHORT).show();
+        keyboard_listener keyboard = new keyboard_listener(llBottomSheet);
+        keyboard.onClick(llBottomSheet);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -158,5 +162,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+        }
     }
 }
