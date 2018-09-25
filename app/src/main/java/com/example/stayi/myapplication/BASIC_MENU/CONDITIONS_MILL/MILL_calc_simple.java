@@ -1,7 +1,6 @@
 package com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,10 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.Objects;
 
@@ -36,7 +35,7 @@ import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MI
  * Use the {@link MILL_calc_simple#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MILL_calc_simple extends Fragment {
+public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,12 +43,12 @@ public class MILL_calc_simple extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private OnFragmentInteractionListener mListener;
 
-    private BottomSheetBehavior behavior;
-
     public MILL_calc_simple() {
         // Required empty public constructor
     }
 
+    private int[] TW_IDes;
+    private TextView[] TW_MILL_SIMPLE;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -83,22 +82,13 @@ public class MILL_calc_simple extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        TextView TW_mill_diameter = rootView.findViewById(R.id.TW_Mill_Diameter);
-        View BottomSheet = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-        behavior = BottomSheetBehavior.from(BottomSheet);
-        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        TW_mill_diameter.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            }
-        });
-        if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_PORTRAIT){
-            behavior.setPeekHeight(0);
-            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        TW_IDes = new int[] {R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_t_feed_editor, R.id.TW_m_feed_editor};
+        TW_MILL_SIMPLE = new TextView[TW_IDes.length];
+        for (int i = 0; i < TW_IDes.length; ++i){
+            TW_MILL_SIMPLE[i] = (TextView) rootView.findViewById(TW_IDes[i]);
+            TW_MILL_SIMPLE[i].setOnClickListener(this);
         }
-        TW_mill_diameter.performClick();
+
         return rootView;
     }
 
@@ -122,11 +112,7 @@ public class MILL_calc_simple extends Fragment {
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_PORTRAIT){
-            behavior.setPeekHeight(0);
-            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        }
-        super.onViewStateRestored(savedInstanceState);
+            super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
@@ -159,6 +145,31 @@ public class MILL_calc_simple extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.TW_Mill_Diameter:
+                Toast.makeText(getContext(), "диаметр", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.TW_vc_speed:
+                Toast.makeText(getContext(), "скорость резания", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.TW_n_rev:
+                Toast.makeText(getContext(), "число оборотов", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.TW_n_teeth:
+                Toast.makeText(getContext(), "число зубов", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.TW_t_feed_editor:
+                Toast.makeText(getContext(), "подача на зуб", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.TW_m_feed_editor:
+                Toast.makeText(getContext(), "минутная подача", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
