@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         //Инициализация слушателя кастомной виртуальной клавиатуры.
-        keyboard_listener keyboard = new keyboard_listener(llBottomSheet);
-        keyboard.onClick(llBottomSheet);
+        /*keyboard_listener keyboard = new keyboard_listener(llBottomSheet);
+        keyboard.onClick(llBottomSheet);*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

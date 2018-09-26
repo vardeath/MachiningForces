@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
+import com.example.stayi.myapplication.keyboard_listener;
 import com.example.stayi.myapplication.nav_var_storage;
 import com.example.stayi.myapplication.information_bridge;
 
@@ -44,13 +45,13 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM2 = "param2";
     private OnFragmentInteractionListener mListener;
 
-    public information_bridge bridge;
     public MILL_calc_simple() {
         // Required empty public constructor
     }
 
     private int[] TW_IDes;
     private TextView[] TW_MILL_SIMPLE;
+    information_bridge bridge;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -90,7 +91,11 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
             TW_MILL_SIMPLE[i] = (TextView) rootView.findViewById(TW_IDes[i]);
             TW_MILL_SIMPLE[i].setOnClickListener(this);
         }
+
         bridge = (new information_bridge(TW_IDes, TW_MILL_SIMPLE));
+        View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
+        keyboard_listener board = new keyboard_listener(key_board, bridge);
+
         return rootView;
     }
 
@@ -152,22 +157,22 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.TW_Mill_Diameter:
-                Toast.makeText(getContext(), "диаметр", Toast.LENGTH_SHORT).show();
+                bridge.set_selected_pos(0);
                 break;
             case R.id.TW_vc_speed:
-                Toast.makeText(getContext(), "скорость резания", Toast.LENGTH_SHORT).show();
+                bridge.set_selected_pos(1);
                 break;
             case R.id.TW_n_rev:
-                Toast.makeText(getContext(), "число оборотов", Toast.LENGTH_SHORT).show();
+                bridge.set_selected_pos(2);
                 break;
             case R.id.TW_n_teeth:
-                Toast.makeText(getContext(), "число зубов", Toast.LENGTH_SHORT).show();
+                bridge.set_selected_pos(3);
                 break;
             case R.id.TW_t_feed_editor:
-                Toast.makeText(getContext(), "подача на зуб", Toast.LENGTH_SHORT).show();
+                bridge.set_selected_pos(4);
                 break;
             case R.id.TW_m_feed_editor:
-                Toast.makeText(getContext(), "минутная подача", Toast.LENGTH_SHORT).show();
+                bridge.set_selected_pos(5);
                 break;
         }
     }

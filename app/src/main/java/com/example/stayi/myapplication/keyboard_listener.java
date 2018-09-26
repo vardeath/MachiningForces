@@ -13,8 +13,15 @@ import androidx.annotation.RequiresApi;
 @SuppressLint("Registered")
 public class keyboard_listener extends Activity implements View.OnClickListener {
 
-    TextView EDITABLE;
-    public keyboard_listener(View view) {
+    private TextView EDITABLE;
+    private int max_length = 8;
+    private String Temp_val = "";
+    private int EDIT_value = 0;
+    CharSequence zero = "0";
+    information_bridge i_bridge;
+
+    //конструктор по умолчанию
+    public keyboard_listener(View view, information_bridge inf_bridge) {
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
                 R.id.SL_KEY_5, R.id.SL_KEY_6, R.id.SL_KEY_7, R.id.SL_KEY_8, R.id.SL_KEY_9, R.id.SL_KEY_DOT, R.id.SL_KEY_UP,
@@ -25,64 +32,96 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
             BUTTONS[i] = (Button) view.findViewById(BUTTON_IDS[i]);
             BUTTONS[i].setOnClickListener(this);
         }
+        i_bridge = inf_bridge;
+        EDITABLE = i_bridge.get_selected_view();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void set_current_view(TextView cur_view, information_bridge bidge) {
-        EDITABLE = cur_view;
+    private void refresh_editable_field(){
+        EDITABLE = i_bridge.get_selected_view();
+    }
+
+    private void changer_digit_value(int i){
+        Temp_val = (String) EDITABLE.getText();
+        if (Temp_val.contentEquals(zero)) Temp_val = "";
+        if (Temp_val.length() < max_length) Temp_val += i;
+        EDITABLE.setText(Temp_val);
+    }
+
+    private void changer_set_dot(){
+        Temp_val = (String) EDITABLE.getText();
+        CharSequence dot = ".";
+        if (!Temp_val.contains(dot)) Temp_val += dot;
+        EDITABLE.setText(Temp_val);
+    }
+
+    private void changer_clear(){
+        EDITABLE.setText(zero);
+    }
+
+    private void changer_del(){
+        Temp_val = (String) EDITABLE.getText();
+        if (Temp_val.length() > 1) {
+            StringBuilder temp_str_arr = new StringBuilder();
+            for (int i = 0; i < Temp_val.length() - 1; ++i) {
+                temp_str_arr.append(Temp_val.charAt(i));}
+            EDITABLE.setText(temp_str_arr.toString());
+        } else {
+            changer_clear();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
+        refresh_editable_field();
         switch (view.getId()) {
             case R.id.SL_KEY_0:
-                Toast.makeText(view.getContext(), "pressed 0", Toast.LENGTH_SHORT).show();
+                changer_digit_value(0);
                 break;
             case R.id.SL_KEY_1:
-                Toast.makeText(view.getContext(), "pressed 1", Toast.LENGTH_SHORT).show();
+                changer_digit_value(1);
                 break;
             case R.id.SL_KEY_2:
-                Toast.makeText(view.getContext(), "pressed 2", Toast.LENGTH_SHORT).show();
+                changer_digit_value(2);
                 break;
             case R.id.SL_KEY_3:
-                Toast.makeText(view.getContext(), "pressed 3", Toast.LENGTH_SHORT).show();
+                changer_digit_value(3);
                 break;
             case R.id.SL_KEY_4:
-                Toast.makeText(view.getContext(), "pressed 4", Toast.LENGTH_SHORT).show();
+                changer_digit_value(4);
                 break;
             case R.id.SL_KEY_5:
-                Toast.makeText(view.getContext(), "pressed 5", Toast.LENGTH_SHORT).show();
+                changer_digit_value(5);
                 break;
             case R.id.SL_KEY_6:
-                Toast.makeText(view.getContext(), "pressed 6", Toast.LENGTH_SHORT).show();
+                changer_digit_value(6);
                 break;
             case R.id.SL_KEY_7:
-                Toast.makeText(view.getContext(), "pressed 7", Toast.LENGTH_SHORT).show();
+                changer_digit_value(7);
                 break;
             case R.id.SL_KEY_8:
-                Toast.makeText(view.getContext(), "pressed 8", Toast.LENGTH_SHORT).show();
+                changer_digit_value(8);
                 break;
             case R.id.SL_KEY_9:
-                Toast.makeText(view.getContext(), "pressed 9", Toast.LENGTH_SHORT).show();
+                changer_digit_value(9);
                 break;
             case R.id.SL_KEY_DOT:
-                Toast.makeText(view.getContext(), "pressed DOT", Toast.LENGTH_SHORT).show();
+                changer_set_dot();
                 break;
             case R.id.SL_KEY_UP:
-                Toast.makeText(view.getContext(), "pressed UP", Toast.LENGTH_SHORT).show();
+                i_bridge.decrement_position();
                 break;
             case R.id.SL_KEY_DOWN:
-                Toast.makeText(view.getContext(), "pressed DOWN", Toast.LENGTH_SHORT).show();
+                i_bridge.increment_position();
                 break;
             case R.id.SL_KEY_DEL:
-                Toast.makeText(view.getContext(), "pressed DEL", Toast.LENGTH_SHORT).show();
+                changer_del();
                 break;
             case R.id.SL_KEY_CLEAR:
-                Toast.makeText(view.getContext(), "pressed CLEAR", Toast.LENGTH_SHORT).show();
+                changer_clear();
                 break;
             case R.id.SL_KEY_STORAGE:
-                Toast.makeText(view.getContext(), "pressed STORAGE", Toast.LENGTH_SHORT).show();
+                i_bridge.clear_all_fields();
                 break;
         }
     }
