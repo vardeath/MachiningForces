@@ -5,5 +5,6 @@
     <color name="colorButtonHighlight">#e4000000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#e66b00</color>
+    <color name="TextView_back">#ffffff</color>
     <color name="keyboardback">#00ffffff</color>
 </resources>

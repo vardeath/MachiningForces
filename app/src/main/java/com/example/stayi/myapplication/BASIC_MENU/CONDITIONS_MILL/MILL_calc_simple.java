@@ -95,7 +95,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         bridge = (new information_bridge(TW_IDes, TW_MILL_SIMPLE));
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
         keyboard_listener board = new keyboard_listener(key_board, bridge);
-
+        //TW_MILL_SIMPLE[0].setBackgroundResource(R.drawable.textstyle_selected);
         return rootView;
     }
 

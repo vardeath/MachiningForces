@@ -25,18 +25,23 @@ public class information_bridge {
     public void set_selected_pos(int pos){
         selected_pos = pos;
         TW = ITW_DATA[selected_pos];
+        for(int x = 0; x < arr_length; ++x){
+            if (x != selected_pos) ITW_DATA[x].setBackgroundResource(R.drawable.textstyle);
+        }
+        TW.setBackgroundResource(R.drawable.textstyle_selected);
     }
 
+    //Переместить выеделение на поле ввода(TextView) выше текущего выделенного.
     void decrement_position(){
         if (selected_pos  == 0) selected_pos = arr_length-1;
         else --selected_pos;
     }
-
+    //Переместить выеделение на поле ввода(TextView) ниже текущего выделенного.
     void increment_position(){
         if ((selected_pos + 1) == arr_length) selected_pos = 0;
         else ++selected_pos;
     }
-
+    //Возвращает текущее выделенное поле ввода (TextView).
     TextView get_selected_view(){
         set_selected_pos(selected_pos);
         return TW;

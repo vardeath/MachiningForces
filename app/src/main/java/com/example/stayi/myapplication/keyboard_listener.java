@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi;
 public class keyboard_listener extends Activity implements View.OnClickListener {
 
     private TextView EDITABLE;
-    private int max_length = 8;
+    //private int max_length = 8;
     private String Temp_val = "";
     private int EDIT_value = 0;
     CharSequence zero = "0";
@@ -43,7 +43,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     private void changer_digit_value(int i){
         Temp_val = (String) EDITABLE.getText();
         if (Temp_val.contentEquals(zero)) Temp_val = "";
-        if (Temp_val.length() < max_length) Temp_val += i;
+        Temp_val += i;
         EDITABLE.setText(Temp_val);
     }
 
@@ -110,9 +110,11 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 break;
             case R.id.SL_KEY_UP:
                 i_bridge.decrement_position();
+                refresh_editable_field();
                 break;
             case R.id.SL_KEY_DOWN:
                 i_bridge.increment_position();
+                refresh_editable_field();
                 break;
             case R.id.SL_KEY_DEL:
                 changer_del();
