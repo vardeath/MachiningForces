@@ -16,12 +16,13 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     private TextView EDITABLE;
     //private int max_length = 8;
     private String Temp_val = "";
-    private int EDIT_value = 0;
-    CharSequence zero = "0";
-    information_bridge i_bridge;
-
+    //private int EDIT_value = 0;
+    private CharSequence zero = "0";
+    private information_bridge i_bridge;
+    private int parent_id;
+    Conditions_Calc calc_cond;
     //конструктор по умолчанию
-    public keyboard_listener(View view, information_bridge inf_bridge) {
+    public keyboard_listener(View view, information_bridge inf_bridge, int id) {
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
                 R.id.SL_KEY_5, R.id.SL_KEY_6, R.id.SL_KEY_7, R.id.SL_KEY_8, R.id.SL_KEY_9, R.id.SL_KEY_DOT, R.id.SL_KEY_UP,
@@ -34,6 +35,8 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
         }
         i_bridge = inf_bridge;
         EDITABLE = i_bridge.get_selected_view();
+        parent_id = id;
+        calc_cond = new Conditions_Calc(parent_id, i_bridge);
     }
 
     private void refresh_editable_field(){
@@ -77,36 +80,46 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.SL_KEY_0:
                 changer_digit_value(0);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_1:
                 changer_digit_value(1);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_2:
                 changer_digit_value(2);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_3:
                 changer_digit_value(3);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_4:
                 changer_digit_value(4);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_5:
                 changer_digit_value(5);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_6:
                 changer_digit_value(6);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_7:
                 changer_digit_value(7);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_8:
                 changer_digit_value(8);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_9:
                 changer_digit_value(9);
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_DOT:
-                changer_set_dot();
+                if (R.id.TW_n_teeth != i_bridge.get_selected_id()) changer_set_dot(); //Число зубов фрезы должно быть целым значением.
                 break;
             case R.id.SL_KEY_UP:
                 i_bridge.decrement_position();
@@ -118,6 +131,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 break;
             case R.id.SL_KEY_DEL:
                 changer_del();
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_CLEAR:
                 changer_clear();

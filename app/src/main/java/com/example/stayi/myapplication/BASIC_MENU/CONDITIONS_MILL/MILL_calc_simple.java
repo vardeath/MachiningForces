@@ -49,9 +49,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    private int[] TW_IDes;
-    private TextView[] TW_MILL_SIMPLE;
-    information_bridge bridge;
+    private information_bridge bridge; //Посредник между слушателями кастомной клавиатуры и селектора выбора поля ввода (Textview).
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -61,7 +59,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
      * @return A new instance of fragment MILL_calc_simple.
      */
     // TODO: Rename and change types and number of parameters
-    public static MILL_calc_simple newInstance(String param1, String param2) {
+    private static MILL_calc_simple newInstance(String param1, String param2) {
         MILL_calc_simple fragment = new MILL_calc_simple ();
         Bundle args = new Bundle ();
         args.putString (ARG_PARAM1, param1);
@@ -73,8 +71,8 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        if (getArguments () != null) {
-        }
+        /*if (getArguments () != null) {
+        }*/
         setHasOptionsMenu(true);
     }
 
@@ -85,17 +83,17 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        TW_IDes = new int[] {R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_t_feed_editor, R.id.TW_m_feed_editor};
-        TW_MILL_SIMPLE = new TextView[TW_IDes.length];
+        int[] TW_IDes = new int[]{R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_t_feed_editor, R.id.TW_m_feed_editor};
+        TextView[] TW_MILL_SIMPLE = new TextView[TW_IDes.length];
         for (int i = 0; i < TW_IDes.length; ++i){
             TW_MILL_SIMPLE[i] = (TextView) rootView.findViewById(TW_IDes[i]);
             TW_MILL_SIMPLE[i].setOnClickListener(this);
         }
 
         bridge = (new information_bridge(TW_IDes, TW_MILL_SIMPLE));
+        //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-        keyboard_listener board = new keyboard_listener(key_board, bridge);
-        //TW_MILL_SIMPLE[0].setBackgroundResource(R.drawable.textstyle_selected);
+        keyboard_listener board = new keyboard_listener(key_board, bridge, R.id.MILL_calc_simple);
         return rootView;
     }
 

@@ -46,4 +46,16 @@ public class information_bridge {
         set_selected_pos(selected_pos);
         return TW;
     }
+    //Возвращает id выделенного Textview.
+    int get_selected_id(){
+        return ITW_IDes[selected_pos];
+    }
+
+    public TextView[] get_TW_array(){
+        return ITW_DATA;
+    }
+
+    public int[] get_ID_array(){
+        return ITW_IDes;
+    }
 }
