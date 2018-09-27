@@ -51,11 +51,11 @@ public class information_bridge {
         return ITW_IDes[selected_pos];
     }
 
-    public TextView[] get_TW_array(){
+    TextView[] get_TW_array(){
         return ITW_DATA;
     }
 
-    public int[] get_ID_array(){
+    int[] get_ID_array(){
         return ITW_IDes;
     }
 }

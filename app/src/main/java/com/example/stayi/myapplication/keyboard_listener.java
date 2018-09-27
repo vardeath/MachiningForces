@@ -19,7 +19,6 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     //private int EDIT_value = 0;
     private CharSequence zero = "0";
     private information_bridge i_bridge;
-    private int parent_id;
     Conditions_Calc calc_cond;
     //конструктор по умолчанию
     public keyboard_listener(View view, information_bridge inf_bridge, int id) {
@@ -35,8 +34,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
         }
         i_bridge = inf_bridge;
         EDITABLE = i_bridge.get_selected_view();
-        parent_id = id;
-        calc_cond = new Conditions_Calc(parent_id, i_bridge);
+        calc_cond = new Conditions_Calc(id, i_bridge);
     }
 
     private void refresh_editable_field(){
