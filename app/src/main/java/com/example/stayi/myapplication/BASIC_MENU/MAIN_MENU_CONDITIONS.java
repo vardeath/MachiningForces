@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -78,7 +79,7 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
                              Bundle savedInstanceState) {
         View rootViewA = (View) inflater.inflate (
                 R.layout.main_menu_conditions, container, false);
-        ImageButton btn = (ImageButton) rootViewA
+        Button btn = (Button) rootViewA
                 .findViewById (R.id.GOTOMILLSIMPLE);
         btn.setOnClickListener(new View.OnClickListener() {
 

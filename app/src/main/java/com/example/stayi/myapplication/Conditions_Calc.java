@@ -2,9 +2,6 @@ package com.example.stayi.myapplication;
 
 import android.widget.TextView;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 public class Conditions_Calc {
     private int fragment_ID; //id фрагмента, для которого идет расчет.
     private information_bridge i_br; //Экземпляр посредника между слушателями клавиатуры и полей ввода фрагмента.
@@ -17,8 +14,8 @@ public class Conditions_Calc {
     Conditions_Calc(int id, information_bridge br){
         fragment_ID = id;
         i_br = br;
-        Work_TW_arr = br.get_TW_array();
-        Work_ID_arr = br.get_ID_array();
+        Work_TW_arr = br.get_TextView_Array();
+        Work_ID_arr = br.get_TextView_ID_Array();
         Number_values = new double[Work_TW_arr.length];
     }
 
