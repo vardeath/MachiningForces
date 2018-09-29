@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Applicatin information -->
     <string name="app_name">Machining Forces</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
+    <!-- Remove or change this placeholder text -->
     <string name="mill_simple_mode">Базовый</string>
     <string name="mill_detail_mode">Расширенный</string>
     <string name="action_settings">Режим расчета</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_fr1">Тут будут режимы обработки</string>
     <string name="hello_fr2">Тут будут допуски и посадки</string>
     <string name="hello_fr3">Тут будет марочник материалов</string>
@@ -39,12 +41,12 @@
     <string name="Feed_per_tooth">Подача на зуб</string>
     <string name="Minute_feed">Минутная подача</string>
     <string name="zero">0</string>
-    <string name="TW_D_mm">мм.</string>
-    <string name="TW_Vc_mmin">м/мин.</string>
-    <string name="TW_rev">об/мин.</string>
-    <string name="TW_teeth">шт.</string>
-    <string name="TW_teeth_feed">мм.</string>
-    <string name="TW_m_feed">мм/мин.</string>
+    <string name="TW_D_mm">D, мм.</string>
+    <string name="TW_Vc_mmin">Vc, м/мин.</string>
+    <string name="TW_rev">n, об/мин.</string>
+    <string name="TW_teeth">z, шт.</string>
+    <string name="TW_teeth_feed">fz, мм.</string>
+    <string name="TW_m_feed">F, мм/мин.</string>
     <string name="SL_KEY_1">1</string>
     <string name="SL_KEY_2">2</string>
     <string name="SL_KEY_3">3</string>
@@ -64,4 +66,10 @@
     <string name="textview" />
     <string name="BUT_to_MILL">Фрезерная обработка</string>
     <string name="BUT_to_turn">Токарная обработка</string>
+    <string name="textview_fix">fixed</string>
+    <string name="fix_Vc">fixed</string>
+    <string name="fix_rev">fixed</string>
+    <string name="fixed_z">fixed</string>
+    <string name="fixed_fz">fixed</string>
+    <string name="fixed_F">fixed</string>
 </resources>
