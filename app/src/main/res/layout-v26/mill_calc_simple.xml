@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Разметка -->
 
     <TextView
         android:id="@+id/mill_simple_header"
@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/hello_mill_simple"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -53,7 +54,7 @@
             android:layout_weight="0.4"
             android:background="@drawable/textstyle"
             android:gravity="center"
-            android:maxLength="6"
+            android:maxLength="8"
             android:text="@string/zero"
             android:textSize="24sp" />
 
@@ -73,7 +74,8 @@
                     android:layout_height="wrap_content"
                     android:gravity=""
                     android:text="@string/textview_name_diameter"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -114,7 +116,7 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:text="@string/fix_Vc"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/TW_vc_speed"
@@ -123,7 +125,7 @@
             android:layout_weight="0.4"
             android:background="@drawable/textstyle"
             android:gravity="center"
-            android:maxLength="6"
+            android:maxLength="8"
             android:text="@string/zero"
             android:textSize="24sp" />
 
@@ -143,6 +145,7 @@
                     android:layout_height="wrap_content"
                     android:gravity=""
                     android:text="@string/Cutting_speed"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/TW_vc_speed" />
             </TableRow>
 
@@ -193,7 +196,7 @@
             android:layout_weight="0.4"
             android:background="@drawable/textstyle"
             android:gravity="center"
-            android:maxLength="6"
+            android:maxLength="8"
             android:text="@string/zero"
             android:textSize="24sp" />
 
@@ -212,7 +215,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/Spendle_speed" />
+                    android:text="@string/Spendle_speed"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -262,7 +266,7 @@
             android:layout_weight="0.4"
             android:background="@drawable/textstyle"
             android:gravity="center"
-            android:maxLength="4"
+            android:maxLength="8"
             android:text="@string/zero"
             android:textSize="24sp" />
 
@@ -282,6 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="@string/Teeth_number"
+                    android:textStyle="bold"
                     tools:ignore="RtlHardcoded" />
             </TableRow>
 
@@ -323,7 +328,7 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:text="@string/fixed_fz"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/TW_t_feed_editor"
@@ -351,7 +356,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/Feed_per_tooth" />
+                    android:text="@string/Feed_per_tooth"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -418,7 +424,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/Minute_feed" />
+                    android:text="@string/Minute_feed"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -436,6 +443,5 @@
         </TableLayout>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

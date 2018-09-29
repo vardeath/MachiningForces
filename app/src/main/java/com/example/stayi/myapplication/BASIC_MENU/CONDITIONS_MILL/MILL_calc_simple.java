@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.keyboard_listener;
@@ -44,6 +43,9 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private OnFragmentInteractionListener mListener;
+
+    private TextView[] FIXIES;
+    private boolean[] Fix_values;
 
     public MILL_calc_simple() {
         // Required empty public constructor
@@ -82,18 +84,37 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
-
+        //Инициализация полей TextVIew для хранения и ввода данных.
         int[] TW_IDes = new int[]{R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_t_feed_editor, R.id.TW_m_feed_editor};
         TextView[] TW_MILL_SIMPLE = new TextView[TW_IDes.length];
+
         for (int i = 0; i < TW_IDes.length; ++i){
             TW_MILL_SIMPLE[i] = (TextView) rootView.findViewById(TW_IDes[i]);
             TW_MILL_SIMPLE[i].setOnClickListener(this);
         }
+        //Инициализация полей TextVIew для индикации фиксации поля ввода.
+        int[] Fix_IDes = new int[] {R.id.fix_Vc, R.id.fix_rev, R.id.fixed_fz, R.id.fixed_F};
+        FIXIES = new TextView[Fix_IDes.length];
+        for (int i = 0; i < Fix_IDes.length; ++i){
+            FIXIES[i] = (TextView) rootView.findViewById(Fix_IDes[i]);
+        }
 
-        bridge = (new information_bridge(TW_IDes, TW_MILL_SIMPLE));
+        Fix_values = new boolean[Fix_IDes.length];
+        for (int i = 0; i < Fix_IDes.length; ++i){
+            Fix_values[i] = false;
+        }
+
+        int FRAGMENT_ID = R.id.MILL_calc_simple;
+        bridge = (new information_bridge(FRAGMENT_ID, TW_IDes, TW_MILL_SIMPLE, FIXIES, Fix_values));
+
         //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-        keyboard_listener board = new keyboard_listener(key_board, bridge, R.id.MILL_calc_simple);
+        keyboard_listener board = new keyboard_listener(key_board, bridge, FRAGMENT_ID);
+
+        FIXIES[0].setVisibility(View.VISIBLE);
+        FIXIES[2].setVisibility(View.VISIBLE);
+        Fix_values[0] = true;
+        Fix_values[2] = true;
         return rootView;
     }
 
@@ -159,18 +180,34 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
                 break;
             case R.id.TW_vc_speed:
                 bridge.set_selected_pos(1);
+                FIXIES[0].setVisibility(View.VISIBLE);
+                FIXIES[1].setVisibility(View.INVISIBLE);
+                Fix_values[0] = true;
+                Fix_values[1] = false;
                 break;
             case R.id.TW_n_rev:
                 bridge.set_selected_pos(2);
+                FIXIES[1].setVisibility(View.VISIBLE);
+                FIXIES[0].setVisibility(View.INVISIBLE);
+                Fix_values[1] = true;
+                Fix_values[0] = false;
                 break;
             case R.id.TW_n_teeth:
                 bridge.set_selected_pos(3);
                 break;
             case R.id.TW_t_feed_editor:
                 bridge.set_selected_pos(4);
+                FIXIES[2].setVisibility(View.VISIBLE);
+                FIXIES[3].setVisibility(View.INVISIBLE);
+                Fix_values[2] = true;
+                Fix_values[3] = false;
                 break;
             case R.id.TW_m_feed_editor:
                 bridge.set_selected_pos(5);
+                FIXIES[3].setVisibility(View.VISIBLE);
+                FIXIES[2].setVisibility(View.INVISIBLE);
+                Fix_values[3] = true;
+                Fix_values[2] = false;
                 break;
         }
     }

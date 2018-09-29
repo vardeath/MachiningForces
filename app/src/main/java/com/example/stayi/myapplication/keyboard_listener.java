@@ -6,7 +6,6 @@ import android.os.Build;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -14,18 +13,18 @@ import androidx.annotation.RequiresApi;
 public class keyboard_listener extends Activity implements View.OnClickListener {
 
     private TextView EDITABLE;
-    //private int max_length = 8;
+    private int max_length = 8;
     private String Temp_val = "";
-    //private int EDIT_value = 0;
     private CharSequence zero = "0";
     private information_bridge i_bridge;
     Conditions_Calc calc_cond;
+
     //конструктор по умолчанию
     public keyboard_listener(View view, information_bridge inf_bridge, int id) {
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
                 R.id.SL_KEY_5, R.id.SL_KEY_6, R.id.SL_KEY_7, R.id.SL_KEY_8, R.id.SL_KEY_9, R.id.SL_KEY_DOT, R.id.SL_KEY_UP,
-                R.id.SL_KEY_DOWN, R.id.SL_KEY_DEL, R.id.SL_KEY_CLEAR, R.id.SL_KEY_STORAGE};
+                R.id.SL_KEY_DOWN, R.id.SL_KEY_DEL, R.id.SL_KEY_CLEAR, R.id.SL_KEY_CLEAR_ALL};
         //Собираем массив кнопок, вешаем на него слушатель.
         Button[] BUTTONS = new Button[BUTTON_IDS.length];
         for (int i = 0; i < BUTTONS.length; ++i ){
@@ -134,8 +133,11 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
             case R.id.SL_KEY_CLEAR:
                 changer_clear();
                 break;
-            case R.id.SL_KEY_STORAGE:
+            case R.id.SL_KEY_CLEAR_ALL:
                 i_bridge.clear_all_fields();
+                i_bridge.set_selected_pos(0);
+                i_bridge.reset_Fixed_indexes();
+                refresh_editable_field();
                 break;
         }
     }
