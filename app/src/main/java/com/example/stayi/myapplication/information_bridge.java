@@ -9,7 +9,6 @@ public class information_bridge {
     private TextView[] ITW_DATA; //Массив с полями TextView, служащими для выбора и хранения значений расчета.
     private TextView[] FIX_index_tw; //Массив с полями TextView, служащими для индикации фиксации поля выбора позиции.
     private boolean[] FIX_val;//Массив с значенями полей, служащими для фиксации поля выбора позиции.
-    private Change_Fixed_Index Chan_Index;
 
     private int selected_pos = 0;
     private TextView TW;
@@ -22,7 +21,6 @@ public class information_bridge {
         arr_length = ITW_DATA.length;
         FIX_index_tw = Fixindex;
         FIX_val = fixvals;
-        Chan_Index = new Change_Fixed_Index(FR_ID, FIX_index_tw, FIX_val);
     }
 
     //Очистить все поля ввода данных.
@@ -40,7 +38,6 @@ public class information_bridge {
             if (x != selected_pos) ITW_DATA[x].setBackgroundResource(R.drawable.textstyle);
         }
         TW.setBackgroundResource(R.drawable.textstyle_selected);
-        //Chan_Index.set_index_position(selected_pos);
     }
 
     //Переместить выеделение на поле ввода(TextView) выше текущего выделенного.
@@ -71,15 +68,7 @@ public class information_bridge {
         return ITW_IDes;
     }
 
-    TextView[] get_fixed_TextView_Array(){
-        return FIX_index_tw;
-    }
-
     boolean[] get_fixed_values(){
         return FIX_val;
-    }
-
-    void reset_Fixed_indexes(){
-        Chan_Index.reset_Indexes_Values();
     }
 }

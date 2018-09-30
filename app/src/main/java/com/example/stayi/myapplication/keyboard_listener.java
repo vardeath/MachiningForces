@@ -136,7 +136,6 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
             case R.id.SL_KEY_CLEAR_ALL:
                 i_bridge.clear_all_fields();
                 i_bridge.set_selected_pos(0);
-                i_bridge.reset_Fixed_indexes();
                 refresh_editable_field();
                 break;
         }

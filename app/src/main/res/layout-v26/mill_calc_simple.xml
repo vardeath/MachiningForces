@@ -45,6 +45,7 @@
             android:layout_weight="0.1"
             android:text="@string/textview_fix"
             android:gravity="center"
+            android:layout_marginStart="5dp"
             android:visibility="invisible" />
 
         <TextView
@@ -109,13 +110,16 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="RtlHardcoded">
 
-        <TextView
-            android:id="@+id/fix_Vc"
+        <RadioButton
+            android:id="@+id/fix_but_Vc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="0.1"
+            android:checked="true"
             android:gravity="center"
-            android:text="@string/fix_Vc"
+            android:text="@string/rad_fix_vc"
+            android:layout_marginStart="5dp"
             android:visibility="visible" />
 
         <TextView
@@ -180,14 +184,13 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="RtlHardcoded">
 
-        <TextView
-            android:id="@+id/fix_rev"
+        <RadioButton
+            android:id="@+id/fix_but_rev"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.1"
-            android:gravity="center"
-            android:text="@string/fix_rev"
-            android:visibility="invisible" />
+            android:text="@string/radiobutton_rev" />
 
         <TextView
             android:id="@+id/TW_n_rev"
@@ -198,7 +201,8 @@
             android:gravity="center"
             android:maxLength="8"
             android:text="@string/zero"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="visible" />
 
         <TableLayout
             android:layout_width="0dp"
@@ -257,6 +261,7 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:text="@string/fixed_z"
+            android:layout_marginStart="5dp"
             android:visibility="invisible" />
 
         <TextView
@@ -321,14 +326,14 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="RtlHardcoded">
 
-        <TextView
-            android:id="@+id/fixed_fz"
+        <RadioButton
+            android:id="@+id/fix_but_fz"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.1"
-            android:gravity="center"
-            android:text="@string/fixed_fz"
-            android:visibility="visible" />
+            android:checked="true"
+            android:text="@string/radiobutton_fz" />
 
         <TextView
             android:id="@+id/TW_t_feed_editor"
@@ -389,14 +394,13 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="RtlHardcoded">
 
-        <TextView
-            android:id="@+id/fixed_F"
+        <RadioButton
+            android:id="@+id/fix_but_F"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.1"
-            android:gravity="center"
-            android:text="@string/fixed_F"
-            android:visibility="invisible" />
+            android:text="@string/radiobutton_F" />
 
         <TextView
             android:id="@+id/TW_m_feed_editor"
