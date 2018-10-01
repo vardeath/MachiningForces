@@ -7,4 +7,5 @@
     <color name="colorAccent">#e66b00</color>
     <color name="TextView_back">#ffffff</color>
     <color name="keyboardback">#00ffffff</color>
+    <color name="TextView_not_active">#c9c9c9</color>
 </resources>
