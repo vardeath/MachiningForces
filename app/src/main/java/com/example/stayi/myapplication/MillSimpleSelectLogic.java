@@ -15,16 +15,30 @@ public class MillSimpleSelectLogic extends FragmentOnClickListener {
     @Override
     public void onClick(View v) {
         super.onClick(v);
+
         int id = v.getId();
         for (int i = 0; i < getArrayIdTextViews().length; ++i) {
             if (getArrayIdTextViews()[i] == id) getArrayOfTextViews()[i].setBackgroundResource(R.drawable.textstyle_selected);
             else getArrayOfTextViews()[i].setBackgroundResource(R.drawable.textstyle);
         }
-        if (id == R.id.fix_but_Vc) {
-            getArrayOfRadBtn()[1].setChecked(false);
-        }
-        if (id == R.id.fix_but_rev) {
-            getArrayOfRadBtn()[0].setChecked(false);
+
+        switch (id){
+            case R.id.fix_but_Vc:
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_Vc)].setChecked(true);
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_rev)].setChecked(false);
+                break;
+            case R.id.fix_but_rev:
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_Vc)].setChecked(false);
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_rev)].setChecked(true);
+                break;
+            case R.id.fix_but_fz:
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_fz)].setChecked(true);
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_F)].setChecked(false);
+                break;
+            case R.id.fix_but_F:
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_fz)].setChecked(false);
+                getArrayOfRadBtn()[find_position_RadBtn_id(R.id.fix_but_F)].setChecked(true);
+                break;
         }
     }
 }

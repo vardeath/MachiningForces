@@ -49,4 +49,12 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
     RadioButton[] getArrayOfRadBtn(){
         return ArrayOfRadBtn;
     }
+
+    int find_position_RadBtn_id(int ID){
+        int found_position = 0;
+        for (int i = 0; i < ArrayIdOfRadiobuttons.length; ++i){
+            if (ArrayIdOfRadiobuttons[i] == ID) {found_position = i; }
+        }
+        return found_position;
+    }
 }
