@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 class Conditions_Calc {
     private int fragment_ID; //id фрагмента, для которого идет расчет.
-    private information_bridge i_br; //Экземпляр посредника между слушателями клавиатуры и полей ввода фрагмента.
+    private FragmentOnClickListener i_br; //Экземпляр посредника между слушателями клавиатуры и полей ввода фрагмента.
     private int selected_pos_ID; //Текущее выделенное поле ввода.
 
     private TextView[] Work_TW_arr;
@@ -13,14 +13,14 @@ class Conditions_Calc {
     //private TextView[] Work_FIXED_Arr;
     private boolean[] Work_FIXED_values_Arr;
 
-    Conditions_Calc(int id, information_bridge br) {
+    Conditions_Calc(int id, FragmentOnClickListener br) {
         fragment_ID = id;
         i_br = br;
-        Work_TW_arr = br.get_TextView_Array();
-        Work_ID_arr = br.get_TextView_ID_Array();
+        Work_TW_arr = br.getTextViewArray();
+        Work_ID_arr = br.getTextViewArrayID();
         Number_values = new double[Work_TW_arr.length];
         //Work_FIXED_Arr = br.get_fixed_TextView_Array();
-        Work_FIXED_values_Arr = br.get_fixed_values();
+        //Work_FIXED_values_Arr = br.get_fixed_values();
     }
 
     private void convers_arr_Str_to_Double() {
@@ -39,7 +39,7 @@ class Conditions_Calc {
     }
 
     private void get_position_ID() {
-        selected_pos_ID = i_br.get_selected_id();
+        selected_pos_ID = i_br.getTextViewSelectedId();
     }
 
     void calculate() {

@@ -8,19 +8,91 @@ import android.widget.TextView;
 public abstract class FragmentOnClickListener implements View.OnClickListener {
 
     private int FRAGMENT_ID;
-    private int[] ArrayIdTextViews;
+
+    int getFragmentId(){
+        return FRAGMENT_ID;
+    }
+    //Массив ID views, имеющихся в фрагменте.
+    private int[] ArrayIdViews;
+
+    public int[] getTextViewArrayID() {
+        return ArrayIdViews;
+    }
+
+    //Вернуть TextView ID по известной позиции в массиве.
+    private int getTextViewIdByPosition(int pos) {
+        return ArrayIdViews[pos];
+    }
+
+    //Вернуть позицию TextView в массиве по известному ID.
+    private int getTextViewPositionById(int ID) {
+        int found_position = -1; //Если нет такого ID, вернуть отрицательное число.
+        for (int i = 0; i < ArrayIdViews.length; ++i) {
+            if (ArrayIdViews[i] == ID) {
+                found_position = i;
+            }
+        }
+        return found_position;
+    }
+
+    //Массив ID RadioButtons, имеющихся в фрагменте.
     private int[] ArrayIdOfRadiobuttons;
+
+    //Вернуть позицию обьекта RadioButton в массиве по известнмоу ID.
+    private int getRadioButtonPositionById(int ID) {
+        int found_position = -1;
+        for (int i = 0; i < ArrayIdOfRadiobuttons.length; ++i) {
+            if (ArrayIdOfRadiobuttons[i] == ID) {
+                found_position = i;
+            }
+        }
+        return found_position;
+    }
+
+    //Массив инициализированных обьектов TextView со слушателями.
     private TextView[] ArrayOfTextViews;
+
+    public TextView[] getTextViewArray() {
+        return ArrayOfTextViews;
+    }
+    //Массив инициализированных обьектов RadioButton со слушателями.
     private RadioButton[] ArrayOfRadBtn;
 
-    private boolean[] View_Select_Status;
-    private boolean[] View_Activation;
+    //Вернуть обьект RadioButton по известному ID.
+    private RadioButton getRadioButtonObjectById(int ID) {
+        return ArrayOfRadBtn[getRadioButtonPositionById(ID)];
+    }
+
+    //Массив данных о выделенных поизиях TextView.
+    private boolean[] ViewsSelectStatus;
+
+    public void ClearAllTextViewsValues(){
+        for (int i = 0; i < ArrayOfTextViews.length; ++i) {
+            ArrayOfTextViews[i].setText("0");
+        }
+    }
+    //Получить позицию выделенного обьекта TextView.
+    private int getSelectedTextViewPosition() {
+        int pos = 0;
+        for (int i = 0; i < ViewsSelectStatus.length; ++i) {
+            if (ViewsSelectStatus[i]) pos = i;
+        }
+        return pos;
+    }
+
+    public int getTextViewSelectedId(){
+        return ArrayIdViews[getSelectedTextViewPosition()];
+    }
+    public void setTextViewSelectByPosition(int pos){
+        setSelectTextView(getTextViewIdByPosition(pos));
+    }
+    private boolean[] AllowedViewsToSelect;
 
     FragmentOnClickListener(int fragment_id, View view, int[] ArrIdOfTextViews, int[] ArrIdOfRadbuttons) {
         FRAGMENT_ID = fragment_id;
-        ArrayIdTextViews = ArrIdOfTextViews;
+        ArrayIdViews = ArrIdOfTextViews;
         ArrayIdOfRadiobuttons = ArrIdOfRadbuttons;
-        ArrayOfTextViews = new TextView[ArrayIdTextViews.length];
+        ArrayOfTextViews = new TextView[ArrayIdViews.length];
         ArrayOfRadBtn = new RadioButton[ArrayIdOfRadiobuttons.length];
 
         for (int i = 0; i < ArrIdOfTextViews.length; ++i) {
@@ -32,138 +104,93 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
             ArrayOfRadBtn[i].setOnClickListener(this);
         }
 
-        View_Select_Status = new boolean[ArrIdOfTextViews.length];
-        View_Activation = new boolean[ArrIdOfTextViews.length];
+        ViewsSelectStatus = new boolean[ArrIdOfTextViews.length];
+        AllowedViewsToSelect = new boolean[ArrIdOfTextViews.length];
 
         for (int i = 0; i < ArrIdOfTextViews.length; ++i) {
-            View_Select_Status[i] = true;
-            View_Activation[i] = true;
+            ViewsSelectStatus[i] = false; // В массиве в момент инициализации нет выделенных view.
+            AllowedViewsToSelect[i] = true; // В массиве в момент инициализации доступны к выделению все view.
         }
     }
 
     @Override
     public void onClick(View v) {
+        int id = v.getId();
 
+        setSelectTextView(id);
     }
 
-    int[] getArrayIdTextViews() {
-        return ArrayIdTextViews;
+    private void RefreshTextViewsSelect(){
+        setSelectTextView(ArrayIdViews[getSelectedTextViewPosition()]);
     }
 
-    TextView[] getArrayOfTextViews() {
-        return ArrayOfTextViews;
-    }
-
-    int[] getArrayIdOfRadiobuttons() {
-        return ArrayIdOfRadiobuttons;
-    }
-
-    RadioButton[] getArrayOfRadBtn() {
-        return ArrayOfRadBtn;
-    }
-
-    RadioButton get_RadBtn_by_ID(int ID) {
-        return ArrayOfRadBtn[get_RadBtn_position_by_ID(ID)];
-    }
-
-    private int get_RadBtn_position_by_ID(int ID) {
-        int found_position = -1;
-        for (int i = 0; i < ArrayIdOfRadiobuttons.length; ++i) {
-            if (ArrayIdOfRadiobuttons[i] == ID) {
-                found_position = i;
-            }
-        }
-        return found_position;
-    }
-
-    int get_view_position_by_ID(int ID) {
-        int found_position = -1;
-        for (int i = 0; i < ArrayIdTextViews.length; ++i) {
-            if (ArrayIdTextViews[i] == ID) {
-                found_position = i;
-            }
-        }
-        return found_position;
-    }
-
-    int get_selected_view_position() {
-        int pos = 0;
-        for (int i = 0; i < View_Select_Status.length; ++i) {
-            if (View_Select_Status[i]) pos = i;
-        }
-        return pos;
-    }
-
-    public void refresh_views_select(){
-        set_view_select(ArrayIdTextViews[get_selected_view_position()]);
-    }
-
-    void set_view_select(int ID) {
-        int position = get_view_position_by_ID(ID);
-        if (get_view_activation_state(position)) {
-            for (int i = 0; i < View_Select_Status.length; ++i) {
-                if (i == position) {
-                    View_Select_Status[i] = true;
-                    ArrayOfTextViews[i].setBackgroundResource(R.drawable.textstyle_selected);
-                } else {
-                    if (get_view_activation_state(i)) {
-                        ArrayOfTextViews[i].setBackgroundResource(R.drawable.textstyle);
-                    } else
-                        ArrayOfTextViews[i].setBackgroundResource(R.drawable.textstyle_not_active);
-                    View_Select_Status[i] = false;
+    void setSelectTextView(int ID) {
+        int position = getTextViewPositionById(ID);
+        if (position >= 0) {
+            if (getTextViewAllowToSelectState(position)) {
+                for (int i = 0; i < ViewsSelectStatus.length; ++i) {
+                    if (i == position) {
+                        ViewsSelectStatus[i] = true;
+                        ArrayOfTextViews[i].setBackgroundResource(R.drawable.textstyle_selected);
+                    } else {
+                        if (getTextViewAllowToSelectState(i)) {
+                            ArrayOfTextViews[i].setBackgroundResource(R.drawable.textstyle);
+                        } else
+                            ArrayOfTextViews[i].setBackgroundResource(R.drawable.textstyle_not_active);
+                        ViewsSelectStatus[i] = false;
+                    }
                 }
             }
         }
     }
 
-    private int get_view_ID_by_position(int pos) {
-        return ArrayIdTextViews[pos];
+    public TextView getSelectedTextViewObject() {
+        return ArrayOfTextViews[getSelectedTextViewPosition()];
     }
 
-    public TextView get_Selected_View() {
-        return ArrayOfTextViews[get_selected_view_position()];
-    }
-
-    void set_view_activation_state(int ID, boolean state) {
-        View_Activation[get_view_position_by_ID(ID)] = state;
+    void setTextViewAllowToSelectState(int ID, boolean state) {
+        AllowedViewsToSelect[getTextViewPositionById(ID)] = state;
     }
 
 
-    private boolean get_view_activation_state(int pos) {
-        return View_Activation[pos];
+    private boolean getTextViewAllowToSelectState(int pos) {
+        return AllowedViewsToSelect[pos];
     }
 
-    void increment_view_selected_position() {
-        int pos = get_selected_view_position();
+    void incrementTextViewSelectedPosition() {
+        int pos = getSelectedTextViewPosition();
         int min_pos = 0;
-        int max_pos = (ArrayIdTextViews.length - 1);
-        int increment = 1;
-        View_Select_Status[pos] = false;
-        if ((pos + increment) > max_pos) pos = min_pos;
-        else {
-            if ((pos + increment * 2) <= max_pos) {
-                if (!get_view_activation_state(pos + increment)) increment = increment + 1;
-            }
-            pos = pos + increment;
-        }
-        View_Select_Status[pos] = true;
-        set_view_select(get_view_ID_by_position(pos));
+        int max_pos = (ArrayIdViews.length - 1);
+        ViewsSelectStatus[pos] = false;
+        do {
+            ++pos;
+            if (pos > max_pos) pos = min_pos;
+        } while (!getTextViewAllowToSelectState(pos));
+        ViewsSelectStatus[pos] = true;
+        setSelectTextView(getTextViewIdByPosition(pos));
     }
 
-    void decrement_view_selected_position() {
-        int pos = get_selected_view_position();
+    void decrementTextViewSelectedPosition() {
+        int pos = getSelectedTextViewPosition();
         int min_pos = 0;
-        int max_pos = (ArrayIdTextViews.length - 1);
-        int increment = -1;
-        View_Select_Status[pos] = false;
-        if ((pos + increment) < min_pos) pos = max_pos;
-        else {
-            if ((pos + increment * 2) >= min_pos) {
-                if (!get_view_activation_state(pos + increment)) increment = increment * 2;
-            }
-            pos = pos + increment;
+        int max_pos = (ArrayIdViews.length - 1);
+        ViewsSelectStatus[pos] = false;
+        do {
+            --pos;
+            if (pos < min_pos) pos = max_pos;
+        } while (!getTextViewAllowToSelectState(pos));
+        ViewsSelectStatus[pos] = true;
+        setSelectTextView(getTextViewIdByPosition(pos));
+    }
+
+    void setAllowByChek(int id_radbtn1, int id_radbtn2, int id_textview1, int id_textview2){
+        getRadioButtonObjectById(id_radbtn1).setChecked(true);
+        getRadioButtonObjectById(id_radbtn2).setChecked(false);
+        setTextViewAllowToSelectState(id_textview1, false);
+        setTextViewAllowToSelectState(id_textview2, true);
+        if (getTextViewPositionById(id_textview1) == getSelectedTextViewPosition()) {
+            setSelectTextView(id_textview2);
         }
-        View_Select_Status[pos] = true;
-        set_view_select(get_view_ID_by_position(pos));
+        RefreshTextViewsSelect();
     }
 }

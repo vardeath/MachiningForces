@@ -16,11 +16,11 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     private int max_length = 8;
     private String Temp_val = "";
     private CharSequence zero = "0";
-    private information_bridge i_bridge;
+    private FragmentOnClickListener fListener;
     Conditions_Calc calc_cond;
 
     //конструктор по умолчанию
-    public keyboard_listener(View view, information_bridge inf_bridge, int id) {
+    public keyboard_listener(View view, FragmentOnClickListener fList) {
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
                 R.id.SL_KEY_5, R.id.SL_KEY_6, R.id.SL_KEY_7, R.id.SL_KEY_8, R.id.SL_KEY_9, R.id.SL_KEY_DOT, R.id.SL_KEY_UP,
@@ -31,13 +31,13 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
             BUTTONS[i] = (Button) view.findViewById(BUTTON_IDS[i]);
             BUTTONS[i].setOnClickListener(this);
         }
-        i_bridge = inf_bridge;
-        EDITABLE = i_bridge.get_selected_view();
-        calc_cond = new Conditions_Calc(id, i_bridge);
+        fListener = fList;
+        EDITABLE = fListener.getSelectedTextViewObject();
+        calc_cond = new Conditions_Calc(fListener.getFragmentId(), fListener);
     }
 
     private void refresh_editable_field(){
-        EDITABLE = i_bridge.get_selected_view();
+        EDITABLE = fListener.getSelectedTextViewObject();
     }
 
     private void changer_digit_value(int i){
@@ -116,15 +116,15 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 calc_cond.calculate();
                 break;
             case R.id.SL_KEY_DOT:
-                if (R.id.TW_n_teeth != i_bridge.get_selected_id()) changer_set_dot(); //Число зубов фрезы должно быть целым значением.
+                if (R.id.TW_n_teeth != fListener.getTextViewSelectedId()) changer_set_dot(); //Число зубов фрезы должно быть целым значением.
                 break;
             case R.id.SL_KEY_UP:
-                i_bridge.decrement_position();
-                refresh_editable_field();
+                fListener.decrementTextViewSelectedPosition();
+                //refresh_editable_field();
                 break;
             case R.id.SL_KEY_DOWN:
-                i_bridge.increment_position();
-                refresh_editable_field();
+                fListener.incrementTextViewSelectedPosition();
+                //refresh_editable_field();
                 break;
             case R.id.SL_KEY_DEL:
                 changer_del();
@@ -134,8 +134,8 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 changer_clear();
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
-                i_bridge.clear_all_fields();
-                i_bridge.set_selected_pos(0);
+                fListener.ClearAllTextViewsValues();
+                fListener.setTextViewSelectByPosition(0);
                 refresh_editable_field();
                 break;
         }

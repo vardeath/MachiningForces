@@ -12,12 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.stayi.myapplication.FragmentOnClickListener;
 import com.example.stayi.myapplication.MillSimpleSelectLogic;
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.keyboard_listener;
 import com.example.stayi.myapplication.nav_var_storage;
-import com.example.stayi.myapplication.information_bridge;
 
 import java.util.Objects;
 
@@ -56,7 +54,6 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    private information_bridge bridge; //Посредник между слушателями кастомной клавиатуры и селектора выбора поля ввода (Textview).
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -113,12 +110,9 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
         MillSimpleSelectLogic FragmentOnCliclList =  new MillSimpleSelectLogic(FRAGMENT_ID, rootView, TW_IDes, Fix_IDes);
 
-        int FRAGMENT_ID = R.id.MILL_calc_simple;
-        bridge = (new information_bridge(FRAGMENT_ID, TW_IDes, TW_MILL_SIMPLE, FIXIES, Fix_values));
-
         //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-        //keyboard_listener board = new keyboard_listener(key_board, bridge, FRAGMENT_ID);
+        keyboard_listener board = new keyboard_listener(key_board, FragmentOnCliclList);
 
         /*FIXIES[0].setVisibility(View.VISIBLE);
         FIXIES[2].setVisibility(View.VISIBLE);
