@@ -115,11 +115,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.1"
-            android:checked="true"
             android:gravity="center"
             android:text="@string/rad_fix_vc"
-            android:layout_marginStart="5dp"
             android:visibility="visible" />
 
         <TextView
@@ -190,6 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="0.1"
+            android:checked="true"
             android:text="@string/radiobutton_rev" />
 
         <TextView
@@ -332,7 +332,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="0.1"
-            android:checked="true"
             android:text="@string/radiobutton_fz" />
 
         <TextView
@@ -400,6 +399,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="0.1"
+            android:checked="true"
             android:text="@string/radiobutton_F" />
 
         <TextView
