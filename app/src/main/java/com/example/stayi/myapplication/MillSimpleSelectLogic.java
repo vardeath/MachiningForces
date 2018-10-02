@@ -26,18 +26,30 @@ public class MillSimpleSelectLogic extends FragmentOnClickListener {
             case R.id.fix_but_Vc:
                 get_RadBtn_by_ID(R.id.fix_but_Vc).setChecked(true);
                 get_RadBtn_by_ID(R.id.fix_but_rev).setChecked(false);
+                set_view_activation_state(R.id.TW_vc_speed, false);
+                set_view_activation_state(R.id.TW_n_rev, true);
+                refresh_views_select();
                 break;
             case R.id.fix_but_rev:
                 get_RadBtn_by_ID(R.id.fix_but_Vc).setChecked(false);
                 get_RadBtn_by_ID(R.id.fix_but_rev).setChecked(true);
+                set_view_activation_state(R.id.TW_vc_speed, true);
+                set_view_activation_state(R.id.TW_n_rev, false);
+                refresh_views_select();
                 break;
             case R.id.fix_but_fz:
                 get_RadBtn_by_ID(R.id.fix_but_fz).setChecked(true);
                 get_RadBtn_by_ID(R.id.fix_but_F).setChecked(false);
+                set_view_activation_state(R.id.TW_t_feed_editor, true);
+                set_view_activation_state(R.id.TW_m_feed_editor, false);
+                refresh_views_select();
                 break;
             case R.id.fix_but_F:
                 get_RadBtn_by_ID(R.id.fix_but_fz).setChecked(false);
                 get_RadBtn_by_ID(R.id.fix_but_F).setChecked(true);
+                set_view_activation_state(R.id.TW_t_feed_editor, false);
+                set_view_activation_state(R.id.TW_m_feed_editor, true);
+                refresh_views_select();
                 break;
         }
     }
