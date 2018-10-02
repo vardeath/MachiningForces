@@ -51,7 +51,6 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
     public MILL_calc_simple() {
         FRAGMENT_ID = this.getId();
-        // Required empty public constructor
     }
 
     /**
@@ -91,33 +90,12 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         TextView[] TW_MILL_SIMPLE = new TextView[TW_IDes.length];
         int[] Fix_IDes = new int[] {R.id.fix_but_Vc, R.id.fix_but_rev, R.id.fix_but_fz, R.id.fix_but_F};
 
-        /*for (int i = 0; i < TW_IDes.length; ++i){
-            TW_MILL_SIMPLE[i] = (TextView) rootView.findViewById(TW_IDes[i]);
-            TW_MILL_SIMPLE[i].setOnClickListener(this);
-        }*/
-
-        //Инициализация полей TextVIew для индикации фиксации поля ввода.
-
-        /*FIXIES = new TextView[Fix_IDes.length];
-        for (int i = 0; i < Fix_IDes.length; ++i){
-            FIXIES[i] = (TextView) rootView.findViewById(Fix_IDes[i]);
-        }*/
-
-        Fix_values = new boolean[Fix_IDes.length];
-        for (int i = 0; i < Fix_IDes.length; ++i){
-            Fix_values[i] = false;
-        }
-
         MillSimpleSelectLogic FragmentOnCliclList =  new MillSimpleSelectLogic(FRAGMENT_ID, rootView, TW_IDes, Fix_IDes);
 
         //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
         keyboard_listener board = new keyboard_listener(key_board, FragmentOnCliclList);
 
-        /*FIXIES[0].setVisibility(View.VISIBLE);
-        FIXIES[2].setVisibility(View.VISIBLE);
-        Fix_values[0] = true;
-        Fix_values[2] = true;*/
         return rootView;
 
     }
@@ -171,49 +149,13 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         NavController navController;
         navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
         navController.navigate(action_MILL_calc_simple_to_MILL_calc_detail2);
-        //item.setChecked(true);
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onClick(View v) {
-       /* switch (v.getId()){
-            case R.id.TW_Mill_Diameter:
-                bridge.set_selected_pos(0);
-                break;
-            case R.id.TW_vc_speed:
-                bridge.set_selected_pos(1);
-                FIXIES[0].setVisibility(View.VISIBLE);
-                FIXIES[1].setVisibility(View.INVISIBLE);
-                Fix_values[0] = true;
-                Fix_values[1] = false;
-                break;
-            case R.id.TW_n_rev:
-                bridge.set_selected_pos(2);
-                FIXIES[1].setVisibility(View.VISIBLE);
-                FIXIES[0].setVisibility(View.INVISIBLE);
-                Fix_values[1] = true;
-                Fix_values[0] = false;
-                break;
-            case R.id.TW_n_teeth:
-                bridge.set_selected_pos(3);
-                break;
-            case R.id.TW_t_feed_editor:
-                bridge.set_selected_pos(4);
-                FIXIES[2].setVisibility(View.VISIBLE);
-                FIXIES[3].setVisibility(View.INVISIBLE);
-                Fix_values[2] = true;
-                Fix_values[3] = false;
-                break;
-            case R.id.TW_m_feed_editor:
-                bridge.set_selected_pos(5);
-                FIXIES[3].setVisibility(View.VISIBLE);
-                FIXIES[2].setVisibility(View.INVISIBLE);
-                Fix_values[3] = true;
-                Fix_values[2] = false;
-                break;
-        }*/
+
     }
 
     /**

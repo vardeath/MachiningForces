@@ -15,41 +15,44 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_weight="1.0"
+        app:layout_constraintVertical_weight="1.0"
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
-            <ImageButton
+            <Button
                 android:id="@+id/GOTOMILLSIMPLE"
-                android:layout_width="173dp"
-                android:layout_height="176dp"
+                android:background="@drawable/menu_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_weight="0.5"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:adjustViewBounds="true"
                 android:contentDescription="@string/Go_to_MILL"
-                android:src="@drawable/ic_mill"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.025"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.016" />
+                android:text="@string/BUT_to_MILL"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/button"
+                android:background="@drawable/menu_button_style"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/BUT_to_turn"
+                android:layout_marginRight="10dp"
+                tools:ignore="ButtonStyle" />
+
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

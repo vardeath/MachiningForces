@@ -7,27 +7,71 @@ import android.widget.TextView;
 
 public abstract class FragmentOnClickListener implements View.OnClickListener {
 
-    private int FRAGMENT_ID;
+    private int FRAGMENT_ID; //ID фрагмента, вызвавшего функцию.
 
-    int getFragmentId(){
-        return FRAGMENT_ID;
-    }
-    //Массив ID views, имеющихся в фрагменте.
-    private int[] ArrayIdViews;
+    private int TextViewArrLength; //Длина массива с TextViews.
 
-    public int[] getTextViewArrayID() {
-        return ArrayIdViews;
+    private int RadioButtonArrLength; //Длина массива с RadioButtons.
+
+    private int[] ArrayIdViews; //Массив ID views, имеющихся в фрагменте.
+
+    private int[] ArrayIdOfRadioButtons; //Массив ID RadioButtons, имеющихся в фрагменте.
+
+    private TextView[] ArrayOfTextViews; //Массив инициализированных обьектов TextView со слушателями.
+
+    private RadioButton[] ArrayOfRadBtn; //Массив инициализированных обьектов RadioButton со слушателями.
+
+    private boolean[] ViewsSelectStatus; //Массив данных о выделенных поизиях TextView.
+
+    private boolean[] AllowedViewsToSelect; //Массив позиций, разрешенных/запрещнных к выделению.
+
+    private double[] TextViewsDoubleValues; //Массив числовых значение TextView для передачи в модуль расчета.
+
+    FragmentOnClickListener(int fragment_id, View view, int[] ArrIdOfTextViews, int[] ArrIdOfRadbuttons) {
+        FRAGMENT_ID = fragment_id;
+        TextViewArrLength = ArrIdOfTextViews.length;
+        RadioButtonArrLength = ArrIdOfRadbuttons.length;
+        ArrayIdViews = ArrIdOfTextViews;
+        ArrayIdOfRadioButtons = ArrIdOfRadbuttons;
+        ArrayOfTextViews = new TextView[TextViewArrLength];
+        ArrayOfRadBtn = new RadioButton[RadioButtonArrLength];
+        TextViewsDoubleValues = new double[TextViewArrLength];
+
+        for (int i = 0; i < TextViewArrLength; ++i) {
+            ArrayOfTextViews[i] = view.findViewById(ArrIdOfTextViews[i]);
+            ArrayOfTextViews[i].setOnClickListener(this);
+        }
+        for (int i = 0; i < RadioButtonArrLength; ++i) {
+            ArrayOfRadBtn[i] = view.findViewById(ArrIdOfRadbuttons[i]);
+            ArrayOfRadBtn[i].setOnClickListener(this);
+        }
+
+        ViewsSelectStatus = new boolean[TextViewArrLength];
+        AllowedViewsToSelect = new boolean[TextViewArrLength];
+
+        for (int i = 0; i < TextViewArrLength; ++i) {
+            ViewsSelectStatus[i] = false; // В массиве в момент инициализации нет выделенных view.
+            AllowedViewsToSelect[i] = true; // В массиве в момент инициализации доступны к выделению все view.
+        }
     }
 
-    //Вернуть TextView ID по известной позиции в массиве.
-    private int getTextViewIdByPosition(int pos) {
-        return ArrayIdViews[pos];
+    double[] getTextViewDoubleValuesArray(){
+        for (int i = 0; i < TextViewArrLength; ++i) {
+            TextViewsDoubleValues[i] = Double.valueOf(String.valueOf(getTextViewArray()[i].getText()));
+        }
+        return TextViewsDoubleValues;
     }
+
+    int getFragmentId(){ return FRAGMENT_ID;} //Получть ID фрагмента, вызвавшего функцию.
+
+    int[] getTextViewArrayID() { return ArrayIdViews;} //Получить массив ID TextViews.
+
+    private int getTextViewIdByPosition(int pos) {return ArrayIdViews[pos];}  //Вернуть TextView ID по известной позиции в массиве.
 
     //Вернуть позицию TextView в массиве по известному ID.
-    private int getTextViewPositionById(int ID) {
+    int getTextViewPositionById(int ID) {
         int found_position = -1; //Если нет такого ID, вернуть отрицательное число.
-        for (int i = 0; i < ArrayIdViews.length; ++i) {
+        for (int i = 0; i < TextViewArrLength; ++i) {
             if (ArrayIdViews[i] == ID) {
                 found_position = i;
             }
@@ -35,88 +79,51 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
         return found_position;
     }
 
-    //Массив ID RadioButtons, имеющихся в фрагменте.
-    private int[] ArrayIdOfRadiobuttons;
-
     //Вернуть позицию обьекта RadioButton в массиве по известнмоу ID.
     private int getRadioButtonPositionById(int ID) {
         int found_position = -1;
-        for (int i = 0; i < ArrayIdOfRadiobuttons.length; ++i) {
-            if (ArrayIdOfRadiobuttons[i] == ID) {
+        for (int i = 0; i < RadioButtonArrLength; ++i) {
+            if (ArrayIdOfRadioButtons[i] == ID) {
                 found_position = i;
             }
         }
         return found_position;
     }
 
-    //Массив инициализированных обьектов TextView со слушателями.
-    private TextView[] ArrayOfTextViews;
 
-    public TextView[] getTextViewArray() {
+    TextView[] getTextViewArray() {
         return ArrayOfTextViews;
     }
-    //Массив инициализированных обьектов RadioButton со слушателями.
-    private RadioButton[] ArrayOfRadBtn;
 
     //Вернуть обьект RadioButton по известному ID.
     private RadioButton getRadioButtonObjectById(int ID) {
         return ArrayOfRadBtn[getRadioButtonPositionById(ID)];
     }
 
-    //Массив данных о выделенных поизиях TextView.
-    private boolean[] ViewsSelectStatus;
-
-    public void ClearAllTextViewsValues(){
-        for (int i = 0; i < ArrayOfTextViews.length; ++i) {
+    void ClearAllTextViewsValues(){
+        for (int i = 0; i < TextViewArrLength; ++i) {
             ArrayOfTextViews[i].setText("0");
         }
     }
     //Получить позицию выделенного обьекта TextView.
     private int getSelectedTextViewPosition() {
         int pos = 0;
-        for (int i = 0; i < ViewsSelectStatus.length; ++i) {
+        for (int i = 0; i < TextViewArrLength; ++i) {
             if (ViewsSelectStatus[i]) pos = i;
         }
         return pos;
     }
 
-    public int getTextViewSelectedId(){
+    int getTextViewSelectedId(){
         return ArrayIdViews[getSelectedTextViewPosition()];
     }
-    public void setTextViewSelectByPosition(int pos){
+    void setTextViewSelectByPosition(int pos){
         setSelectTextView(getTextViewIdByPosition(pos));
-    }
-    private boolean[] AllowedViewsToSelect;
-
-    FragmentOnClickListener(int fragment_id, View view, int[] ArrIdOfTextViews, int[] ArrIdOfRadbuttons) {
-        FRAGMENT_ID = fragment_id;
-        ArrayIdViews = ArrIdOfTextViews;
-        ArrayIdOfRadiobuttons = ArrIdOfRadbuttons;
-        ArrayOfTextViews = new TextView[ArrayIdViews.length];
-        ArrayOfRadBtn = new RadioButton[ArrayIdOfRadiobuttons.length];
-
-        for (int i = 0; i < ArrIdOfTextViews.length; ++i) {
-            ArrayOfTextViews[i] = view.findViewById(ArrIdOfTextViews[i]);
-            ArrayOfTextViews[i].setOnClickListener(this);
-        }
-        for (int i = 0; i < ArrIdOfRadbuttons.length; ++i) {
-            ArrayOfRadBtn[i] = view.findViewById(ArrIdOfRadbuttons[i]);
-            ArrayOfRadBtn[i].setOnClickListener(this);
-        }
-
-        ViewsSelectStatus = new boolean[ArrIdOfTextViews.length];
-        AllowedViewsToSelect = new boolean[ArrIdOfTextViews.length];
-
-        for (int i = 0; i < ArrIdOfTextViews.length; ++i) {
-            ViewsSelectStatus[i] = false; // В массиве в момент инициализации нет выделенных view.
-            AllowedViewsToSelect[i] = true; // В массиве в момент инициализации доступны к выделению все view.
-        }
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-
         setSelectTextView(id);
     }
 
@@ -128,7 +135,7 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
         int position = getTextViewPositionById(ID);
         if (position >= 0) {
             if (getTextViewAllowToSelectState(position)) {
-                for (int i = 0; i < ViewsSelectStatus.length; ++i) {
+                for (int i = 0; i < TextViewArrLength; ++i) {
                     if (i == position) {
                         ViewsSelectStatus[i] = true;
                         ArrayOfTextViews[i].setBackgroundResource(R.drawable.textstyle_selected);
@@ -144,7 +151,7 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
         }
     }
 
-    public TextView getSelectedTextViewObject() {
+    TextView getSelectedTextViewObject() {
         return ArrayOfTextViews[getSelectedTextViewPosition()];
     }
 
@@ -153,14 +160,14 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
     }
 
 
-    private boolean getTextViewAllowToSelectState(int pos) {
+    boolean getTextViewAllowToSelectState(int pos) {
         return AllowedViewsToSelect[pos];
     }
 
     void incrementTextViewSelectedPosition() {
         int pos = getSelectedTextViewPosition();
         int min_pos = 0;
-        int max_pos = (ArrayIdViews.length - 1);
+        int max_pos = (TextViewArrLength - 1);
         ViewsSelectStatus[pos] = false;
         do {
             ++pos;
@@ -173,7 +180,7 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
     void decrementTextViewSelectedPosition() {
         int pos = getSelectedTextViewPosition();
         int min_pos = 0;
-        int max_pos = (ArrayIdViews.length - 1);
+        int max_pos = (TextViewArrLength - 1);
         ViewsSelectStatus[pos] = false;
         do {
             --pos;

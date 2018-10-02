@@ -8,9 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
 
@@ -79,8 +76,7 @@ public class MAIN_MENU_CONDITIONS extends Fragment {
                              Bundle savedInstanceState) {
         View rootViewA = (View) inflater.inflate (
                 R.layout.main_menu_conditions, container, false);
-        Button btn = (Button) rootViewA
-                .findViewById (R.id.GOTOMILLSIMPLE);
+        Button btn = rootViewA.findViewById (R.id.GOTOMILLSIMPLE);
         btn.setOnClickListener(new View.OnClickListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)

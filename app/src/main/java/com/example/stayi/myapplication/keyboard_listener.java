@@ -13,7 +13,6 @@ import androidx.annotation.RequiresApi;
 public class keyboard_listener extends Activity implements View.OnClickListener {
 
     private TextView EDITABLE;
-    private int max_length = 8;
     private String Temp_val = "";
     private CharSequence zero = "0";
     private FragmentOnClickListener fListener;
