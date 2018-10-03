@@ -159,7 +159,6 @@ public abstract class FragmentOnClickListener implements View.OnClickListener {
         AllowedViewsToSelect[getTextViewPositionById(ID)] = state;
     }
 
-
     boolean getTextViewAllowToSelectState(int pos) {
         return AllowedViewsToSelect[pos];
     }

@@ -7,7 +7,7 @@ public class MillSimpleSelectLogic extends FragmentOnClickListener {
     public MillSimpleSelectLogic(int fragment_id, View view, int[] ArrIdOfTextViews, int[] ArrIdOfRadbuttons){
         super(fragment_id, view, ArrIdOfTextViews, ArrIdOfRadbuttons);
         setTextViewAllowToSelectState(R.id.TW_n_rev, false);
-        setTextViewAllowToSelectState(R.id.TW_m_feed_editor, false);
+        setTextViewAllowToSelectState(R.id.TW_min_feed, false);
         setSelectTextView(R.id.TW_Mill_Diameter);
     }
 
@@ -24,10 +24,10 @@ public class MillSimpleSelectLogic extends FragmentOnClickListener {
                 setAllowByChek(R.id.fix_but_rev, R.id.fix_but_Vc, R.id.TW_n_rev, R.id.TW_vc_speed);
                 break;
             case R.id.fix_but_fz:
-                setAllowByChek(R.id.fix_but_fz, R.id.fix_but_F, R.id.TW_t_feed_editor, R.id.TW_m_feed_editor);
+                setAllowByChek(R.id.fix_but_fz, R.id.fix_but_F, R.id.TW_fz_feed, R.id.TW_min_feed);
                 break;
             case R.id.fix_but_F:
-                setAllowByChek(R.id.fix_but_F, R.id.fix_but_fz, R.id.TW_m_feed_editor, R.id.TW_t_feed_editor);
+                setAllowByChek(R.id.fix_but_F, R.id.fix_but_fz, R.id.TW_min_feed, R.id.TW_fz_feed);
                 break;
         }
     }

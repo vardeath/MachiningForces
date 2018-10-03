@@ -59,7 +59,9 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
 
     private void changer_del(){
         Temp_val = (String) EDITABLE.getText();
-        if (Temp_val.length() > 1) {
+        if (Temp_val.length() == 3 && Temp_val.contentEquals(".0")) {
+            changer_clear();
+        }else if (Temp_val.length() > 1) {
             StringBuilder temp_str_arr = new StringBuilder();
             for (int i = 0; i < Temp_val.length() - 1; ++i) {
                 temp_str_arr.append(Temp_val.charAt(i));}
@@ -131,6 +133,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 break;
             case R.id.SL_KEY_CLEAR:
                 changer_clear();
+                calc_cond.calculate();
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
                 fListener.ClearAllTextViewsValues();
