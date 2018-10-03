@@ -1,10 +1,6 @@
 package com.example.stayi.myapplication;
 
 import android.widget.TextView;
-import android.widget.Toast;
-
-import static android.app.PendingIntent.getActivity;
-import static java.security.AccessController.getContext;
 
 class Conditions_Calc {
     private int fragment_ID; //id фрагмента, для которого идет расчет.
@@ -93,10 +89,11 @@ class Conditions_Calc {
                         }
                     }
                 }
-                /*for (int i = 0; i < TextViewStringValTempArray.length; ++i) {
-                    fListener.getTextViewArray()[i].setText((int) Math.round(TextViewDoubleValTempArray[i]));
-                }*/
                 break;
+        }
+        for (int i = 0; i < TextViewStringValTempArray.length; ++i) {
+            String val = String.valueOf((int) Math.round(TextViewDoubleValTempArray[i]));
+            if (Math.round(TextViewDoubleValTempArray[i]) > 0) fListener.getTextViewArray()[i].setText(val);
         }
     }
 }
