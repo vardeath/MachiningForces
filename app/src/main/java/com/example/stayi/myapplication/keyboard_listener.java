@@ -137,7 +137,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
                 fListener.ClearAllTextViewsValues();
-                fListener.setTextViewSelectByPosition(0);
+                fListener.setTextViewSelectZeroPosition();
                 refresh_editable_field();
                 break;
         }

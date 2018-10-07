@@ -42,7 +42,7 @@ class Conditions_Calc {
     }
 
     void calculate() {
-        calculate_simple_mill();
+        if (fragment_ID == R.id.MILL_calc_simple) calculate_simple_mill();
     }
 
     private void calculate_simple_Mill_speed() {

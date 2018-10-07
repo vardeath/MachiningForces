@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
@@ -20,6 +21,7 @@ import com.example.stayi.myapplication.BASIC_MENU.MAIN_MENU_CONDITIONS;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
+import java.lang.reflect.Field;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
@@ -89,10 +91,6 @@ public class MainActivity extends AppCompatActivity
         if (!hasVisited) {
             nav_var_storage.addProperty("hasVisited", false);
         }
-
-        //Инициализация слушателя кастомной виртуальной клавиатуры.
-        /*keyboard_listener keyboard = new keyboard_listener(llBottomSheet);
-        keyboard.onClick(llBottomSheet);*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -119,19 +117,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         switch (item.getItemId()) {
             case android.R.id.home:
-                drawer.openDrawer(GravityCompat.START);
+                navController.popBackStack();
+                //drawer.openDrawer(GravityCompat.START);
                 return true;
         }
         return super.onOptionsItemSelected(item);
