@@ -146,8 +146,9 @@ class Conditions_Calc {
         }
         if (Double.valueOf(String.valueOf(fListener.getSelectedTextViewObject().getText())) > 0) {
             for (int i = 0; i < TextViewDoubleValTempArray.length; ++i) {
-                String val = String.valueOf(Math.round(TextViewDoubleValTempArray[i]));// = String.valueOf(TextViewDoubleValTempArray[i]);
-                //val = reverse_arr_Double_to_STR(TextViewDoubleValTempArray[i]);
+                String val;
+                if (TextViewDoubleValTempArray[i] > 1) val = String.valueOf(Math.round(TextViewDoubleValTempArray[i]));
+                else val = reverse_arr_Double_to_STR(TextViewDoubleValTempArray[i]);
                 if (IsCalculated[i]) {
                     if (i != Fz_pos) fListener.getTextViewArray()[i].setText(val);
                     else {
