@@ -10,12 +10,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.stayi.myapplication.FragmentOnClickListener;
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.keyboard_listener;
 import com.example.stayi.myapplication.nav_var_storage;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.Objects;
 
@@ -96,7 +98,10 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
         keyboard_listener board = new keyboard_listener(key_board, FragmentOnCliclList);
-
+        LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
+        behavior.setPeekHeight(700);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         return rootView;
 
     }

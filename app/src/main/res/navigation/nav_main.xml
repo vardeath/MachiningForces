@@ -12,7 +12,7 @@
         tools:layout="@layout/main_menu_conditions">
         <action
             android:id="@+id/action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple"
-            app:destination="@+id/MILL_calc_simple" />
+            app:destination="@id/MILL_calc_simple"     app:enterAnim="@anim/nav_default_pop_enter_anim" app:popUpTo="@id/MILL_calc_simple" app:exitAnim="@anim/nav_default_pop_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/action_MAIN_MENU_CONDITIONS_to_MILL_calc_detail"
             app:destination="@id/MILL_calc_detail" />
@@ -21,7 +21,7 @@
         android:id="@+id/blankFragment2"
         android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment2"
         android:label="@string/Tolerances"
-        tools:layout="@layout/fragment_tolerances"></fragment>
+        tools:layout="@layout/fragment_tolerances" />
     <fragment
         android:id="@+id/blankFragment3"
         android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment3"

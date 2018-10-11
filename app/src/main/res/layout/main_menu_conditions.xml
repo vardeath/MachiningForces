@@ -26,29 +26,31 @@
 
             <Button
                 android:id="@+id/GOTOMILLSIMPLE"
-                android:background="@drawable/menu_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:layout_weight="0.5"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/menu_button_style"
                 android:contentDescription="@string/Go_to_MILL"
                 android:text="@string/BUT_to_MILL"
+                android:textSize="18sp"
                 tools:ignore="ButtonStyle" />
 
             <Button
                 android:id="@+id/button"
-                android:background="@drawable/menu_button_style"
-                android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="@string/BUT_to_turn"
                 android:layout_marginRight="10dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/menu_button_style"
+                android:text="@string/BUT_to_turn"
+                android:textSize="18sp"
                 tools:ignore="ButtonStyle" />
 
         </TableRow>

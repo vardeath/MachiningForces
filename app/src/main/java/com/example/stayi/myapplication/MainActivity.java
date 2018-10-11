@@ -73,15 +73,9 @@ public class MainActivity extends AppCompatActivity
         navController.addOnNavigatedListener(new NavController.OnNavigatedListener() {
             @Override
             public void onNavigated(@NonNull NavController controller, @NonNull NavDestination destination) {
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.MILL_calc_simple && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-
-                    behavior.setPeekHeight(700);
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                } else {
-                    //Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
-                    behavior.setPeekHeight(0);
-                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                }
+                //Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
+                behavior.setPeekHeight(0);
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         });
 

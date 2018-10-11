@@ -9,6 +9,7 @@ import java.util.Objects;
 import androidx.annotation.RequiresApi;
 
 public class FragmentOnClickListener implements View.OnClickListener {
+
     private Context context;
 
     private int FRAGMENT_ID; //ID фрагмента, вызвавшего функцию.
