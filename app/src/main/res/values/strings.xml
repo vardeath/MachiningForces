@@ -76,4 +76,5 @@
     <string name="radiobutton_rev" />
     <string name="radiobutton_fz" />
     <string name="radiobutton_F" />
+    <string name="but_lock">re</string>
 </resources>

@@ -89,15 +89,15 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
         int null_array_member = 0; //Если для
         //Инициализация полей TextVIew для хранения и ввода данных.
-        int[] TW_IDes = new int[]{R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_fz_feed, R.id.TW_min_feed};
+        int[] TW_IDes = new int[] {R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_fz_feed, R.id.TW_min_feed};
         TextView[] TW_MILL_SIMPLE = new TextView[TW_IDes.length];
         int[] Fix_IDes = new int[] {null_array_member, R.id.fix_but_Vc, R.id.fix_but_rev, null_array_member, R.id.fix_but_fz, R.id.fix_but_F};
 
-        FragmentOnClickListener FragmentOnCliclList =  new FragmentOnClickListener(FRAGMENT_ID, rootView, TW_IDes, Fix_IDes, getContext());
+        FragmentOnClickListener FragmentOnClicklList =  new FragmentOnClickListener(FRAGMENT_ID, rootView, TW_IDes, Fix_IDes, getContext());
 
         //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-        keyboard_listener board = new keyboard_listener(key_board, FragmentOnCliclList);
+        keyboard_listener board = new keyboard_listener(key_board, FragmentOnClicklList);
         LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
         behavior.setPeekHeight(700);
