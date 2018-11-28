@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication;
+/*package com.example.stayi.myapplication;
 
 import android.widget.TextView;
 
@@ -184,4 +184,4 @@ class Conditions_Calc {
             }
         }
     }
-}
+}*/

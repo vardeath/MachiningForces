@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication;
+/*package com.example.stayi.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -143,3 +143,4 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
         }
     }
 }
+*/

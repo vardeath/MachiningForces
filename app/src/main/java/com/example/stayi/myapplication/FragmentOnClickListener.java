@@ -9,31 +9,18 @@ import java.util.Objects;
 import androidx.annotation.RequiresApi;
 
 public class FragmentOnClickListener implements View.OnClickListener {
-
-    private Context context;
-
     private int FRAGMENT_ID; //ID фрагмента, вызвавшего функцию.
-
-    private int Arrays_Length; //Длина массива с TextViews.
-
-    private TextView[] ArrayOfTextViews; //Массив инициализированных обьектов TextView со слушателями.
-
-    private RadioButton[] ArrayOfRadioButtons; //Массив инициализированных обьектов RadioButton со слушателями.
-
-    private boolean[] ViewsSelectStatus; //Массив данных о выделенных поизиях TextView.
-
-    private boolean[] AllowedViewsToSelect; //Массив позиций, разрешенных/запрещнных к выделению.
-
-    private double[] TextViewsDoubleValues; //Массив числовых значение TextView для передачи в модуль расчета.
-
-    private RadioButton[] RadioButtonsCounter;
-
+    Button_hold_adaptor ButAdaptor;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public FragmentOnClickListener(int fragment_id, View view, int[] ArrIdOfTextViews, int[] ArrIdOfRadbuttons, Context cont) {
-        context = cont;
+    public FragmentOnClickListener(int fragment_id, Button_hold_adaptor adapt) {
+
         int count = 0;
         FRAGMENT_ID = fragment_id;
-        Arrays_Length = ArrIdOfTextViews.length;
+        ButAdaptor = adapt;
+        TextView[] Arr = ButAdaptor.getTextViewsArray();
+        for (TextView x : Arr) {x.setOnClickListener(this);}
+
+        /*Arrays_Length = ArrIdOfTextViews.length;
         ArrayOfTextViews = new TextView[Arrays_Length];
         ArrayOfRadioButtons = new RadioButton[Arrays_Length];
         TextViewsDoubleValues = new double[Arrays_Length];
@@ -72,7 +59,22 @@ public class FragmentOnClickListener implements View.OnClickListener {
             } else
                 AllowedViewsToSelect[i] = !Objects.requireNonNull(ArrayOfRadioButtons[i]).isChecked();
         }
-        RefreshTextViewsSelect(); //Применить установленные параметры.
+        RefreshTextViewsSelect(); //Применить установленные параметры.*/
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        ButAdaptor.setSelectedView(id);
+    }
+/*
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        if (isTextViewContainsId(id)) setSelectTextView(id);
+        if (isRadioButtonContainsId(id)) setSelectRadioButton(id);
+
     }
 
     double[] getTextViewDoubleValuesArray() {
@@ -168,16 +170,6 @@ public class FragmentOnClickListener implements View.OnClickListener {
         setSelectTextView(getTextViewIdByPosition(0));
     }
 
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-
-        if (isTextViewContainsId(id)) setSelectTextView(id);
-        if (isRadioButtonContainsId(id)) setSelectRadioButton(id);
-
-    }
-
     private void RefreshTextViewsSelect() {
         setSelectTextView(ArrayOfTextViews[getSelectedTextViewPosition()].getId());
     }
@@ -266,5 +258,5 @@ public class FragmentOnClickListener implements View.OnClickListener {
             setSelectTextView(getTextViewIdByPosition(getRadioButtonPositionById(nextRadioButnId)));
         }
         RefreshTextViewsSelect();
-    }
+    }*/
 }
