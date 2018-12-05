@@ -93,7 +93,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         //Инициализация полей TextVIew для хранения и ввода данных.
         int[] TW_IDes = new int[] {R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_fz_feed, R.id.TW_min_feed};
         TextView[] TW_MILL_SIMPLE = new TextView[TW_IDes.length];
-        Button_hold_adaptor ButHoldAdapt = new Button_hold_adaptor(TW_IDes, rootView);
+        Button_hold_adaptor ButHoldAdapt = new Button_hold_adaptor(TW_IDes, rootView, getContext());
         ButHoldAdapt.setRelativeButton(R.id.rehold_but_millsimple_1, R.id.TW_vc_speed, R.id.TW_n_rev, 2);
         ButHoldAdapt.setRelativeButton(R.id.rehold_but_millsimple_2, R.id.TW_fz_feed, R.id.TW_min_feed, 2);
 

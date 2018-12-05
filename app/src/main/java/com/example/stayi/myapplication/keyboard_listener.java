@@ -1,4 +1,4 @@
-/*package com.example.stayi.myapplication;
+package com.example.stayi.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -16,7 +16,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     private String Temp_val = "";
     private CharSequence zero = "0";
     private FragmentOnClickListener fListener;
-    Conditions_Calc calc_cond;
+    //Conditions_Calc calc_cond;
 
     //конструктор по умолчанию
     public keyboard_listener(View view, FragmentOnClickListener fList) {
@@ -31,12 +31,12 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
             BUTTONS[i].setOnClickListener(this);
         }
         fListener = fList;
-        EDITABLE = fListener.getSelectedTextViewObject();
-        calc_cond = new Conditions_Calc(fListener.getFragmentId(), fListener);
+        //EDITABLE = fListener.getSelectedTextViewObject();
+        //calc_cond = new Conditions_Calc(fListener.getFragmentId(), fListener);
     }
 
     private void refresh_editable_field(){
-        EDITABLE = fListener.getSelectedTextViewObject();
+        //EDITABLE = fListener.getSelectedTextViewObject();
     }
 
     private void changer_digit_value(int i){
@@ -78,69 +78,68 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.SL_KEY_0:
                 changer_digit_value(0);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_1:
                 changer_digit_value(1);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_2:
                 changer_digit_value(2);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_3:
                 changer_digit_value(3);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_4:
                 changer_digit_value(4);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_5:
                 changer_digit_value(5);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_6:
                 changer_digit_value(6);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_7:
                 changer_digit_value(7);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_8:
                 changer_digit_value(8);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_9:
                 changer_digit_value(9);
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_DOT:
-                if (R.id.TW_n_teeth != fListener.getTextViewSelectedId()) changer_set_dot(); //Число зубов фрезы должно быть целым значением.
+                //if (R.id.TW_n_teeth != fListener.getTextViewSelectedId()) changer_set_dot(); //Число зубов фрезы должно быть целым значением.
                 break;
             case R.id.SL_KEY_UP:
-                fListener.decrementTextViewSelectedPosition();
+                //fListener.decrementTextViewSelectedPosition();
                 //refresh_editable_field();
                 break;
             case R.id.SL_KEY_DOWN:
-                fListener.incrementTextViewSelectedPosition();
+                //fListener.incrementTextViewSelectedPosition();
                 //refresh_editable_field();
                 break;
             case R.id.SL_KEY_DEL:
                 changer_del();
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_CLEAR:
                 changer_clear();
-                calc_cond.calculate();
+                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
-                fListener.ClearAllTextViewsValues();
-                fListener.setTextViewSelectZeroPosition();
+                /*fListener.ClearAllTextViewsValues();
+                fListener.setTextViewSelectZeroPosition();*/
                 refresh_editable_field();
                 break;
         }
     }
 }
-*/

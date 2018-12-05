@@ -1,11 +1,10 @@
 package com.example.stayi.myapplication;
 
-import android.content.Context;
 import android.os.Build;
 import android.view.View;
-import android.widget.RadioButton;
+import android.widget.Button;
 import android.widget.TextView;
-import java.util.Objects;
+
 import androidx.annotation.RequiresApi;
 
 public class FragmentOnClickListener implements View.OnClickListener {
@@ -17,8 +16,10 @@ public class FragmentOnClickListener implements View.OnClickListener {
         int count = 0;
         FRAGMENT_ID = fragment_id;
         ButAdaptor = adapt;
-        TextView[] Arr = ButAdaptor.getTextViewsArray();
-        for (TextView x : Arr) {x.setOnClickListener(this);}
+        TextView[] T_Arr = ButAdaptor.getTextViewsArray();
+        Button[] B_Arr = ButAdaptor.getButtonArray();
+        for (TextView x : T_Arr) {x.setOnClickListener(this);}
+        for (Button x : B_Arr) {x.setOnClickListener(this);}
 
         /*Arrays_Length = ArrIdOfTextViews.length;
         ArrayOfTextViews = new TextView[Arrays_Length];
@@ -66,6 +67,7 @@ public class FragmentOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         ButAdaptor.setSelectedView(id);
+        ButAdaptor.doButton_action(id);
     }
 /*
     @Override

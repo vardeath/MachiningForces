@@ -74,7 +74,7 @@ public class Fragment_data {
         return Selected_state;
     }
 
-    boolean getAllowed_to_select(){
+    boolean is_allowed_to_select(){
         return Allowed_to_select;
     }
 
