@@ -3,13 +3,13 @@ package com.example.stayi.myapplication;
 import android.view.View;
 import android.widget.TextView;
 
-public class Fragment_data {
+class Fragment_data {
     //Набор базовых параметров элемента поля ввода.
     private View root_view;
 
     private int TextView_id;
-    TextView Text_view;
-    private int Relative_button_id;
+    private TextView Text_view;
+    private int Max_lenght = 0;
     private String TextView_string_value;
     private Double TextView_double_value;
     private boolean Selected_state;
@@ -19,6 +19,14 @@ public class Fragment_data {
         root_view = v;
         TextView_id = TextV_id;
         Text_view = v.findViewById(TextView_id);
+    }
+
+    void setMax_lenght(int len) {
+        Max_lenght = len;
+    }
+
+    public int getMax_lenght() {
+        return Max_lenght;
     }
 
     String getTextView_string_value(){
@@ -46,10 +54,6 @@ public class Fragment_data {
         setTextView_string_value(String.valueOf(val));
     }
 
-    void setRelative_button_id(int id){
-        Relative_button_id = id;
-    }
-
     void setSelected_state(boolean state){
         if (Allowed_to_select) {
             Selected_state = state;
@@ -57,17 +61,14 @@ public class Fragment_data {
             else Text_view.setBackgroundResource(R.drawable.textstyle);
         } else Text_view.setBackgroundResource(R.drawable.textstyle_not_active);
     }
-
-    void setAllowed_to_select(boolean state){
+    //Меняем право допуска на изменение состояния выделения.
+    void setAccess_to_select(boolean state){
         Allowed_to_select = state;
+        if (!Allowed_to_select) {Selected_state = false;} //Если поле запрещено к выделению, меняем состояние.
     }
 
     int getTextView_id(){
         return TextView_id;
-    }
-
-    int getRelative_button_id(){
-        return Relative_button_id;
     }
 
     boolean getSelected_state(){

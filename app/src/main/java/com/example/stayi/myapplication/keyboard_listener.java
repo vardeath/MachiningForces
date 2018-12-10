@@ -15,11 +15,11 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     private TextView EDITABLE;
     private String Temp_val = "";
     private CharSequence zero = "0";
-    private FragmentOnClickListener fListener;
+    private Fragment_Adaptor fAdaptor;
     //Conditions_Calc calc_cond;
 
     //конструктор по умолчанию
-    public keyboard_listener(View view, FragmentOnClickListener fList) {
+    public keyboard_listener(View view, Fragment_Adaptor fAdapt) {
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
                 R.id.SL_KEY_5, R.id.SL_KEY_6, R.id.SL_KEY_7, R.id.SL_KEY_8, R.id.SL_KEY_9, R.id.SL_KEY_DOT, R.id.SL_KEY_UP,
@@ -30,20 +30,22 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
             BUTTONS[i] = (Button) view.findViewById(BUTTON_IDS[i]);
             BUTTONS[i].setOnClickListener(this);
         }
-        fListener = fList;
-        //EDITABLE = fListener.getSelectedTextViewObject();
+        fAdaptor = fAdapt;
+        EDITABLE = fAdaptor.getSelectedTextView();
         //calc_cond = new Conditions_Calc(fListener.getFragmentId(), fListener);
     }
 
     private void refresh_editable_field(){
-        //EDITABLE = fListener.getSelectedTextViewObject();
+        EDITABLE = fAdaptor.getSelectedTextView();
     }
 
     private void changer_digit_value(int i){
-        Temp_val = (String) EDITABLE.getText();
-        if (Temp_val.contentEquals(zero)) Temp_val = "";
-        Temp_val += i;
-        EDITABLE.setText(Temp_val);
+        if (EDITABLE.getText().length() < fAdaptor.getSelectedMaxLenght()){
+            Temp_val = (String) EDITABLE.getText();
+            if (Temp_val.contentEquals(zero)) Temp_val = "";
+            Temp_val += i;
+            EDITABLE.setText(Temp_val);
+        }
     }
 
     private void changer_set_dot(){
@@ -120,25 +122,19 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 //if (R.id.TW_n_teeth != fListener.getTextViewSelectedId()) changer_set_dot(); //Число зубов фрезы должно быть целым значением.
                 break;
             case R.id.SL_KEY_UP:
-                //fListener.decrementTextViewSelectedPosition();
-                //refresh_editable_field();
+                fAdaptor.decrementSelectedPosition();
                 break;
             case R.id.SL_KEY_DOWN:
-                //fListener.incrementTextViewSelectedPosition();
-                //refresh_editable_field();
+                fAdaptor.incrementSelectedPosition();
                 break;
             case R.id.SL_KEY_DEL:
                 changer_del();
-                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_CLEAR:
                 changer_clear();
-                //calc_cond.calculate();
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
-                /*fListener.ClearAllTextViewsValues();
-                fListener.setTextViewSelectZeroPosition();*/
-                refresh_editable_field();
+                fAdaptor.makeSelectDefault();
                 break;
         }
     }
