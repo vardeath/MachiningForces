@@ -109,7 +109,6 @@ public class Fragment_Adaptor {
         return result;
     }
 
-
     private void ReHold(int TextView_1_pos, int TextView_2_pos) {
         if (Fr_array[TextView_1_pos].is_allowed_to_select()) {
             Fr_array[TextView_1_pos].setAccess_to_select(false);
@@ -165,7 +164,11 @@ public class Fragment_Adaptor {
         setSelectedView(Fr_array[0].getTextView_id());
     }
 
-    int getSelectedMaxLenght() {
+    int getSelectedMaxLength() {
         return Fr_array[getCurrentSelectedPosition()].getMax_lenght();
+    }
+
+    void setZeroValuesAll() {
+        for (Fragment_data x : Fr_array) {x.setZeroValue();}
     }
 }

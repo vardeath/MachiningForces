@@ -82,4 +82,8 @@ class Fragment_data {
     TextView getText_view(){
         return Text_view;
     }
+
+    void setZeroValue(){
+        setTextView_string_value("0");
+    }
 }

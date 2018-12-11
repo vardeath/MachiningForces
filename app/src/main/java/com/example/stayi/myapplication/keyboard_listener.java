@@ -40,7 +40,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     }
 
     private void changer_digit_value(int i){
-        if (EDITABLE.getText().length() < fAdaptor.getSelectedMaxLenght()){
+        if (EDITABLE.getText().length() < fAdaptor.getSelectedMaxLength()){
             Temp_val = (String) EDITABLE.getText();
             if (Temp_val.contentEquals(zero)) Temp_val = "";
             Temp_val += i;
@@ -135,6 +135,7 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
                 fAdaptor.makeSelectDefault();
+                fAdaptor.setZeroValuesAll();
                 break;
         }
     }
