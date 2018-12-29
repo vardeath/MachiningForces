@@ -15,11 +15,11 @@ public class keyboard_listener extends Activity implements View.OnClickListener 
     private TextView EDITABLE;
     private String Temp_val = "";
     private CharSequence zero = "0";
-    private Fragment_Adaptor fAdaptor;
+    private FragmentAdaptor fAdaptor;
     //Conditions_Calc calc_cond;
 
     //конструктор по умолчанию
-    public keyboard_listener(View view, Fragment_Adaptor fAdapt) {
+    public keyboard_listener(View view, FragmentAdaptor fAdapt) {
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
                 R.id.SL_KEY_5, R.id.SL_KEY_6, R.id.SL_KEY_7, R.id.SL_KEY_8, R.id.SL_KEY_9, R.id.SL_KEY_DOT, R.id.SL_KEY_UP,

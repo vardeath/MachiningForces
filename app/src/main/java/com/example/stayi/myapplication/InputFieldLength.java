@@ -1,11 +1,11 @@
 package com.example.stayi.myapplication;
 
-public enum ConstantValues {
+public enum InputFieldLength {
     Six(6),
     Four(4);
     private int val;
 
-    ConstantValues(int i) {
+    InputFieldLength(int i) {
         this.val = i;
     }
 

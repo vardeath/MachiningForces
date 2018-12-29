@@ -8,9 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 public class FragmentOnClickListener implements View.OnClickListener {
-    private Fragment_Adaptor ButAdaptor;
+    private FragmentAdaptor ButAdaptor;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public FragmentOnClickListener(Fragment_Adaptor adapt) {
+    public FragmentOnClickListener(FragmentAdaptor adapt) {
         ButAdaptor = adapt;
         TextView[] T_Arr = ButAdaptor.getTextViewsArray();
         Button[] B_Arr = ButAdaptor.getButtonArray();
@@ -22,6 +22,6 @@ public class FragmentOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         ButAdaptor.setSelectedView(id);
-        ButAdaptor.doButton_action(id);
+        ButAdaptor.doButtonAction(id);
     }
 }

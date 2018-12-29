@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.stayi.myapplication.ConstantValues;
-import com.example.stayi.myapplication.Fragment_Adaptor;
+import com.example.stayi.myapplication.InputFieldLength;
+import com.example.stayi.myapplication.FragmentAdaptor;
 import com.example.stayi.myapplication.FragmentOnClickListener;
 import com.example.stayi.myapplication.R;
 /*import com.example.stayi.myapplication.keyboard_listener;*/
@@ -93,9 +93,9 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         int null_array_member = 0; //Если для
         //Инициализация полей TextVIew для хранения и ввода данных.
         int[] TW_IDes = new int[] {R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_fz_feed, R.id.TW_min_feed};
-        int[] Max_TW_Values = new int[]{ConstantValues.Six.getVal(), ConstantValues.Six.getVal(), ConstantValues.Six.getVal(), ConstantValues.Four.getVal(), ConstantValues.Six.getVal(), ConstantValues.Six.getVal()};
+        InputFieldLength[] Max_TW_Values = new InputFieldLength[]{InputFieldLength.Six, InputFieldLength.Six, InputFieldLength.Six, InputFieldLength.Four, InputFieldLength.Six, InputFieldLength.Six};
         //TextView[] TW_MILL_SIMPLE = new TextView[TW_IDes.length];
-        Fragment_Adaptor ButHoldAdapt = new Fragment_Adaptor(TW_IDes, Max_TW_Values,rootView, getContext());
+        FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(TW_IDes, Max_TW_Values,rootView, getContext());
         ButHoldAdapt.setRelativeButton(R.id.rehold_but_millsimple_1, R.id.TW_vc_speed, R.id.TW_n_rev, 2);
         ButHoldAdapt.setRelativeButton(R.id.rehold_but_millsimple_2, R.id.TW_fz_feed, R.id.TW_min_feed, 2);
 

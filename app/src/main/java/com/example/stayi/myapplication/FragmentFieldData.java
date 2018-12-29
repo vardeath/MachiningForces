@@ -3,7 +3,7 @@ package com.example.stayi.myapplication;
 import android.view.View;
 import android.widget.TextView;
 
-class Fragment_data {
+class FragmentFieldData {
     //Набор базовых параметров элемента поля ввода.
     private View root_view;
 
@@ -15,17 +15,17 @@ class Fragment_data {
     private boolean Selected_state;
     private boolean Allowed_to_select;
 
-    Fragment_data(int TextV_id, View v){
+    FragmentFieldData(int TextV_id, View v){
         root_view = v;
         TextView_id = TextV_id;
         Text_view = v.findViewById(TextView_id);
     }
 
-    void setMax_lenght(int len) {
+    void setMaxLenght(int len) {
         Max_lenght = len;
     }
 
-    public int getMax_lenght() {
+    public int getMaxLenght() {
         return Max_lenght;
     }
 
@@ -54,7 +54,7 @@ class Fragment_data {
         setTextView_string_value(String.valueOf(val));
     }
 
-    void setSelected_state(boolean state){
+    void setSelectedState(boolean state){
         if (Allowed_to_select) {
             Selected_state = state;
             if (state) Text_view.setBackgroundResource(R.drawable.textstyle_selected);
@@ -62,20 +62,20 @@ class Fragment_data {
         } else Text_view.setBackgroundResource(R.drawable.textstyle_not_active);
     }
     //Меняем право допуска на изменение состояния выделения.
-    void setAccess_to_select(boolean state){
+    void setAccessToSelectState(boolean state){
         Allowed_to_select = state;
         if (!Allowed_to_select) {Selected_state = false;} //Если поле запрещено к выделению, меняем состояние.
     }
 
-    int getTextView_id(){
+    int getTextViewId(){
         return TextView_id;
     }
 
-    boolean getSelected_state(){
+    boolean getSelectedState(){
         return Selected_state;
     }
 
-    boolean is_allowed_to_select(){
+    boolean isAllowedToSelect(){
         return Allowed_to_select;
     }
 

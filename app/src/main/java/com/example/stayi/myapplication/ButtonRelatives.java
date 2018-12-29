@@ -13,11 +13,11 @@ public class ButtonRelatives {
         return Butt_id;
     }
 
-    int getTw_1_position(){
+    int getFirstPosition(){
         return Tw_1_position;
     }
 
-    int getTw_2_position(){
+    int getSecondPosition(){
         return Tw_2_position;
     }
 
