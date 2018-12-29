@@ -3,7 +3,7 @@ package com.example.stayi.myapplication;
 import android.view.View;
 import android.widget.TextView;
 
-class FragmentFieldData {
+class FragmentFieldObject {
     //Набор базовых параметров элемента поля ввода.
     private View root_view;
 
@@ -14,8 +14,9 @@ class FragmentFieldData {
     private Double TextView_double_value;
     private boolean Selected_state;
     private boolean Allowed_to_select;
+    private FieldType type;
 
-    FragmentFieldData(int TextV_id, View v){
+    FragmentFieldObject(int TextV_id, View v){
         root_view = v;
         TextView_id = TextV_id;
         Text_view = v.findViewById(TextView_id);

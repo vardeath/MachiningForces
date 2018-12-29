@@ -90,7 +90,6 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
-        int null_array_member = 0; //Если для
         //Инициализация полей TextVIew для хранения и ввода данных.
         int[] TW_IDes = new int[] {R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_fz_feed, R.id.TW_min_feed};
         InputFieldLength[] Max_TW_Values = new InputFieldLength[]{InputFieldLength.Six, InputFieldLength.Six, InputFieldLength.Six, InputFieldLength.Four, InputFieldLength.Six, InputFieldLength.Six};

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FragmentAdaptor {
     Context context;
-    private FragmentFieldData[] FFarray;
+    private FragmentFieldObject[] FFarray;
     private View view;
     private int current_selected_position;
     private List<ButtonRelatives> ButtonRelatives = new ArrayList<ButtonRelatives>();
@@ -24,9 +24,9 @@ public class FragmentAdaptor {
 
     public FragmentAdaptor(int[] TextViewId, InputFieldLength[] InputFieldLength, View v, Context cont) {
         context = cont;
-        FFarray = new FragmentFieldData[TextViewId.length];
+        FFarray = new FragmentFieldObject[TextViewId.length];
         for (int i = 0; i < FFarray.length; ++i) {
-            FFarray[i] = new FragmentFieldData(TextViewId[i], v);
+            FFarray[i] = new FragmentFieldObject(TextViewId[i], v);
             FFarray[i].setAccessToSelectState(true);
             FFarray[i].setMaxLenght(InputFieldLength[i].getVal());
             if (i == 0) {
@@ -82,7 +82,7 @@ public class FragmentAdaptor {
     }
 
     private void refreshInputFields() {
-        for (FragmentFieldData x : FFarray) {
+        for (FragmentFieldObject x : FFarray) {
             x.setSelectedState(x.getSelectedState());
         }
     }
@@ -169,6 +169,6 @@ public class FragmentAdaptor {
     }
 
     void setZeroValuesAll() {
-        for (FragmentFieldData x : FFarray) {x.setZeroValue();}
+        for (FragmentFieldObject x : FFarray) {x.setZeroValue();}
     }
 }
