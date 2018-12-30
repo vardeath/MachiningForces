@@ -5,12 +5,14 @@ import com.example.stayi.myapplication.FragmentField.FieldDataType;
 import com.example.stayi.myapplication.FragmentField.FieldLength;
 import com.example.stayi.myapplication.FragmentField.FieldType;
 
+//Базовый обьект поля ввода, содержащий информацию о допустимых значениях параметров ввода.
 public class FieldBaseObject {
-    private int FieldId;
-    private FieldType FieldTypeValue;
-    private FieldDataType FieldFieldDataTypeValue;
-    private FieldLength FieldLengthValue;
-    private FieldConversePrecision FieldConversePrecisionValue;
+
+    private int FieldId; // ID поля ввода
+    private FieldType FieldTypeValue; //Тип вводимой информации (Диаметр инструмента, Скорость резания и тд).
+    private FieldDataType FieldFieldDataTypeValue; //Тип данных в поле ввода (integer или float).
+    private FieldLength FieldLengthValue; //Длина поля ввода (в символах).
+    private FieldConversePrecision FieldConversePrecisionValue; //Точность преобразования посчитанного значения в поле ввода.
 
     public FieldBaseObject(int id, FieldType fieldTypeValue) {
         FieldId = id;
@@ -50,7 +52,8 @@ public class FieldBaseObject {
         }
     }
 
-    public int getFieldId() {
+    //get/set методы
+    int getFieldId() {
         return FieldId;
     }
 
@@ -62,7 +65,7 @@ public class FieldBaseObject {
         return FieldTypeValue;
     }
 
-    public FieldLength getFieldLengthValue() {
+    FieldLength getFieldLengthValue() {
         return FieldLengthValue;
     }
 

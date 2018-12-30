@@ -47,7 +47,7 @@
             android:visibility="invisible" />
 
         <TextView
-            android:id="@+id/TW_Mill_Diameter"
+            android:id="@+id/MillDiameter"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
@@ -107,7 +107,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <Button
-            android:id="@+id/rehold_but_millsimple_1"
+            android:id="@+id/HoldCutRev"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
@@ -131,7 +131,7 @@
                 android:layout_weight="0.5">
 
                 <TextView
-                    android:id="@+id/TW_vc_speed"
+                    android:id="@+id/CuttingSpeed"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -150,7 +150,7 @@
                 android:layout_weight="0.5">
 
                 <TextView
-                    android:id="@+id/TW_n_rev"
+                    android:id="@+id/Revolution"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -183,7 +183,7 @@
                     android:gravity=""
                     android:text="@string/Cutting_speed"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/TW_vc_speed" />
+                    app:layout_constraintBottom_toBottomOf="@+id/CuttingSpeed" />
 
             </TableRow>
 
@@ -254,7 +254,7 @@
             android:visibility="invisible" />
 
         <TextView
-            android:id="@+id/TW_n_teeth"
+            android:id="@+id/Teeth"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
@@ -316,7 +316,7 @@
         tools:ignore="RtlHardcoded">
 
         <Button
-            android:id="@+id/rehold_but_millsimple_2"
+            android:id="@+id/HoldButton2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
@@ -335,7 +335,7 @@
                 android:layout_weight="0.5">
 
                 <TextView
-                    android:id="@+id/TW_fz_feed"
+                    android:id="@+id/ToothFeed"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.4"
@@ -354,7 +354,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/TW_min_feed"
+                    android:id="@+id/MinuteFeed"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.4"

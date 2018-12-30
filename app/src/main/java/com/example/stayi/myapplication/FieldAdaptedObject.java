@@ -7,10 +7,8 @@ class FieldAdaptedObject {
     //Набор базовых параметров элемента поля ввода.
     private View root_view;
     private FieldBaseObject BaseObject;
-
     private int TextView_id;
     private TextView Text_view;
-    private int Max_lenght = 0;
     private String TextView_string_value;
     private Double TextView_double_value;
     private boolean SelectedState;
@@ -23,12 +21,8 @@ class FieldAdaptedObject {
         Text_view = v.findViewById(TextView_id);
     }
 
-    void setMaxLength(int len) {
-        Max_lenght = len;
-    }
-
-    public int getMaxLength() {
-        return Max_lenght;
+    FieldBaseObject getBaseObject() {
+        return BaseObject;
     }
 
     String getTextViewStringValue(){

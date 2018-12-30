@@ -4,11 +4,11 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
-
+import com.example.stayi.myapplication.FragmentField.FieldHoldPosition;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentAdaptor {
+public class FragmentAdaptor implements View.OnClickListener {
     private Context context;
     private FieldAdaptedObject[] FFarray;
     private View view;
@@ -29,13 +29,15 @@ public class FragmentAdaptor {
         for (int i = 0; i < FFarray.length; ++i) {
             FFarray[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v);
             FFarray[i].setAccessToSelectState(true);
-            FFarray[i].setMaxLength(FieldBaseObject.get(i).getFieldLengthValue().getValue());
             if (i == 0) {
                 FFarray[i].setSelectedState(true);
                 current_selected_position = 0;
             } else FFarray[i].setSelectedState(false);
         }
         view = v;
+
+        TextView[] T_Arr = getTextViewsArray();
+        for (TextView x : T_Arr) {x.setOnClickListener(this);}
     }
 
     private int getPositionById(int Id) {
@@ -46,24 +48,23 @@ public class FragmentAdaptor {
         return i;
     }
 
-    public void setRelativeButton(int buttin_id, int first_textview_id, int second_textview_id, int holded_position) {
-        final int first_position_number = 1;
-        final int second_position_number = 2;
-        ButtonRelatives Object = new ButtonRelatives(buttin_id);
-        Object.setFirstFieldPosition(getPositionById(first_textview_id));
-        Object.setSecondFieldPosition(getPositionById(second_textview_id));
+    public void setRelativeButton(int ButtonID, int FirstFieldID, int SecondFieldID, FieldHoldPosition HoldedPositionDefault) {
+        ButtonRelatives Object = new ButtonRelatives(ButtonID);
+        Object.setFirstFieldPosition(getPositionById(FirstFieldID));
+        Object.setSecondFieldPosition(getPositionById(SecondFieldID));
         ButtonRelatives.add(Object);
 
-        switch (holded_position) {
-            case first_position_number:
+        switch (HoldedPositionDefault) {
+            case One:
                 FFarray[Object.getFirstFieldPosition()].setAccessToSelectState(false);
                 refreshInputFields();
                 break;
-            case second_position_number:
+            case Two:
                 FFarray[Object.getSecondFieldPosition()].setAccessToSelectState(false);
                 refreshInputFields();
                 break;
         }
+        view.findViewById(ButtonID).setOnClickListener(this);
     }
 
     TextView[] getTextViewsArray() {
@@ -92,7 +93,7 @@ public class FragmentAdaptor {
         return current_selected_position;
     }
 
-    boolean setSelectedView(int id) {
+    private boolean setSelectedView(int id) {
         boolean result = false;
         for (int i = 0; i < FFarray.length; ++i) {
             if (FFarray[i].getTextViewId() == id) {
@@ -127,7 +128,7 @@ public class FragmentAdaptor {
         refreshInputFields();
     }
 
-    void doButtonAction(int id) {
+    private void doButtonAction(int id) {
         for (int i = 0; i < ButtonRelatives.size(); ++i) {
             if (ButtonRelatives.get(i).getButtonId() == id) {
                 ReHold(ButtonRelatives.get(i).getFirstFieldPosition(), ButtonRelatives.get(i).getSecondFieldPosition());
@@ -166,10 +167,17 @@ public class FragmentAdaptor {
     }
 
     int getSelectedMaxLength() {
-        return FFarray[getCurrentSelectedPosition()].getMaxLength();
+        return FFarray[getCurrentSelectedPosition()].getBaseObject().getFieldLengthValue().getValue();
     }
 
     void setZeroValuesAll() {
         for (FieldAdaptedObject x : FFarray) {x.setZeroValue();}
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        setSelectedView(id);
+        doButtonAction(id);
     }
 }
