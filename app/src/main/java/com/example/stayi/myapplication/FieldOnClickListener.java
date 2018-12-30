@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
-public class FragmentOnClickListener implements View.OnClickListener {
+public class FieldOnClickListener implements View.OnClickListener {
     private FragmentAdaptor ButAdaptor;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public FragmentOnClickListener(FragmentAdaptor adapt) {
+    public FieldOnClickListener(FragmentAdaptor adapt) {
         ButAdaptor = adapt;
         TextView[] T_Arr = ButAdaptor.getTextViewsArray();
         Button[] B_Arr = ButAdaptor.getButtonArray();

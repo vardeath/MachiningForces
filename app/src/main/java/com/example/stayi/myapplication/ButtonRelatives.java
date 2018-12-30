@@ -1,31 +1,31 @@
 package com.example.stayi.myapplication;
 
 public class ButtonRelatives {
-    private int Butt_id;
-    private int Tw_1_position = 0;
-    private int Tw_2_position = 0;
+    private int Button_ID;
+    private int FirstFieldPosition = 0;
+    private int SecondFieldPosition = 0;
 
     ButtonRelatives(int B_id) {
-        Butt_id = B_id;
+        Button_ID = B_id;
     }
 
     int getButtonId(){
-        return Butt_id;
+        return Button_ID;
     }
 
-    int getFirstPosition(){
-        return Tw_1_position;
+    int getFirstFieldPosition(){
+        return FirstFieldPosition;
     }
 
-    int getSecondPosition(){
-        return Tw_2_position;
+    int getSecondFieldPosition(){
+        return SecondFieldPosition;
     }
 
-    void setTw_1_position(int pos){
-        Tw_1_position = pos;
+    void setFirstFieldPosition(int pos){
+        FirstFieldPosition = pos;
     }
 
-    void setTw_2_position(int pos){
-        Tw_2_position = pos;
+    void setSecondFieldPosition(int pos){
+        SecondFieldPosition = pos;
     }
 }

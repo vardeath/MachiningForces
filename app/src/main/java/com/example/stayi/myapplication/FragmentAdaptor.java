@@ -4,12 +4,13 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentAdaptor {
-    Context context;
-    private FragmentFieldObject[] FFarray;
+    private Context context;
+    private FieldAdaptedObject[] FFarray;
     private View view;
     private int current_selected_position;
     private List<ButtonRelatives> ButtonRelatives = new ArrayList<ButtonRelatives>();
@@ -22,13 +23,13 @@ public class FragmentAdaptor {
         return FFarray[getCurrentSelectedPosition()].getText_view();
     }
 
-    public FragmentAdaptor(int[] TextViewId, InputFieldLength[] InputFieldLength, View v, Context cont) {
+    public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context cont) {
         context = cont;
-        FFarray = new FragmentFieldObject[TextViewId.length];
+        FFarray = new FieldAdaptedObject[FieldBaseObject.size()];
         for (int i = 0; i < FFarray.length; ++i) {
-            FFarray[i] = new FragmentFieldObject(TextViewId[i], v);
+            FFarray[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v);
             FFarray[i].setAccessToSelectState(true);
-            FFarray[i].setMaxLenght(InputFieldLength[i].getVal());
+            FFarray[i].setMaxLength(FieldBaseObject.get(i).getFieldLengthValue().getValue());
             if (i == 0) {
                 FFarray[i].setSelectedState(true);
                 current_selected_position = 0;
@@ -48,18 +49,18 @@ public class FragmentAdaptor {
     public void setRelativeButton(int buttin_id, int first_textview_id, int second_textview_id, int holded_position) {
         final int first_position_number = 1;
         final int second_position_number = 2;
-        ButtonRelatives B = new ButtonRelatives(buttin_id);
-        B.setTw_1_position(getPositionById(first_textview_id));
-        B.setTw_2_position(getPositionById(second_textview_id));
-        ButtonRelatives.add(B);
+        ButtonRelatives Object = new ButtonRelatives(buttin_id);
+        Object.setFirstFieldPosition(getPositionById(first_textview_id));
+        Object.setSecondFieldPosition(getPositionById(second_textview_id));
+        ButtonRelatives.add(Object);
 
         switch (holded_position) {
             case first_position_number:
-                FFarray[B.getFirstPosition()].setAccessToSelectState(false);
+                FFarray[Object.getFirstFieldPosition()].setAccessToSelectState(false);
                 refreshInputFields();
                 break;
             case second_position_number:
-                FFarray[B.getSecondPosition()].setAccessToSelectState(false);
+                FFarray[Object.getSecondFieldPosition()].setAccessToSelectState(false);
                 refreshInputFields();
                 break;
         }
@@ -82,7 +83,7 @@ public class FragmentAdaptor {
     }
 
     private void refreshInputFields() {
-        for (FragmentFieldObject x : FFarray) {
+        for (FieldAdaptedObject x : FFarray) {
             x.setSelectedState(x.getSelectedState());
         }
     }
@@ -129,7 +130,7 @@ public class FragmentAdaptor {
     void doButtonAction(int id) {
         for (int i = 0; i < ButtonRelatives.size(); ++i) {
             if (ButtonRelatives.get(i).getButtonId() == id) {
-                ReHold(ButtonRelatives.get(i).getFirstPosition(), ButtonRelatives.get(i).getSecondPosition());
+                ReHold(ButtonRelatives.get(i).getFirstFieldPosition(), ButtonRelatives.get(i).getSecondFieldPosition());
             }
         }
     }
@@ -165,10 +166,10 @@ public class FragmentAdaptor {
     }
 
     int getSelectedMaxLength() {
-        return FFarray[getCurrentSelectedPosition()].getMaxLenght();
+        return FFarray[getCurrentSelectedPosition()].getMaxLength();
     }
 
     void setZeroValuesAll() {
-        for (FragmentFieldObject x : FFarray) {x.setZeroValue();}
+        for (FieldAdaptedObject x : FFarray) {x.setZeroValue();}
     }
 }

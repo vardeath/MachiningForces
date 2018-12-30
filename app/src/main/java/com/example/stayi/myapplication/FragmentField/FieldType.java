@@ -1,6 +1,6 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.myapplication.FragmentField;
 
-enum FieldType {
+public enum FieldType {
     Diameter,
     CuttingSpeed,
     Revolution,

@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 class Conditions_Calc {
     private int fragment_ID; //id фрагмента, для которого идет расчет.
-    private FragmentOnClickListener fListener; //Экземпляр посредника между слушателями клавиатуры и полей ввода фрагмента.
+    private FieldOnClickListener fListener; //Экземпляр посредника между слушателями клавиатуры и полей ввода фрагмента.
 
     private TextView[] TextViewStringValTempArray;
     private double[] TextViewDoubleValTempArray;
@@ -17,7 +17,7 @@ class Conditions_Calc {
     private int Fz_pos;
     private int Fmin_pos;
 
-    Conditions_Calc(int id, FragmentOnClickListener fList) {
+    Conditions_Calc(int id, FieldOnClickListener fList) {
         fragment_ID = id;
         fListener = fList;
         TextViewDoubleValTempArray = fListener.getTextViewDoubleValuesArray();

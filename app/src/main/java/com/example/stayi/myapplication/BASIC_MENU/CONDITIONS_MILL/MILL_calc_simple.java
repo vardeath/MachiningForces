@@ -13,15 +13,18 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.stayi.myapplication.InputFieldLength;
+import com.example.stayi.myapplication.FieldBaseObject;
+import com.example.stayi.myapplication.FieldOnClickListener;
 import com.example.stayi.myapplication.FragmentAdaptor;
-import com.example.stayi.myapplication.FragmentOnClickListener;
+import com.example.stayi.myapplication.FragmentField.FieldType;
 import com.example.stayi.myapplication.R;
 /*import com.example.stayi.myapplication.keyboard_listener;*/
 import com.example.stayi.myapplication.keyboard_listener;
 import com.example.stayi.myapplication.nav_var_storage;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
@@ -90,15 +93,23 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
+
         //Инициализация полей TextVIew для хранения и ввода данных.
-        int[] TW_IDes = new int[] {R.id.TW_Mill_Diameter, R.id.TW_vc_speed, R.id.TW_n_rev, R.id.TW_n_teeth, R.id.TW_fz_feed, R.id.TW_min_feed};
-        InputFieldLength[] Max_TW_Values = new InputFieldLength[]{InputFieldLength.Six, InputFieldLength.Six, InputFieldLength.Six, InputFieldLength.Four, InputFieldLength.Six, InputFieldLength.Six};
-        //TextView[] TW_MILL_SIMPLE = new TextView[TW_IDes.length];
-        FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(TW_IDes, Max_TW_Values,rootView, getContext());
+        List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
+        BaseFieldObjects.add(new FieldBaseObject(R.id.TW_Mill_Diameter, FieldType.Diameter));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.TW_vc_speed, FieldType.CuttingSpeed));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.TW_n_rev, FieldType.Revolution));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.TW_n_teeth, FieldType.Teeth));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.TW_fz_feed, FieldType.ToothFeed));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.TW_min_feed, FieldType.MinuteFeed));
+
+
+        FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects,rootView, getContext());
+
         ButHoldAdapt.setRelativeButton(R.id.rehold_but_millsimple_1, R.id.TW_vc_speed, R.id.TW_n_rev, 2);
         ButHoldAdapt.setRelativeButton(R.id.rehold_but_millsimple_2, R.id.TW_fz_feed, R.id.TW_min_feed, 2);
 
-        FragmentOnClickListener FragmentOnClicklList =  new FragmentOnClickListener(ButHoldAdapt);
+        FieldOnClickListener FragmentOnClicklList =  new FieldOnClickListener(ButHoldAdapt);
 
         //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
