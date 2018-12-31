@@ -12,28 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.stayi.myapplication.FieldBaseObject;
 import com.example.stayi.myapplication.FragmentAdaptor;
 import com.example.stayi.myapplication.FragmentField.FieldHoldPosition;
 import com.example.stayi.myapplication.FragmentField.FieldType;
+import com.example.stayi.myapplication.KeyboardListener;
 import com.example.stayi.myapplication.R;
-/*import com.example.stayi.myapplication.keyboard_listener;*/
-import com.example.stayi.myapplication.keyboard_listener;
 import com.example.stayi.myapplication.nav_var_storage;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MILL_calc_detail2;
 
 /**
@@ -104,13 +99,12 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MinuteFeed));
 
         FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext());
-
-        ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FieldHoldPosition.One);
-        ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FieldHoldPosition.One);
+        ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FieldHoldPosition.Two);
+        ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FieldHoldPosition.Two);
 
         //Инициализация слушателя кастомной клавиатуры.
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-        keyboard_listener board = new keyboard_listener(key_board, ButHoldAdapt);
+        KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext());
         LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
         behavior.setPeekHeight(700);

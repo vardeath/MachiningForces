@@ -10,7 +10,6 @@ class FieldAdaptedObject {
     private int TextView_id;
     private TextView Text_view;
     private String TextView_string_value;
-    private Double TextView_double_value;
     private boolean SelectedState;
     private boolean AccessToSelect;
 
@@ -25,29 +24,23 @@ class FieldAdaptedObject {
         return BaseObject;
     }
 
-    String getTextViewStringValue(){
+    String getFieldStringValue(){
         TextView temp_view = root_view.findViewById(TextView_id);
         return temp_view.getText().toString();
     }
 
-    Double getTextView_double_value(){
-        return Double.valueOf(getTextViewStringValue());
+    Double getFieldDoubleValue(){
+        return Double.valueOf(getFieldStringValue());
     }
 
-    void setTextViewStringValue(String text) {
+    private void setTextViewStringValue(String text) {
         TextView_string_value = text;
         TextView temp_view = root_view.findViewById(TextView_id);
         temp_view.setText(TextView_string_value);
-        refreshTextViewDoubleValue();
     }
 
-    void refreshTextViewDoubleValue(){
-        TextView_double_value = Double.valueOf(TextView_string_value);
-    }
-
-    void setTextView_double_value(Double val){
-        TextView_double_value = val;
-        setTextViewStringValue(String.valueOf(val));
+    void setFieldDoubleValue(Double val){
+        setTextViewStringValue(ConverseToString(val));
     }
 
     void setSelectedState(boolean state){
@@ -64,7 +57,7 @@ class FieldAdaptedObject {
             SelectedState = false;} //Если поле запрещено к выделению, меняем состояние.
     }
 
-    int getTextViewId(){
+    int getFieldID(){
         return TextView_id;
     }
 
@@ -72,15 +65,62 @@ class FieldAdaptedObject {
         return SelectedState;
     }
 
-    boolean isAllowedToSelect(){
+    boolean getAllowedToSelectState(){
         return AccessToSelect;
     }
 
-    TextView getText_view(){
+    TextView getField(){
         return Text_view;
     }
 
     void setZeroValue(){
         setTextViewStringValue("0");
+    }
+
+    private String ConverseToString(Double val) {
+
+        Double value = val;
+        int FirstRangeLimitLowPrecision = 10;
+        int SecondRangeLimitLowPrecision = 1;
+
+        double FirstRangeLimitHighPrecision = 0.1;
+
+        switch (getBaseObject().getFieldConversePrecisionValue()) {
+            case Low:
+                if (val > FirstRangeLimitLowPrecision) {
+                    int result = (int) Math.round(value);
+                    float result2 = (float) result;
+                    if (result2 != 0.0) return String.valueOf(result);
+                } else if (val > SecondRangeLimitLowPrecision) {
+                    value = value * 10;
+                    int result = (int) Math.round(value);
+                    float result2 = (float) result / 10;
+                    if (result2 != 0.0) return String.valueOf(result2);
+                } else {
+                    value = value * 100;
+                    int result = (int) Math.round(value);
+                    float result2 = (float) result / 100;
+                    if (result2 != 0.0) return String.valueOf(result2);
+                }
+                break;
+            case High:
+                if (val > FirstRangeLimitHighPrecision) {
+                value = value * 100;
+                int result = (int) Math.round(value);
+                float result2 = (float) result / 100;
+                if (result2 != 0.0) return String.valueOf(result2);
+                } else {
+                    value = value * 1000;
+                    int result = (int) Math.round(value);
+                    float result2 = (float) result / 1000;
+                    if (result2 != 0.0) return String.valueOf(result2);
+                }
+                break;
+        }
+        value = val * 1000;
+        int result = (int) Math.round(value);
+        float result2 = (float) result / 1000;
+        if (result2 != 0.0) return String.valueOf(result2);
+        return "0";
     }
 }

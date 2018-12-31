@@ -57,11 +57,11 @@ public class FieldBaseObject {
         return FieldId;
     }
 
-    public FieldDataType getFieldFieldDataTypeValue() {
+    FieldDataType getFieldFieldDataTypeValue() {
         return FieldFieldDataTypeValue;
     }
 
-    public FieldType getFieldTypeValue() {
+    FieldType getFieldTypeValue() {
         return FieldTypeValue;
     }
 
@@ -69,7 +69,7 @@ public class FieldBaseObject {
         return FieldLengthValue;
     }
 
-    public FieldConversePrecision getFieldConversePrecisionValue() {
+    FieldConversePrecision getFieldConversePrecisionValue() {
         return FieldConversePrecisionValue;
     }
 }
