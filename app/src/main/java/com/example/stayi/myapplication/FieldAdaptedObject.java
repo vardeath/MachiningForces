@@ -1,10 +1,12 @@
 package com.example.stayi.myapplication;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 class FieldAdaptedObject {
-
+    Context context;
     //Набор базовых параметров элемента поля ввода.
     private View root_view;
     private FieldBaseObject BaseObject;
@@ -14,7 +16,8 @@ class FieldAdaptedObject {
     private boolean SelectedState;
     private boolean AccessToSelect;
 
-    FieldAdaptedObject(FieldBaseObject fieldBaseObject, View v) {
+    FieldAdaptedObject(FieldBaseObject fieldBaseObject, View v, Context cont) {
+        context = cont;
         root_view = v;
         BaseObject = fieldBaseObject;
         TextView_id = BaseObject.getFieldId();
@@ -41,7 +44,11 @@ class FieldAdaptedObject {
     }
 
     void setFieldDoubleValue(Double val) {
-        setTextViewStringValue(ConverseToString(val));
+        String temp;
+        temp = ConverseToString(val);
+        /*if (temp.length() > getBaseObject().getFieldLengthValue().getValue()) {Toast.makeText(context, ""+temp.length(), Toast.LENGTH_SHORT).show();
+        }*/
+        setTextViewStringValue(temp);
     }
 
     void setSelectedState(boolean state) {
@@ -83,9 +90,16 @@ class FieldAdaptedObject {
     private String ConverseToString(Double val) {
 
         Double value = val;
+        String tempvalue = String.valueOf(val);
+        /*if (tempvalue.length() > getBaseObject().getFieldLengthValue().getValue()) {
+            String res = "0000";
+            return res;
+        }*/
+
         int FirstRangeLimitLowPrecision = 10;
         int SecondRangeLimitLowPrecision = 1;
-        double FirstRangeLimitHighPrecision = 0.1;
+        double FirstRangeLimitHighPrecision = 1;
+        double SecondRangeLimitHighPrecision = 0.1;
 
         switch (getBaseObject().getFieldConversePrecisionValue()) {
             case Low:
@@ -111,6 +125,15 @@ class FieldAdaptedObject {
                 break;
             case High:
                 if (val > FirstRangeLimitHighPrecision) {
+                    value = value * 10;
+                    int result = (int) Math.round(value);
+                    float result2 = (float) result / 10;
+                    int temp = (int) result2;
+                    if (result2 != 0.0) {
+                        if (temp != result2) return String.valueOf(result2);
+                        else return String.valueOf(temp);
+                    }
+                } else if (val > SecondRangeLimitHighPrecision) {
                     value = value * 100;
                     int result = (int) Math.round(value);
                     float result2 = (float) result / 100;

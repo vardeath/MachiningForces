@@ -19,7 +19,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         context = cont;
         FieldAdaptedObjects = new FieldAdaptedObject[FieldBaseObject.size()];
         for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
-            FieldAdaptedObjects[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v);
+            FieldAdaptedObjects[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v, cont);
             FieldAdaptedObjects[i].setAccessToSelectState(true);
             if (i == 0) {
                 FieldAdaptedObjects[i].setSelectedState(true);

@@ -39,7 +39,7 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
         FieldAdaptor = fieldAdaptor;
         SelectedField = FieldAdaptor.getSelectedFieldAdaptedObject();
         EDITABLE = SelectedField.getField();
-        ConditionsCalc = new ConditionsCalculator(FieldAdaptor);
+        ConditionsCalc = new ConditionsCalculator(FieldAdaptor, context);
     }
 
     private void RefreshEditableField() {
