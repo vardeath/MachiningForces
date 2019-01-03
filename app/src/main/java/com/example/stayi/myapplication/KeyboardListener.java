@@ -143,6 +143,7 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
                 break;
             case R.id.SL_KEY_CLEAR:
                 FieldValueClear();
+                ConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
                 FieldAdaptor.makeSelectDefault();

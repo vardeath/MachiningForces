@@ -90,12 +90,6 @@ class FieldAdaptedObject {
     private String ConverseToString(Double val) {
 
         Double value = val;
-        String tempvalue = String.valueOf(val);
-        /*if (tempvalue.length() > getBaseObject().getFieldLengthValue().getValue()) {
-            String res = "0000";
-            return res;
-        }*/
-
         int FirstRangeLimitLowPrecision = 10;
         int SecondRangeLimitLowPrecision = 1;
         double FirstRangeLimitHighPrecision = 1;

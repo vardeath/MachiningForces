@@ -28,21 +28,19 @@ class ConditionsCalculator {
             if (CalcObjects[i].getFieldType() == Diameter || CalcObjects[i].getFieldType() == Teeth) continue;
             if (CalcObjects[i].getAccessPermission()) {
                 if (CalcObjects[i].getFieldType() == CuttingSpeed) {
-                    CalculateCuttingSpeed();
-                    continue;
-                }
-                if (CalcObjects[i].getFieldType() == Revolution) {
                     CalculateRevolution();
                     continue;
                 }
+                if (CalcObjects[i].getFieldType() == Revolution) {
+                    CalculateCuttingSpeed();
+                    continue;
+                }
                 if (CalcObjects[i].getFieldType() == ToothFeed) {
-                    CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].setFieldDoubleValue(getMinuteFeedValue());
-                    CalculateToothFeed();
+                    CalculateMinuteFeed();
                     continue;
                 }
                 if (CalcObjects[i].getFieldType() == MinuteFeed) {
-                    CalcObjects[findPositionOnCalcObjectsArray(ToothFeed)].setFieldDoubleValue(getToothFeedValue());
-                    CalculateMinuteFeed();
+                    CalculateToothFeed();
                     continue;
                 }
             }
@@ -57,59 +55,85 @@ class ConditionsCalculator {
         return pos;
     }
 
-    private void CalculateCuttingSpeed() {
-        if (CalcObjects[findPositionOnCalcObjectsArray(Diameter)].getFieldDoubleValue() > 0) {
-            CalcObjects[findPositionOnCalcObjectsArray(Revolution)].setFieldDoubleValue(getRevolutionValue());
-            //Проверка на максимально допустимое значение.
-            if (getRevolutionValue() > CalcObjects[findPositionOnCalcObjectsArray(Revolution)].getFieldMaxValue()) {
-                CalcObjects[findPositionOnCalcObjectsArray(Revolution)].setFieldDoubleValue((double) CalcObjects[findPositionOnCalcObjectsArray(Revolution)].getFieldMaxValue());
-                CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].setFieldDoubleValue(getCuttingSpeedValue());
-                Toast.makeText(context, "Достигнут предел по оборотам, значение скорости резания изменено в соответствии с пределом по оборотам", Toast.LENGTH_SHORT).show();
-            }
-        } else CalcObjects[findPositionOnCalcObjectsArray(Revolution)].setFieldDoubleValue(0);
-    }
-
     private void CalculateRevolution() {
-        if (CalcObjects[findPositionOnCalcObjectsArray(Diameter)].getFieldDoubleValue() > 0) {
-            CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].setFieldDoubleValue(getCuttingSpeedValue());
+        double MaxValue = getMaxValue(Revolution);
+        if (getDiameter() > 0) {
             //Проверка на максимально допустимое значение.
-            if (getCuttingSpeedValue() > CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].getFieldMaxValue()) {
-                CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].setFieldDoubleValue((double) CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].getFieldMaxValue());
-                CalcObjects[findPositionOnCalcObjectsArray(Revolution)].setFieldDoubleValue(getRevolutionValue());
+            if (getRevolution() > MaxValue) {
+                setRevolution(MaxValue);
+                setCuttingSpeed(getCuttingSpeed());
+                Toast.makeText(context, "Достигнут предел по оборотам, значение скорости резания изменено в соответствии с пределом по оборотам", Toast.LENGTH_SHORT).show();
+            } else setRevolution(getRevolution());
+        } else setRevolution(0);
+    }
+
+    private void CalculateCuttingSpeed() {
+        double MaxValue = getMaxValue(CuttingSpeed);
+        if (getDiameter() > 0) {
+            //Проверка на максимально допустимое значение.
+            if (getCuttingSpeed() > MaxValue) {
+                setCuttingSpeed(MaxValue);
+                setRevolution(getRevolution());
                 Toast.makeText(context, "Достигнут предел по скорости резания, значение оборотов изменено в соответствии с пределом по скорости", Toast.LENGTH_SHORT).show();
-            }
-        } else CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].setFieldDoubleValue(0);
+            } else setCuttingSpeed(getCuttingSpeed());
+        } else setCuttingSpeed(0);
     }
 
-    private void CalculateToothFeed() {
-        if (getMinuteFeedValue() > CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].getFieldMaxValue()) {
-            CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].setFieldDoubleValue((double) CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].getFieldMaxValue());
-            CalcObjects[findPositionOnCalcObjectsArray(ToothFeed)].setFieldDoubleValue(getToothFeedValue());
+    private void CalculateMinuteFeed() {
+        double MaxValue = getMaxValue(MinuteFeed);
+        if (getMinuteFeed() > MaxValue) {
+            setMinuteFeed(MaxValue);
+            setToothFeed(getToothFeed());
             Toast.makeText(context, "Достигнут предел по минутной подаче, значение подачи на зуб изменено в соответствии с пределом минутной подачи", Toast.LENGTH_SHORT).show();
-        }
+        } else setMinuteFeed(getMinuteFeed());
     }
 
-    private void CalculateMinuteFeed(){
-        if (getToothFeedValue() > CalcObjects[findPositionOnCalcObjectsArray(ToothFeed)].getFieldMaxValue()) {
-            CalcObjects[findPositionOnCalcObjectsArray(ToothFeed)].setFieldDoubleValue((double) CalcObjects[findPositionOnCalcObjectsArray(ToothFeed)].getFieldMaxValue());
-            CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].setFieldDoubleValue(getMinuteFeedValue());
+    private void CalculateToothFeed(){
+        double MaxValue = getMaxValue(ToothFeed);
+        if (getToothFeed() > MaxValue) {
+            setToothFeed(MaxValue);
+            setMinuteFeed(getMinuteFeed());
             Toast.makeText(context, "Достигнут предел по подаче на зуб, значение минутной подачи изменено в соответствии с пределом подачи на зуб", Toast.LENGTH_SHORT).show();
-        }
+        } else setToothFeed(getToothFeed());
     }
 
-    private double getCuttingSpeedValue() {
+    private double getCuttingSpeed() {
         return (Math.PI * CalcObjects[findPositionOnCalcObjectsArray(Revolution)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(Diameter)].getFieldDoubleValue()) / 1000;
     }
 
-    private double getRevolutionValue() {
+    private double getRevolution() {
         return (CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].getFieldDoubleValue() * 1000) / (CalcObjects[findPositionOnCalcObjectsArray(Diameter)].getFieldDoubleValue() * Math.PI);
     }
 
-    private double getMinuteFeedValue() {
+    private double getMinuteFeed() {
         return CalcObjects[findPositionOnCalcObjectsArray(Revolution)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(Teeth)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(ToothFeed)].getFieldDoubleValue();
     }
 
-    private double getToothFeedValue() {
+    private double getToothFeed() {
         return CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].getFieldDoubleValue() / (CalcObjects[findPositionOnCalcObjectsArray(Teeth)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(Revolution)].getFieldDoubleValue());
+    }
+
+    private double getDiameter() {
+        return CalcObjects[findPositionOnCalcObjectsArray(Diameter)].getFieldDoubleValue();
+    }
+
+    private void setRevolution(double value) {
+        CalcObjects[findPositionOnCalcObjectsArray(Revolution)].setFieldDoubleValue(value);
+    }
+
+    private void setCuttingSpeed(double value) {
+        CalcObjects[findPositionOnCalcObjectsArray(CuttingSpeed)].setFieldDoubleValue(value);
+    }
+
+    private void setToothFeed(double value) {
+        CalcObjects[findPositionOnCalcObjectsArray(ToothFeed)].setFieldDoubleValue(value);
+    }
+
+    private void setMinuteFeed(double value) {
+        CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].setFieldDoubleValue(value);
+    }
+
+    private double getMaxValue(FieldType fieldType) {
+        return CalcObjects[findPositionOnCalcObjectsArray(fieldType)].getFieldMaxValue();
     }
 }
