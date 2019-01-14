@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.stayi.myapplication.FieldBaseObject;
 import com.example.stayi.myapplication.FragmentAdaptor;
-import com.example.stayi.myapplication.FragmentField.FieldHoldPosition;
 import com.example.stayi.myapplication.FragmentField.FieldType;
 import com.example.stayi.myapplication.KeyboardListener;
 import com.example.stayi.myapplication.R;
@@ -99,10 +98,12 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MinuteFeed));
 
         FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext());
-        ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FieldHoldPosition.Two);
-        ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FieldHoldPosition.Two);
+        ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FragmentAdaptor.Position_TWO);
+        ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FragmentAdaptor.Position_TWO);
 
-        //Инициализация слушателя кастомной клавиатуры.
+        /**
+         * Инициализация слушателя кастомной клавиатуры.
+         */
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
         KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext());
         LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
