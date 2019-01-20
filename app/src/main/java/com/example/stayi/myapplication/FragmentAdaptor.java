@@ -3,12 +3,14 @@ package com.example.stayi.myapplication;
 import android.content.Context;
 import android.widget.TextView;
 import android.view.View;
-
-import com.example.stayi.myapplication.FragmentField.FieldHoldPosition;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class FragmentAdaptor implements View.OnClickListener {
+    public static final int Position_ONE = 0;
+    public static final int Position_TWO = 1;
+
     private Context context;
     private FieldAdaptedObject[] FieldAdaptedObjects;
     private View view;
@@ -60,18 +62,18 @@ public class FragmentAdaptor implements View.OnClickListener {
         return i;
     }
 
-    public void setRelativeButton(int ButtonID, int FirstFieldID, int SecondFieldID, FieldHoldPosition HoldedPositionDefault) {
+    public void setRelativeButton(int ButtonID, int FirstFieldID, int SecondFieldID, int HoldedPositionDefault) {
         ButtonRelatives Object = new ButtonRelatives(ButtonID);
         Object.setFirstFieldPosition(getPositionById(FirstFieldID));
         Object.setSecondFieldPosition(getPositionById(SecondFieldID));
         ButtonRelatives.add(Object);
 
         switch (HoldedPositionDefault) {
-            case One:
+            case Position_ONE:
                 FieldAdaptedObjects[Object.getFirstFieldPosition()].setAccessToSelectState(false);
                 refreshInputFields();
                 break;
-            case Two:
+            case Position_TWO:
                 FieldAdaptedObjects[Object.getSecondFieldPosition()].setAccessToSelectState(false);
                 refreshInputFields();
                 break;
