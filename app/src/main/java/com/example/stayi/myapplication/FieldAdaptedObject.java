@@ -1,12 +1,12 @@
 package com.example.stayi.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 class FieldAdaptedObject {
-    Context context;
+    private Context context;
     //Набор базовых параметров элемента поля ввода.
     private View root_view;
     private FieldBaseObject BaseObject;
@@ -44,11 +44,7 @@ class FieldAdaptedObject {
     }
 
     void setFieldDoubleValue(Double val) {
-        String temp;
-        temp = ConverseToString(val);
-        /*if (temp.length() > getBaseObject().getFieldLengthValue().getValue()) {Toast.makeText(context, ""+temp.length(), Toast.LENGTH_SHORT).show();
-        }*/
-        setTextViewStringValue(temp);
+        setTextViewStringValue(ConverseToString(val));
     }
 
     void setSelectedState(boolean state) {
@@ -87,64 +83,64 @@ class FieldAdaptedObject {
         setTextViewStringValue("0");
     }
 
-    private String ConverseToString(Double val) {
+    @SuppressLint("DefaultLocale")
+    private String RoundingAndConverseToString(double value, int stage) { //Округляет значение до требуемой точности и переводить в строку.
+        int res = (int) Math.round(value * stage);
+        if (stage != 10000) return String.valueOf((double) res / (double) stage);
+        else {
+            double result = (double) res / (double) stage;
+            if (result == 0) return "0";
+            else return String.format("%.6f", (double) res / (double) stage);
+        }
+    }
 
-        Double value = val;
-        int FirstRangeLimitLowPrecision = 10;
-        int SecondRangeLimitLowPrecision = 1;
-        double FirstRangeLimitHighPrecision = 1;
-        double SecondRangeLimitHighPrecision = 0.1;
+    private String ZeroRemovedValue(String S) { // Удаляет символы ".0" из строки.
+        String dotzero = ".0";
+        if (S.contains(dotzero) && S.charAt(S.length() - 1) == dotzero.charAt(dotzero.length() - 1)) {
+            S = S.substring(0, S.length() - dotzero.length());
+        }
+        return S;
+    }
+
+    private String ConverseToString(double val) {
+
+        String Result;
+
+        int stageONE = 1; //Степень округления - до целого числа.
+        int stageTEN = 10; //Степень округления - до числа с 1 знаком после запятой.
+        int stageHUNDRED = 100; //Степень округления - до числа с 2 знаками после запятой.
+        int stageTHOUSAND = 1000; //Степень округления - до числа с 3 знаками после запятой.
+        int stageTEN_THOUSAND = 10000; //Степень округления - до числа с 4 знаками после запятой.
+
+        int LowPrecisionUpLimit = 10;
+        int LowPrecisionDownLimit = 1;
+        double HighPrecisionUpLimit = 1;
+        double HighPrecisionMiddleLimit = 0.1;
+        double HighPrecisionDownLimit = 0.001;
 
         switch (getBaseObject().getFieldConversePrecisionValue()) {
             case Low:
-                if (val > FirstRangeLimitLowPrecision) {
-                    int result = (int) Math.round(value);
-                    float result2 = (float) result;
-                    if (result2 != 0.0) return String.valueOf(result);
-                } else if (val > SecondRangeLimitLowPrecision) {
-                    value = value * 10;
-                    int result = (int) Math.round(value);
-                    float result2 = (float) result / 10;
-                    int temp = (int) result2;
-                    if (result2 != 0.0) {
-                       if (temp != result2) return String.valueOf(result2);
-                       else return String.valueOf(temp);
-                    }
+                if (val > LowPrecisionUpLimit) {
+                    Result = RoundingAndConverseToString(val, stageONE);
+                } else if (val > LowPrecisionDownLimit) {
+                    Result = RoundingAndConverseToString(val, stageTEN);
                 } else {
-                    value = value * 100;
-                    int result = (int) Math.round(value);
-                    float result2 = (float) result / 100;
-                    if (result2 != 0.0) return String.valueOf(result2);
+                    Result = RoundingAndConverseToString(val, stageHUNDRED);
                 }
-                break;
+                return ZeroRemovedValue(Result);
             case High:
-                if (val > FirstRangeLimitHighPrecision) {
-                    value = value * 10;
-                    int result = (int) Math.round(value);
-                    float result2 = (float) result / 10;
-                    int temp = (int) result2;
-                    if (result2 != 0.0) {
-                        if (temp != result2) return String.valueOf(result2);
-                        else return String.valueOf(temp);
-                    }
-                } else if (val > SecondRangeLimitHighPrecision) {
-                    value = value * 100;
-                    int result = (int) Math.round(value);
-                    float result2 = (float) result / 100;
-                    if (result2 != 0.0) return String.valueOf(result2);
+                if (val > HighPrecisionUpLimit) {
+                    Result = RoundingAndConverseToString(val, stageTEN);
+                } else if (val > HighPrecisionMiddleLimit) {
+                    Result = RoundingAndConverseToString(val, stageHUNDRED);
+                } else if (val > HighPrecisionDownLimit) {
+                    Result = RoundingAndConverseToString(val, stageTHOUSAND);
                 } else {
-                    value = value * 1000;
-                    int result = (int) Math.round(value);
-                    float result2 = (float) result / 1000;
-                    if (result2 != 0.0) return String.valueOf(result2);
+                    Result = RoundingAndConverseToString(val, stageTEN_THOUSAND);
                 }
-                break;
+                return ZeroRemovedValue(Result);
             default:
-                value = val;
-                int result = (int) Math.round(value);
-                float result2 = (float) result;
-                if (result2 != 0.0) return String.valueOf(result);
+                return "0";
         }
-        return "0";
     }
 }

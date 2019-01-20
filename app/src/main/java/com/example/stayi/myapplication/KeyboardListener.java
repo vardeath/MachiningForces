@@ -17,7 +17,7 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
 
     private TextView EDITABLE;
     private FieldAdaptedObject SelectedField;
-    private String EmptyChar = "";
+    private String TextValue = "";
     private CharSequence Zero = "0";
     private FragmentAdaptor FieldAdaptor;
     private Context context;
@@ -50,18 +50,18 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
 
     private void ChangeFieldValue(KeyDigit i) {
         if (EDITABLE.getText().length() < FieldAdaptor.getSelectedMaxLength()) {
-            EmptyChar = (String) EDITABLE.getText();
-            if (EmptyChar.contentEquals(Zero)) EmptyChar = "";
-            EmptyChar += i.getValue();
-            EDITABLE.setText(EmptyChar);
+            TextValue = (String) EDITABLE.getText();
+            if (TextValue.contentEquals(Zero)) TextValue = ""; //Убираем ноль перед вводом нового значения в строку.
+            TextValue += i.getValue();
+            EDITABLE.setText(TextValue);
         } else Toast.makeText(context, "Достигнут предел поля ввода", Toast.LENGTH_SHORT).show();
     }
 
     private void FieldValueAddDot() {
-        EmptyChar = (String) EDITABLE.getText();
+        TextValue = (String) EDITABLE.getText();
         CharSequence dot = ".";
-        if (!EmptyChar.contains(dot)) EmptyChar += dot;
-        EDITABLE.setText(EmptyChar);
+        if (!TextValue.contains(dot)) TextValue += dot;
+        EDITABLE.setText(TextValue);
     }
 
     private void FieldValueClear() {
@@ -69,17 +69,21 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
     }
 
     private void FieldValueDelSymbol() {
-        EmptyChar = (String) EDITABLE.getText();
-        if (EmptyChar.length() == 3 && EmptyChar.contentEquals(".0")) {
-            FieldValueClear();
-        } else if (EmptyChar.length() > 1) {
-            StringBuilder temp_str_arr = new StringBuilder();
-            for (int i = 0; i < EmptyChar.length() - 1; ++i) {
-                temp_str_arr.append(EmptyChar.charAt(i));
+        CharSequence SmallVal = "E";
+        TextValue = (String) EDITABLE.getText();
+        if (TextValue.contains(SmallVal)) {FieldValueClear();}
+        else {
+            if (TextValue.length() == 3 && TextValue.contentEquals(".0")) {
+                FieldValueClear();
+            } else if (TextValue.length() > 1) {
+                StringBuilder temp_str_arr = new StringBuilder();
+                for (int i = 0; i < TextValue.length() - 1; ++i) {
+                    temp_str_arr.append(TextValue.charAt(i));
+                }
+                EDITABLE.setText(temp_str_arr.toString());
+            } else {
+                FieldValueClear();
             }
-            EDITABLE.setText(temp_str_arr.toString());
-        } else {
-            FieldValueClear();
         }
     }
 

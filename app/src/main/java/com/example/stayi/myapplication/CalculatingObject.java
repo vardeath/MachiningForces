@@ -1,6 +1,6 @@
 package com.example.stayi.myapplication;
 
-import com.example.stayi.myapplication.FragmentField.FieldType;
+        import com.example.stayi.myapplication.FragmentField.FieldType;
 
 class CalculatingObject {
     private FieldAdaptedObject FObject;
