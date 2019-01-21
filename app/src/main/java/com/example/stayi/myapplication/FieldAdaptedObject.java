@@ -16,12 +16,27 @@ class FieldAdaptedObject {
     private boolean SelectedState;
     private boolean AccessToSelect;
 
+    private final int stageONE; //Степень округления - до целого числа.
+    private final int stageTEN; //Степень округления - до числа с 1 знаком после запятой.
+    private final int stageHUNDRED; //Степень округления - до числа с 2 знаками после запятой.
+    private final int stageTHOUSAND; //Степень округления - до числа с 3 знаками после запятой.
+    private final int stageTEN_THOUSAND; //Степень округления - до числа с 4 знаками после запятой.
+
+    private final String Zero;
+
     FieldAdaptedObject(FieldBaseObject fieldBaseObject, View v, Context cont) {
         context = cont;
         root_view = v;
         BaseObject = fieldBaseObject;
         TextView_id = BaseObject.getFieldId();
         Text_view = v.findViewById(TextView_id);
+
+        stageONE = 1;
+        stageTEN = 10;
+        stageHUNDRED = 100;
+        stageTHOUSAND = 1000;
+        stageTEN_THOUSAND = 10000;
+        Zero = "0";
     }
 
     FieldBaseObject getBaseObject() {
@@ -86,10 +101,10 @@ class FieldAdaptedObject {
     @SuppressLint("DefaultLocale")
     private String RoundingAndConverseToString(double value, int stage) { //Округляет значение до требуемой точности и переводить в строку.
         int res = (int) Math.round(value * stage);
-        if (stage != 10000) return String.valueOf((double) res / (double) stage);
+        if (stage != stageTEN_THOUSAND) return String.valueOf((double) res / (double) stage);
         else {
             double result = (double) res / (double) stage;
-            if (result == 0) return "0";
+            if (result == 0) return Zero;
             else return String.format("%.6f", (double) res / (double) stage);
         }
     }
@@ -106,17 +121,11 @@ class FieldAdaptedObject {
 
         String Result;
 
-        int stageONE = 1; //Степень округления - до целого числа.
-        int stageTEN = 10; //Степень округления - до числа с 1 знаком после запятой.
-        int stageHUNDRED = 100; //Степень округления - до числа с 2 знаками после запятой.
-        int stageTHOUSAND = 1000; //Степень округления - до числа с 3 знаками после запятой.
-        int stageTEN_THOUSAND = 10000; //Степень округления - до числа с 4 знаками после запятой.
-
-        int LowPrecisionUpLimit = 10;
-        int LowPrecisionDownLimit = 1;
-        double HighPrecisionUpLimit = 1;
-        double HighPrecisionMiddleLimit = 0.1;
-        double HighPrecisionDownLimit = 0.001;
+        final int LowPrecisionUpLimit = 10;
+        final int LowPrecisionDownLimit = 1;
+        final double HighPrecisionUpLimit = 1;
+        final double HighPrecisionMiddleLimit = 0.1;
+        final double HighPrecisionDownLimit = 0.001;
 
         switch (getBaseObject().getFieldConversePrecisionValue()) {
             case Low:
@@ -140,7 +149,8 @@ class FieldAdaptedObject {
                 }
                 return ZeroRemovedValue(Result);
             default:
-                return "0";
+                Result = RoundingAndConverseToString(val, stageONE);
+                return ZeroRemovedValue(Result);
         }
     }
 }
