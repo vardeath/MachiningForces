@@ -110,6 +110,7 @@ class ConditionsCalculator {
     }
 
     private double getToothFeed() {
+        if (CalcObjects[findPositionOnCalcObjectsArray(Revolution)].getFieldDoubleValue() == 0) return 0;
         return CalcObjects[findPositionOnCalcObjectsArray(MinuteFeed)].getFieldDoubleValue() / (CalcObjects[findPositionOnCalcObjectsArray(Teeth)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(Revolution)].getFieldDoubleValue());
     }
 

@@ -98,14 +98,28 @@ class FieldAdaptedObject {
         setTextViewStringValue("0");
     }
 
+    private String reformatStringValue(String val){
+        String toReturn = "";
+        for (int i = 0; i < val.length(); ++i) {
+            Character x;
+            if (val.charAt(i) == ',') {
+                x = '.';
+            } else x = val.charAt(i);
+            toReturn += x;
+        }
+        return toReturn;
+    }
+
     @SuppressLint("DefaultLocale")
     private String RoundingAndConverseToString(double value, int stage) { //Округляет значение до требуемой точности и переводить в строку.
         int res = (int) Math.round(value * stage);
         if (stage != stageTEN_THOUSAND) return String.valueOf((double) res / (double) stage);
         else {
-            double result = (double) res / (double) stage;
-            if (result == 0) return Zero;
-            else return String.format("%.6f", (double) res / (double) stage);
+            if ((double) res / (double) stage == 0) return Zero;
+            else {
+                String temp = String.format("%.4f", (double) res / (double) stage);
+                return reformatStringValue(temp);
+            }
         }
     }
 
