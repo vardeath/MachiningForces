@@ -5,17 +5,20 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import static java.lang.String.format;
+
 class FieldAdaptedObject {
     private Context context;
     //Набор базовых параметров элемента поля ввода.
-    private View root_view;
-    private FieldBaseObject BaseObject;
+    private View root_view; //Корневой View поля ввода.
+    private FieldBaseObject BaseObject; //Обьект с базовой информацией о поле воода.
     private int TextView_id;
     private TextView Text_view;
     private String TextView_string_value;
-    private boolean SelectedState;
-    private boolean AccessToSelect;
+    private boolean SelectedState; //Состояние выделения пользователем поля ввода: выделено/не выделено.
+    private boolean AccessToSelect; //Представляет разрешение для выделения поля ввода.
 
+    //Набор значений, для расчета числа знаков после запятой числа с плавающей точкой при округлении.
     private final int stageONE; //Степень округления - до целого числа.
     private final int stageTEN; //Степень округления - до числа с 1 знаком после запятой.
     private final int stageHUNDRED; //Степень округления - до числа с 2 знаками после запятой.
@@ -98,7 +101,7 @@ class FieldAdaptedObject {
         setTextViewStringValue("0");
     }
 
-    private String reformatStringValue(String val){
+    private String reformatStringValue(String val) { //Функция предотвращает ошибку парсера при чтении форматированного значения из String в Double.
         String toReturn = "";
         for (int i = 0; i < val.length(); ++i) {
             Character x;
@@ -111,13 +114,13 @@ class FieldAdaptedObject {
     }
 
     @SuppressLint("DefaultLocale")
-    private String RoundingAndConverseToString(double value, int stage) { //Округляет значение до требуемой точности и переводить в строку.
+    private String RoundingValue(double value, int stage) { //Округляет значение до требуемой точности и переводит в строку.
         int res = (int) Math.round(value * stage);
         if (stage != stageTEN_THOUSAND) return String.valueOf((double) res / (double) stage);
         else {
             if ((double) res / (double) stage == 0) return Zero;
             else {
-                String temp = String.format("%.4f", (double) res / (double) stage);
+                String temp = format("%.4f", (double) res / (double) stage);
                 return reformatStringValue(temp);
             }
         }
@@ -135,6 +138,7 @@ class FieldAdaptedObject {
 
         String Result;
 
+        //Пределы значений для округления числа с заданной точностью.
         final int LowPrecisionUpLimit = 10;
         final int LowPrecisionDownLimit = 1;
         final double HighPrecisionUpLimit = 1;
@@ -144,26 +148,26 @@ class FieldAdaptedObject {
         switch (getBaseObject().getFieldConversePrecisionValue()) {
             case Low:
                 if (val > LowPrecisionUpLimit) {
-                    Result = RoundingAndConverseToString(val, stageONE);
+                    Result = RoundingValue(val, stageONE);
                 } else if (val > LowPrecisionDownLimit) {
-                    Result = RoundingAndConverseToString(val, stageTEN);
+                    Result = RoundingValue(val, stageTEN);
                 } else {
-                    Result = RoundingAndConverseToString(val, stageHUNDRED);
+                    Result = RoundingValue(val, stageHUNDRED);
                 }
                 return ZeroRemovedValue(Result);
             case High:
                 if (val > HighPrecisionUpLimit) {
-                    Result = RoundingAndConverseToString(val, stageTEN);
+                    Result = RoundingValue(val, stageTEN);
                 } else if (val > HighPrecisionMiddleLimit) {
-                    Result = RoundingAndConverseToString(val, stageHUNDRED);
+                    Result = RoundingValue(val, stageHUNDRED);
                 } else if (val > HighPrecisionDownLimit) {
-                    Result = RoundingAndConverseToString(val, stageTHOUSAND);
+                    Result = RoundingValue(val, stageTHOUSAND);
                 } else {
-                    Result = RoundingAndConverseToString(val, stageTEN_THOUSAND);
+                    Result = RoundingValue(val, stageTEN_THOUSAND);
                 }
                 return ZeroRemovedValue(Result);
             default:
-                Result = RoundingAndConverseToString(val, stageONE);
+                Result = RoundingValue(val, stageONE);
                 return ZeroRemovedValue(Result);
         }
     }

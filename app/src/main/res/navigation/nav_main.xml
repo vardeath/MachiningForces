@@ -11,11 +11,8 @@
         android:label="@string/Conditions"
         tools:layout="@layout/main_menu_conditions">
         <action
-            android:id="@+id/action_MAIN_MENU_CONDITIONS_to_MILL_calc_simple"
-            app:destination="@id/MILL_calc_simple"     app:enterAnim="@anim/nav_default_pop_enter_anim" app:popUpTo="@id/MILL_calc_simple" app:exitAnim="@anim/nav_default_pop_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-        <action
-            android:id="@+id/action_MAIN_MENU_CONDITIONS_to_MILL_calc_detail"
-            app:destination="@id/MILL_calc_detail" />
+            android:id="@+id/action_MAIN_MENU_CONDITIONS_to_MAIN_MILL_MENU2"
+            app:destination="@id/MAIN_MILL_MENU2" />
     </fragment>
     <fragment
         android:id="@+id/blankFragment2"
@@ -46,20 +43,22 @@
         android:id="@+id/MILL_calc_simple"
         android:name="com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple"
         android:label="@string/simple_mill"
-        tools:layout="@layout/mill_calc_simple" >
-        <action
-            android:id="@+id/action_MILL_calc_simple_to_MILL_calc_detail2"
-            app:destination="@id/MILL_calc_detail"
-            app:popUpTo="@+id/MAIN_MENU_CONDITIONS" />
-    </fragment>
+        tools:layout="@layout/mill_calc_simple" />
     <fragment
         android:id="@+id/MILL_calc_detail"
         android:name="com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail"
-        android:label="@string/simple_mill"
-        tools:layout="@layout/mill_calc_detail">
+        android:label="@string/detail_mill"
+        tools:layout="@layout/mill_calc_detail" />
+    <fragment
+        android:id="@+id/MAIN_MILL_MENU2"
+        android:name="com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MAIN_MILL_MENU"
+        android:label="@string/MillMenu"
+        tools:layout="@layout/fragment_main__mill__menu">
         <action
-            android:id="@+id/action_MILL_calc_detail_to_MILL_calc_simple"
-            app:destination="@id/MILL_calc_simple"
-            app:popUpTo="@+id/MAIN_MENU_CONDITIONS" />
+            android:id="@+id/action_MAIN_MILL_MENU2_to_MILL_calc_simple"
+            app:destination="@id/MILL_calc_simple" />
+        <action
+            android:id="@+id/action_MAIN_MILL_MENU2_to_MILL_calc_detail"
+            app:destination="@id/MILL_calc_detail" />
     </fragment>
 </navigation>

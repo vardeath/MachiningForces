@@ -24,8 +24,6 @@ import com.example.stayi.myapplication.nav_var_storage;
 
 import java.util.Objects;
 
-import static com.example.stayi.myapplication.R.id.action_MILL_calc_detail_to_MILL_calc_simple;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -123,6 +121,7 @@ public class MILL_calc_detail extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+    /*
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.main, menu);
@@ -139,9 +138,10 @@ public class MILL_calc_detail extends Fragment {
             nav_var_storage.addProperty("hasVisited", true);
             NavController navController;
             navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.fragment);
-            navController.navigate(action_MILL_calc_detail_to_MILL_calc_simple);
+            //navController.navigate(action_MILL_calc_detail_to_MILL_calc_simple);
             //item.setChecked(true);
         }
         return super.onOptionsItemSelected(item);
     }
+    */
 }

@@ -23,7 +23,7 @@ public class nav_var_storage {
         editor = settings.edit();
     }
 
-    public static void addProperty(String name, boolean value){
+    static void addProperty(String name, boolean value) {
         if( settings == null ){
             init();
         }
@@ -31,10 +31,25 @@ public class nav_var_storage {
         editor.apply();
     }
 
-    public static boolean getProperty(String name, boolean b){
+    static void addProperty(String name, String value) {
+        if (settings == null) {
+            init();
+        }
+        editor.putString(name, value);
+        editor.apply();
+    }
+
+    static boolean getProperty(String name, boolean b) {
         if( settings == null ){
             init();
         }
         return settings.getBoolean( name, Boolean.parseBoolean(null));
+    }
+
+    static String getProperty(String name) {
+        if (settings == null) {
+            init();
+        }
+        return settings.getString(name, "0");
     }
 }

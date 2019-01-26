@@ -11,14 +11,16 @@ public class FragmentAdaptor implements View.OnClickListener {
     public static final int Position_ONE = 0;
     public static final int Position_TWO = 1;
 
+    private String TAG;
     private Context context;
     private FieldAdaptedObject[] FieldAdaptedObjects;
     private View view;
     private int current_selected_position;
     private List<ButtonRelatives> ButtonRelatives = new ArrayList<>();
 
-    public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context cont) {
+    public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context cont, String tag) {
         context = cont;
+        TAG = tag;
         FieldAdaptedObjects = new FieldAdaptedObject[FieldBaseObject.size()];
         for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
             FieldAdaptedObjects[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v, cont);
@@ -31,7 +33,22 @@ public class FragmentAdaptor implements View.OnClickListener {
         view = v;
 
         TextView[] T_Arr = getTextViewsArray();
-        for (TextView x : T_Arr) {x.setOnClickListener(this);}
+        for (TextView x : T_Arr) {
+            x.setOnClickListener(this);
+        }
+        getStorageValues();
+    }
+
+    private void getStorageValues() {
+        nav_var_storage.init(context);
+        if (nav_var_storage.getProperty(TAG, true)) {
+            for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
+                FieldAdaptedObjects[i].setFieldDoubleValue(Double.valueOf(nav_var_storage.getProperty(TAG + i)));
+            }
+        } else {
+            nav_var_storage.addProperty(TAG, true);
+            SaveInstanceState();
+        }
     }
 
     CalculatingObject[] getCalculatingObjects(){
@@ -40,6 +57,13 @@ public class FragmentAdaptor implements View.OnClickListener {
             Calc[i] = new CalculatingObject(FieldAdaptedObjects[i]);
         }
         return Calc;
+    }
+
+    void SaveInstanceState() {
+        nav_var_storage.init(context);
+        for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
+            nav_var_storage.addProperty(TAG + i, FieldAdaptedObjects[i].getFieldStringValue());
+        }
     }
 
     private void setCurrentSelectedPosition(int pos){
@@ -62,6 +86,9 @@ public class FragmentAdaptor implements View.OnClickListener {
         return i;
     }
 
+    /**
+     * Назначает родственную кнопку ReHold для 2-х полей ввода.
+     */
     public void setRelativeButton(int ButtonID, int FirstFieldID, int SecondFieldID, int HoldedPositionDefault) {
         ButtonRelatives Object = new ButtonRelatives(ButtonID);
         Object.setFirstFieldPosition(getPositionById(FirstFieldID));

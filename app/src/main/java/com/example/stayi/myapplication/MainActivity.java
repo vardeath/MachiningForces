@@ -15,6 +15,7 @@ import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment4;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment5;
 import com.example.stayi.myapplication.BASIC_MENU.BlankFragment6;
+import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MAIN_MILL_MENU;
 import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail;
 import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple;
 import com.example.stayi.myapplication.BASIC_MENU.MAIN_MENU_CONDITIONS;
@@ -39,7 +40,7 @@ import androidx.navigation.ui.NavigationUI;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, MAIN_MENU_CONDITIONS.OnFragmentInteractionListener, BlankFragment2.OnFragmentInteractionListener,
         BlankFragment3.OnFragmentInteractionListener, BlankFragment4.OnFragmentInteractionListener, BlankFragment5.OnFragmentInteractionListener,
-        BlankFragment6.OnFragmentInteractionListener, MILL_calc_simple.OnFragmentInteractionListener, MILL_calc_detail.OnFragmentInteractionListener {
+        BlankFragment6.OnFragmentInteractionListener, MILL_calc_simple.OnFragmentInteractionListener, MILL_calc_detail.OnFragmentInteractionListener, MAIN_MILL_MENU.OnFragmentInteractionListener {
 
     BottomSheetBehavior behavior; //Обработчик поведения нижней панели с кастомной клавиатурой.
     private NavController navController; //Контроллер навигации по всему приложению.

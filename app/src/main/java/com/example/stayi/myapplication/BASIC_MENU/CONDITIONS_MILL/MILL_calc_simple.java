@@ -28,7 +28,6 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import static com.example.stayi.myapplication.R.id.action_MILL_calc_simple_to_MILL_calc_detail2;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,6 +87,8 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
+        String TAG = "MillSimple"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
+
         //Инициализация полей TextVIew для хранения и ввода данных.
         List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
         BaseFieldObjects.add(new FieldBaseObject(R.id.MillDiameter, FieldType.Diameter));
@@ -97,13 +98,11 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         BaseFieldObjects.add(new FieldBaseObject(R.id.ToothFeed, FieldType.ToothFeed));
         BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MinuteFeed));
 
-        FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext());
+        FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
         ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FragmentAdaptor.Position_TWO);
         ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FragmentAdaptor.Position_TWO);
 
-        /**
-         * Инициализация слушателя кастомной клавиатуры.
-         */
+        /**Инициализация слушателя кастомной клавиатуры.*/
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
         KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext());
         LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
@@ -132,8 +131,13 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-            super.onViewStateRestored(savedInstanceState);
+        super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
@@ -142,6 +146,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
+    /*
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -161,11 +166,11 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         nav_var_storage.addProperty("hasVisited", false);
         NavController navController;
         navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
-        navController.navigate(action_MILL_calc_simple_to_MILL_calc_detail2);
+        //navController.navigate(action_MILL_calc_simple_to_MILL_calc_detail2);
         }
         return super.onOptionsItemSelected(item);
     }
-
+    */
     @Override
     public void onClick(View v) {
 

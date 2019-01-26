@@ -154,5 +154,6 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
                 FieldAdaptor.setZeroValuesAll();
                 break;
         }
+        FieldAdaptor.SaveInstanceState();
     }
 }
