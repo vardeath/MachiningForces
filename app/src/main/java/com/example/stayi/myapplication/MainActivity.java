@@ -26,6 +26,7 @@ import java.lang.reflect.Field;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,14 +71,21 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, drawer);
 
+
         //Вешаем слушатель позиции на навигационный контроллер.
-        navController.addOnNavigatedListener(new NavController.OnNavigatedListener() {
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
-            public void onNavigated(@NonNull NavController controller, @NonNull NavDestination destination) {
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 //Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
                 behavior.setPeekHeight(0);
                 behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
+            /*@Override
+            public void onNavigated(@NonNull NavController controller, @NonNull NavDestination destination) {
+                //Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
+                behavior.setPeekHeight(0);
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }*/
         });
 
         //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.

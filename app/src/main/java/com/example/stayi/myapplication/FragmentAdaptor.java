@@ -6,7 +6,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class FragmentAdaptor implements View.OnClickListener {
     public static final int Position_ONE = 0;
     public static final int Position_TWO = 1;
@@ -36,10 +35,10 @@ public class FragmentAdaptor implements View.OnClickListener {
         for (TextView x : T_Arr) {
             x.setOnClickListener(this);
         }
-        getStorageValues();
+        setStorageValues();
     }
 
-    private void getStorageValues() {
+    private void setStorageValues() {
         nav_var_storage.init(context);
         if (nav_var_storage.getProperty(TAG, true)) {
             for (int i = 0; i < FieldAdaptedObjects.length; ++i) {

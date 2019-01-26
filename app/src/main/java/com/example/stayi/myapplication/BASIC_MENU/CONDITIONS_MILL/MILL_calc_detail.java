@@ -17,11 +17,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.stayi.myapplication.FieldBaseObject;
+import com.example.stayi.myapplication.FragmentAdaptor;
+import com.example.stayi.myapplication.FragmentField.FieldType;
+import com.example.stayi.myapplication.KeyboardListener;
 import com.example.stayi.myapplication.R;
 import com.example.stayi.myapplication.nav_var_storage;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -76,11 +84,37 @@ public class MILL_calc_detail extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.mill_calc_detail, container, false);
+        View rootView = inflater.inflate(R.layout.mill_calc_detail, container, false);
+
+        String TAG = "MillDetail"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
+
+        //Инициализация полей TextVIew для хранения и ввода данных.
+        List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
+        BaseFieldObjects.add(new FieldBaseObject(R.id.MillDiameter, FieldType.Diameter));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.CuttingSpeed, FieldType.CuttingSpeed));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.Revolution, FieldType.Revolution));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.Teeth, FieldType.Teeth));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.ToothFeed, FieldType.ToothFeed));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MinuteFeed));
+
+        FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
+        ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FragmentAdaptor.Position_TWO);
+        ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FragmentAdaptor.Position_TWO);
+
+        /**Инициализация слушателя кастомной клавиатуры.*/
+        View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
+        KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext());
+        LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
+        behavior.setPeekHeight(700);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

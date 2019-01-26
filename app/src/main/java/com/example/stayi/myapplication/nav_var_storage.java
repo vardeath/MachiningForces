@@ -13,7 +13,7 @@ public class nav_var_storage {
     @SuppressLint("StaticFieldLeak")
     private static Context context = null;
 
-    public static void init(Context cntxt){
+    static void init(Context cntxt) {
         context = cntxt;
     }
 
