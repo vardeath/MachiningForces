@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.stayi.MachiningForces.FragmentField.KeyDigit;
 import androidx.annotation.RequiresApi;
 

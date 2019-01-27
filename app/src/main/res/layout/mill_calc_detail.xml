@@ -16,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:scrollbarStyle="outsideInset"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/LAY_RESULTS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
-            android:id="@+id/linearLayout101"
+            android:id="@+id/scrollChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -34,11 +34,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/LAY_DIAM"
             app:layout_constraintVertical_bias="0.0">
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/LAY_DIAM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -112,7 +112,155 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
+                android:id="@+id/LAY_CUTDEPTH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="left|center"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints,RtlHardcoded">
+
+                <TextView
+                    android:id="@+id/fix_D2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.1"
+                    android:gravity="center"
+                    android:text="@string/textview_fix"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/Mill_Ae"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:background="@drawable/textstyle"
+                    android:gravity="center"
+                    android:maxLength="8"
+                    android:text="@string/zero"
+                    android:textSize="24sp" />
+
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/TW_D_tool_width"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity=""
+                            android:text="@string/textview_cutting_width"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/TW_Cut_width_mm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/TW_Ae_mm"
+                            android:textSize="14sp" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LAY_CUTWIDTH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="left|center"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints,RtlHardcoded">
+
+                <TextView
+                    android:id="@+id/fix_D3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.1"
+                    android:gravity="center"
+                    android:text="@string/textview_fix"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/Mill_Ap"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:background="@drawable/textstyle"
+                    android:gravity="center"
+                    android:maxLength="8"
+                    android:text="@string/zero"
+                    android:textSize="24sp" />
+
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/TW_D_tool_depth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity=""
+                            android:text="@string/textview_cutting_depth"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/TW_Cut_depth_mm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/TW_Ap_mm"
+                            android:textSize="14sp" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LAY_Vc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -121,7 +269,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/LAY_DIAM"
                 app:layout_constraintVertical_bias="0.0">
 
                 <Button
@@ -249,7 +397,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout4"
+                android:id="@+id/LAY_Z"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -259,7 +407,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/LAY_Vc"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="RtlHardcoded">
 
@@ -323,7 +471,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout5"
+                android:id="@+id/LAY_FEED"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -333,7 +481,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/LAY_Z"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="RtlHardcoded">
 
@@ -450,21 +598,86 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/LAY_LENGTH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="left|center"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints,RtlHardcoded">
 
-            <TextView
-                android:id="@+id/trash"
-                android:layout_width="155dp"
-                android:layout_height="430dp"
-                android:layout_gravity="center_vertical"
-                android:text="@string/trash"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded" />
+                <TextView
+                    android:id="@+id/fix_D4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.1"
+                    android:gravity="center"
+                    android:text="@string/textview_fix"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/Mill_Length"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:background="@drawable/textstyle"
+                    android:gravity="center"
+                    android:maxLength="8"
+                    android:text="@string/zero"
+                    android:textSize="24sp" />
+
+                <TableLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/TW_D_path_lenth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity=""
+                            android:text="@string/TW_path"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/TW_Cut_path_mm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/TW_Ae_mm"
+                            android:textSize="14sp" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/LAY_RESULTS"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="8dp"
