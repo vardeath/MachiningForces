@@ -1,9 +1,9 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
-import com.example.stayi.myapplication.FragmentField.FieldConversePrecision;
-import com.example.stayi.myapplication.FragmentField.FieldDataType;
-import com.example.stayi.myapplication.FragmentField.FieldLength;
-import com.example.stayi.myapplication.FragmentField.FieldType;
+import com.example.stayi.MachiningForces.FragmentField.FieldConversePrecision;
+import com.example.stayi.MachiningForces.FragmentField.FieldDataType;
+import com.example.stayi.MachiningForces.FragmentField.FieldLength;
+import com.example.stayi.MachiningForces.FragmentField.FieldType;
 
 //Базовый обьект поля ввода, содержащий информацию о допустимых значениях параметров ввода.
 public class FieldBaseObject {

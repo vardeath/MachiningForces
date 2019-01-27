@@ -1,28 +1,37 @@
-package com.example.stayi.myapplication.BASIC_MENU;
+package com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.example.stayi.myapplication.R;
+import com.example.stayi.MachiningForces.R;
 
+import java.util.Objects;
+
+import static com.example.stayi.MachiningForces.R.id.action_MAIN_MILL_MENU2_to_MILL_calc_simple;
+import static com.example.stayi.MachiningForces.R.id.action_MAIN_MILL_MENU2_to_MILL_calc_detail;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BlankFragment2.OnFragmentInteractionListener} interface
+ * {@link MAIN_MILL_MENU.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BlankFragment2#newInstance} factory method to
+ * Use the {@link MAIN_MILL_MENU#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment2 extends Fragment {
+public class MAIN_MILL_MENU extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,8 +42,10 @@ public class BlankFragment2 extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private NavController navController;
 
-    public BlankFragment2() {
+
+    public MAIN_MILL_MENU() {
         // Required empty public constructor
     }
 
@@ -44,11 +55,11 @@ public class BlankFragment2 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BlankFragment2.
+     * @return A new instance of fragment MAIN_MILL_MENU.
      */
     // TODO: Rename and change types and number of parameters
-    private static BlankFragment2 newInstance(String param1, String param2) {
-        BlankFragment2 fragment = new BlankFragment2();
+    public static MAIN_MILL_MENU newInstance(String param1, String param2) {
+        MAIN_MILL_MENU fragment = new MAIN_MILL_MENU();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,11 +76,21 @@ public class BlankFragment2 extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootViewA = (View) inflater.inflate(
+                R.layout.fragment_main__mill__menu, container, false);
+        Button but_MILL_Simple = rootViewA.findViewById(R.id.GOTOMILLSIMPLE);
+        but_MILL_Simple.setOnClickListener(this);
+        Button but_MILL_Detail = rootViewA.findViewById(R.id.GOTOMILLDETAIL);
+        but_MILL_Detail.setOnClickListener(this);
+        navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.fragment);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tolerances, container, false);
+        return rootViewA;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -94,6 +115,19 @@ public class BlankFragment2 extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int ID = v.getId();
+        switch (ID) {
+            case R.id.GOTOMILLSIMPLE:
+                navController.navigate(action_MAIN_MILL_MENU2_to_MILL_calc_simple);
+                break;
+            case R.id.GOTOMILLDETAIL:
+                navController.navigate(action_MAIN_MILL_MENU2_to_MILL_calc_detail);
+                break;
+        }
     }
 
     /**

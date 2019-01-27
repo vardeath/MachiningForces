@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -6,25 +6,38 @@ import android.content.Context;
 import android.os.Build;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.stayi.myapplication.FragmentField.KeyDigit;
+
+import com.example.stayi.MachiningForces.FragmentField.KeyDigit;
 import androidx.annotation.RequiresApi;
-import static com.example.stayi.myapplication.FragmentField.FieldDataType.FLOAT;
+
+import static com.example.stayi.MachiningForces.FragmentField.FieldDataType.FLOAT;
 
 @SuppressLint("Registered")
 public class KeyboardListener extends Activity implements View.OnClickListener {
 
-    private TextView EDITABLE;
-    private FieldAdaptedObject SelectedField;
+    private ScrollView CurrentScrollView = null;
+    private TextView EDITABLE = null;
+    private FieldAdaptedObject SelectedField = null;
     private String TextValue = "";
     private CharSequence Zero = "0";
-    private FragmentAdaptor FieldAdaptor;
-    private Context context;
-    private ConditionsCalculator ConditionsCalc;
+    private FragmentAdaptor FieldAdaptor = null;
+    private Context context = null;
+    private ConditionsCalculator ConditionsCalc = null;
 
     //конструктор по умолчанию
     public KeyboardListener(View view, FragmentAdaptor fieldAdaptor, Context cont) {
+        init(view, fieldAdaptor, cont);
+    }
+
+    public KeyboardListener(View view, FragmentAdaptor fieldAdaptor, Context cont, ScrollView ScView) {
+        init(view, fieldAdaptor, cont);
+        CurrentScrollView = ScView;
+    }
+
+    private void init(View view, FragmentAdaptor fieldAdaptor, Context cont) {
         context = cont;
         //Собираем массив ID кнопок виртуальной клавиатуры.
         int[] BUTTON_IDS = new int[]{R.id.SL_KEY_0, R.id.SL_KEY_1, R.id.SL_KEY_2, R.id.SL_KEY_3, R.id.SL_KEY_4,
@@ -51,7 +64,8 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
     private void ChangeFieldValue(KeyDigit i) {
         if (EDITABLE.getText().length() < FieldAdaptor.getSelectedMaxLength()) {
             TextValue = (String) EDITABLE.getText();
-            if (TextValue.contentEquals(Zero)) TextValue = ""; //Убираем ноль перед вводом нового значения в строку.
+            if (TextValue.contentEquals(Zero))
+                TextValue = ""; //Убираем ноль перед вводом нового значения в строку.
             TextValue += i.getValue();
             EDITABLE.setText(TextValue);
         } else Toast.makeText(context, "Достигнут предел поля ввода", Toast.LENGTH_SHORT).show();
@@ -71,8 +85,9 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
     private void FieldValueDelSymbol() {
         CharSequence SmallVal = "E";
         TextValue = (String) EDITABLE.getText();
-        if (TextValue.contains(SmallVal)) {FieldValueClear();}
-        else {
+        if (TextValue.contains(SmallVal)) {
+            FieldValueClear();
+        } else {
             if (TextValue.length() == 3 && TextValue.contentEquals(".0")) {
                 FieldValueClear();
             } else if (TextValue.length() > 1) {
@@ -133,13 +148,22 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
                 ConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_DOT:
-                if (SelectedField.getBaseObject().getFieldFieldDataTypeValue() == FLOAT) FieldValueAddDot();
+                if (SelectedField.getBaseObject().getFieldFieldDataTypeValue() == FLOAT)
+                    FieldValueAddDot();
                 break;
             case R.id.SL_KEY_UP:
                 FieldAdaptor.decrementSelectedPosition();
+                if (CurrentScrollView != null) {
+                    CurrentScrollView.scrollTo(0, 0);
+                }
                 break;
             case R.id.SL_KEY_DOWN:
                 FieldAdaptor.incrementSelectedPosition();
+                if (CurrentScrollView != null) {
+                    //CurrentScrollView.scrollTo(0, 300);
+                    //CurrentScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    CurrentScrollView.endViewTransition(FieldAdaptor.getSelectedFieldAdaptedObject().getField());
+                }
                 break;
             case R.id.SL_KEY_DEL:
                 FieldValueDelSymbol();

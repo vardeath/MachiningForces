@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
 import android.content.Context;
 import android.widget.TextView;

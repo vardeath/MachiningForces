@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
 public class ButtonRelatives {
     private int Button_ID;

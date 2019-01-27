@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication.BASIC_MENU;
+package com.example.stayi.MachiningForces.BASIC_MENU;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,18 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.stayi.myapplication.R;
+import com.example.stayi.MachiningForces.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BlankFragment3.OnFragmentInteractionListener} interface
+ * {@link BlankFragment6.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BlankFragment3#newInstance} factory method to
+ * Use the {@link BlankFragment6#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment3 extends Fragment {
+public class BlankFragment6 extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,7 +34,7 @@ public class BlankFragment3 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public BlankFragment3() {
+    public BlankFragment6() {
         // Required empty public constructor
     }
 
@@ -44,11 +44,11 @@ public class BlankFragment3 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BlankFragment3.
+     * @return A new instance of fragment BlankFragment6.
      */
     // TODO: Rename and change types and number of parameters
-    private static BlankFragment3 newInstance(String param1, String param2) {
-        BlankFragment3 fragment = new BlankFragment3 ();
+    private static BlankFragment6 newInstance(String param1, String param2) {
+        BlankFragment6 fragment = new BlankFragment6 ();
         Bundle args = new Bundle ();
         args.putString (ARG_PARAM1, param1);
         args.putString (ARG_PARAM2, param2);
@@ -69,7 +69,7 @@ public class BlankFragment3 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate (R.layout.fragment_materials, container, false);
+        return inflater.inflate (R.layout.fragment_send, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

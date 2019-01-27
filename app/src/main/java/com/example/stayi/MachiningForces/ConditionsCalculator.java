@@ -1,14 +1,16 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
 import android.content.Context;
 import android.widget.Toast;
-import com.example.stayi.myapplication.FragmentField.FieldType;
-import static com.example.stayi.myapplication.FragmentField.FieldType.CuttingSpeed;
-import static com.example.stayi.myapplication.FragmentField.FieldType.Diameter;
-import static com.example.stayi.myapplication.FragmentField.FieldType.MinuteFeed;
-import static com.example.stayi.myapplication.FragmentField.FieldType.Revolution;
-import static com.example.stayi.myapplication.FragmentField.FieldType.Teeth;
-import static com.example.stayi.myapplication.FragmentField.FieldType.ToothFeed;
+
+import com.example.stayi.MachiningForces.FragmentField.FieldType;
+
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.CuttingSpeed;
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.Diameter;
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.MinuteFeed;
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.Revolution;
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.Teeth;
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.ToothFeed;
 
 class ConditionsCalculator {
     private Context context;

@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

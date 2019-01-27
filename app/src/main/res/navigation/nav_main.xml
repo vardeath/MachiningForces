@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MAIN_MENU_CONDITIONS"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.MAIN_MENU_CONDITIONS"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.MAIN_MENU_CONDITIONS"
         android:label="@string/Conditions"
         tools:layout="@layout/main_menu_conditions">
         <action
@@ -16,42 +16,42 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragment2"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment2"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment2"
         android:label="@string/Tolerances"
         tools:layout="@layout/fragment_tolerances" />
     <fragment
         android:id="@+id/blankFragment3"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment3"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment3"
         android:label="@string/Materials"
         tools:layout="@layout/fragment_materials" />
     <fragment
         android:id="@+id/blankFragment4"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment4"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment4"
         android:label="@string/Toolsearch"
         tools:layout="@layout/fragment_tool_search" />
     <fragment
         android:id="@+id/blankFragment5"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment5"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment5"
         android:label="@string/Information"
         tools:layout="@layout/fragment_information" />
     <fragment
         android:id="@+id/blankFragment6"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.BlankFragment6"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment6"
         android:label="@string/Send"
         tools:layout="@layout/fragment_send" />
     <fragment
         android:id="@+id/MILL_calc_simple"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple"
         android:label="@string/simple_mill"
         tools:layout="@layout/mill_calc_simple" />
     <fragment
         android:id="@+id/MILL_calc_detail"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail"
         android:label="@string/detail_mill"
         tools:layout="@layout/mill_calc_detail" />
     <fragment
         android:id="@+id/MAIN_MILL_MENU2"
-        android:name="com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MAIN_MILL_MENU"
+        android:name="com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL.MAIN_MILL_MENU"
         android:label="@string/MillMenu"
         tools:layout="@layout/fragment_main__mill__menu">
         <action

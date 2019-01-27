@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication.BASIC_MENU;
+package com.example.stayi.MachiningForces.BASIC_MENU;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.stayi.myapplication.R;
+import com.example.stayi.MachiningForces.R;
 
 
 /**

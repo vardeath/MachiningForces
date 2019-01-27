@@ -1,4 +1,4 @@
-package com.example.stayi.myapplication.FragmentField;
+package com.example.stayi.MachiningForces.FragmentField;
 
 public enum FieldType {
     Diameter,

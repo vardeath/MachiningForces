@@ -1,6 +1,5 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,21 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.example.stayi.myapplication.BASIC_MENU.BlankFragment2;
-import com.example.stayi.myapplication.BASIC_MENU.BlankFragment3;
-import com.example.stayi.myapplication.BASIC_MENU.BlankFragment4;
-import com.example.stayi.myapplication.BASIC_MENU.BlankFragment5;
-import com.example.stayi.myapplication.BASIC_MENU.BlankFragment6;
-import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MAIN_MILL_MENU;
-import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail;
-import com.example.stayi.myapplication.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple;
-import com.example.stayi.myapplication.BASIC_MENU.MAIN_MENU_CONDITIONS;
+import com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment2;
+import com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment3;
+import com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment4;
+import com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment5;
+import com.example.stayi.MachiningForces.BASIC_MENU.BlankFragment6;
+import com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL.MAIN_MILL_MENU;
+import com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail;
+import com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL.MILL_calc_simple;
+import com.example.stayi.MachiningForces.BASIC_MENU.MAIN_MENU_CONDITIONS;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
-import java.lang.reflect.Field;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;

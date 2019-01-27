@@ -1,6 +1,6 @@
-package com.example.stayi.myapplication;
+package com.example.stayi.MachiningForces;
 
-        import com.example.stayi.myapplication.FragmentField.FieldType;
+import com.example.stayi.MachiningForces.FragmentField.FieldType;
 
 class CalculatingObject {
     private FieldAdaptedObject FObject;
