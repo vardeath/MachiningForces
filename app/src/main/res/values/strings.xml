@@ -33,9 +33,11 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Go_to_MILL">Go_to_MILL</string>
+    <string name="getMaterial">Обрабатываемый материал</string>
     <string name="textview_name_diameter">Диаметр фрезы</string>
     <string name="textview_cutting_width">Ширина фрезерования</string>
     <string name="textview_cutting_depth">Глубина фрезерования</string>
+    <string name="textview_cutting_angle">Угол в плане</string>
     <string name="Cutting_speed">Скорость резания</string>
     <string name="Spendle_speed">Число оборотов</string>
     <string name="Teeth_number">Число зубьев</string>
@@ -46,6 +48,7 @@
     <string name="TW_D_mm">D, мм.</string>
     <string name="TW_Ae_mm">Ae, мм.</string>
     <string name="TW_Ap_mm">Ap, мм.</string>
+    <string name="TW_Angle_mm">a, град.</string>
     <string name="TW_Vc_mmin">Vc, м/мин.</string>
     <string name="TW_rev">n, об/мин.</string>
     <string name="TW_teeth">z, шт.</string>
