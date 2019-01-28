@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
@@ -109,6 +110,19 @@ public class MILL_calc_detail extends Fragment {
         behavior.setPeekHeight(700);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
+        int ix = 5;
+        Runnable action = () -> {
+            try {
+                Thread.sleep(1000);
+                Toast.makeText(getContext(), "Поток запущен", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                System.out.println(ix * 2);
+            }
+        };
+
+        Thread thread = new Thread(action);
+        thread.run();
+        System.out.println(ix * 2);
         return rootView;
     }
 

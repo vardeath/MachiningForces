@@ -77,12 +77,6 @@ public class MainActivity extends AppCompatActivity
                 behavior.setPeekHeight(0);
                 behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
-            /*@Override
-            public void onNavigated(@NonNull NavController controller, @NonNull NavDestination destination) {
-                //Toast.makeText(getBaseContext(), "вот тут должно скрывать панель", Toast.LENGTH_SHORT).show();
-                behavior.setPeekHeight(0);
-                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            }*/
         });
 
         //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.
