@@ -8,7 +8,7 @@
     tools:context=".BASIC_MENU.CONDITIONS_MILL.MILL_calc_detail">
 
     <!-- Разметка -->
-
+    
     <ScrollView
         android:id="@+id/millScroll"
         android:layout_width="407dp"
