@@ -55,6 +55,8 @@
     <string name="TW_teeth_feed">fz, мм.</string>
     <string name="TW_m_feed">F, мм/мин.</string>
     <string name="TW_path">L, мм/мин.</string>
+    <string name="example_text3">Параметр</string>
+    <string name="example_text4">Ед. измерения</string>
 
     <!-- Keyboard keys -->
 

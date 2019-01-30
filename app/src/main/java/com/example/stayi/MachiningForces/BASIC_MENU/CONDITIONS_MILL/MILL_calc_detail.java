@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.example.stayi.MachiningForces.ExampleField;
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
 import com.example.stayi.MachiningForces.FragmentField.FieldType;
@@ -35,7 +36,7 @@ import java.util.Objects;
  * Use the {@link MILL_calc_detail#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MILL_calc_detail extends Fragment {
+public class MILL_calc_detail extends Fragment implements Runnable{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -101,8 +102,12 @@ public class MILL_calc_detail extends Fragment {
         FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
         ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FragmentAdaptor.Position_TWO);
         ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FragmentAdaptor.Position_TWO);
-
-        /**Инициализация слушателя кастомной клавиатуры.*/
+        /*Кастомный layout*/
+        ExampleField ex1 = rootView.findViewById(R.id.EXAMPLE1);
+        ex1.setText("кусь","мяу");
+        ExampleField ex2 = rootView.findViewById(R.id.EXAMPLE2);
+        ex2.setText("курлыг","ског");
+        /*Инициализация слушателя кастомной клавиатуры.*/
         View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
         KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);
         LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
@@ -110,7 +115,7 @@ public class MILL_calc_detail extends Fragment {
         behavior.setPeekHeight(700);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
-        int ix = 5;
+        /*int ix = 5;
         Runnable action = () -> {
             try {
                 Thread.sleep(1000);
@@ -122,7 +127,7 @@ public class MILL_calc_detail extends Fragment {
 
         Thread thread = new Thread(action);
         thread.run();
-        System.out.println(ix * 2);
+        System.out.println(ix * 2);*/
         return rootView;
     }
 
@@ -148,6 +153,11 @@ public class MILL_calc_detail extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void run() {
+
     }
 
     /**

@@ -33,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LAY_DIAM"
+            app:layout_constraintTop_toBottomOf="@+id/LAYexample"
             app:layout_constraintVertical_bias="0.0">
 
             <Button
@@ -348,7 +348,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/LAY_DIAM"
+                app:layout_constraintTop_toBottomOf="@+id/LAYexample"
                 app:layout_constraintVertical_bias="0.0">
 
                 <Button
@@ -751,6 +751,16 @@
 
             </LinearLayout>
 
+            <com.example.stayi.MachiningForces.ExampleField
+                android:id="@+id/EXAMPLE1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+            />
+            <com.example.stayi.MachiningForces.ExampleField
+                android:id="@+id/EXAMPLE2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                />
 
         </LinearLayout>
     </ScrollView>
