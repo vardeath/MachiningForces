@@ -82,16 +82,16 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        String TAG = "MillSimple"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
+        String TAG = String.valueOf(getId()); //"MillSimple"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
         //Инициализация полей TextVIew для хранения и ввода данных.
         List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
-        BaseFieldObjects.add(new FieldBaseObject(R.id.MillDiameter, FieldType.Diameter));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.CuttingSpeed, FieldType.CuttingSpeed));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.Revolution, FieldType.Revolution));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.Teeth, FieldType.Teeth));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.ToothFeed, FieldType.ToothFeed));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MinuteFeed));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.MillDiameter, FieldType.MillDiameter));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.CuttingSpeed, FieldType.MillCuttingSpeed));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.Revolution, FieldType.MillRevolution));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.Teeth, FieldType.MillTeeth));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.ToothFeed, FieldType.MillToothFeed));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MillMinuteFeed));
 
         FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
         ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FragmentAdaptor.Position_TWO);

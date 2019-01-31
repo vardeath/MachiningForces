@@ -101,6 +101,7 @@ class FieldAdaptedObject {
         setTextViewStringValue("0");
     }
 
+    @SuppressWarnings("StringConcatenationInLoop")
     private String reformatStringValue(String val) { //Функция предотвращает ошибку парсера при чтении форматированного значения из String в Double.
         String toReturn = "";
         for (int i = 0; i < val.length(); ++i) {

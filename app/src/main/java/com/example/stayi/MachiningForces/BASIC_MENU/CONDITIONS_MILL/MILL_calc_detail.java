@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.stayi.MachiningForces.ExampleField;
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
-import com.example.stayi.MachiningForces.FragmentField.FieldType;
 import com.example.stayi.MachiningForces.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -27,6 +26,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillCuttingSpeed;
+import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillRevolution;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,44 +92,47 @@ public class MILL_calc_detail extends Fragment implements Runnable{
 
         String TAG = "MillDetail"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
-        //Инициализация полей TextVIew для хранения и ввода данных.
-        List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
-        BaseFieldObjects.add(new FieldBaseObject(R.id.MillDiameter, FieldType.Diameter));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.CuttingSpeed, FieldType.CuttingSpeed));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.Revolution, FieldType.Revolution));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.Teeth, FieldType.Teeth));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.ToothFeed, FieldType.ToothFeed));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MinuteFeed));
-
-        FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
-        ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, R.id.CuttingSpeed, R.id.Revolution, FragmentAdaptor.Position_TWO);
-        ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FragmentAdaptor.Position_TWO);
-        /*Кастомный layout*/
-        ExampleField ex1 = rootView.findViewById(R.id.EXAMPLE1);
-        ex1.setText("кусь","мяу");
-        ExampleField ex2 = rootView.findViewById(R.id.EXAMPLE2);
-        ex2.setText("курлыг","ског");
-        /*Инициализация слушателя кастомной клавиатуры.*/
-        View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-        KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);
-        LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
-        BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
-        behavior.setPeekHeight(700);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-        /*int ix = 5;
-        Runnable action = () -> {
-            try {
-                Thread.sleep(1000);
-                Toast.makeText(getContext(), "Поток запущен", Toast.LENGTH_LONG).show();
-            } catch (Exception e) {
-                System.out.println(ix * 2);
+        List<ExampleField> CustomViews = new ArrayList<ExampleField>();
+        CustomViews.add(rootView.findViewById(R.id.MillDiameter));
+        CustomViews.add(rootView.findViewById(R.id.MillCuttingSpeed));
+        CustomViews.add(rootView.findViewById(R.id.MillRevolution));
+        CustomViews.add(rootView.findViewById(R.id.MillTeethQuantity));
+        CustomViews.add(rootView.findViewById(R.id.MillCuttingDepth));
+        CustomViews.add(rootView.findViewById(R.id.MillCuttingWidth));
+        CustomViews.add(rootView.findViewById(R.id.MillGeneralAngle));
+        CustomViews.add(rootView.findViewById(R.id.MillToothFeed));
+        CustomViews.add(rootView.findViewById(R.id.MillRevolutionFeed));
+        CustomViews.add(rootView.findViewById(R.id.MillMinuteFeed));
+        CustomViews.add(rootView.findViewById(R.id.MillPathLength));
+        CustomViews.add(rootView.findViewById(R.id.MillToolLength));
+        CustomViews.add(rootView.findViewById(R.id.MillAttackAngle));
+        try {
+            List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
+            for (int i = 0; i < CustomViews.size(); ++i) {
+                BaseFieldObjects.add(new FieldBaseObject(CustomViews.get(i).getGeneralTextViewId(), CustomViews.get(i).getGeneralTextViewFieldType()));
             }
-        };
 
-        Thread thread = new Thread(action);
-        thread.run();
-        System.out.println(ix * 2);*/
+            int cutspeed = 0;
+            int revolution = 0;
+            for (int i = 0; i < CustomViews.size(); ++i) {
+                if (CustomViews.get(i).getGeneralTextViewFieldType() == MillCuttingSpeed) cutspeed = CustomViews.get(i).getGeneralTextViewId();
+                if (CustomViews.get(i).getGeneralTextViewFieldType() == MillRevolution) revolution = CustomViews.get(i).getGeneralTextViewId();
+            }
+
+            FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
+            ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, cutspeed, revolution, FragmentAdaptor.Position_TWO);
+            //ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FragmentAdaptor.Position_TWO);
+
+            View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
+            KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);
+            LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
+            behavior.setPeekHeight(700);
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } catch (Exception e) {
+            Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
         return rootView;
     }
 

@@ -20,37 +20,43 @@ public class FieldBaseObject {
         FieldTypeValue = fieldTypeValue;
 
         switch (FieldTypeValue) {
-            case Diameter:
+            case MillDiameter:
                 FieldFieldDataTypeValue = FieldDataType.FLOAT;
                 FieldLengthValue = FieldLength.Five;
                 FieldConversePrecisionValue = FieldConversePrecision.Low;
                 setMaxFieldValue();
                 break;
-            case CuttingSpeed:
+            case MillCuttingSpeed:
                 FieldFieldDataTypeValue = FieldDataType.FLOAT;
                 FieldLengthValue = FieldLength.Six;
                 FieldConversePrecisionValue = FieldConversePrecision.Low;
                 setMaxFieldValue();
                 break;
-            case Revolution:
+            case MillRevolution:
                 FieldFieldDataTypeValue = FieldDataType.FLOAT;
                 FieldLengthValue = FieldLength.Six;
                 FieldConversePrecisionValue = FieldConversePrecision.Low;
                 setMaxFieldValue();
                 break;
-            case Teeth:
+            case MillTeeth:
                 FieldFieldDataTypeValue = FieldDataType.INT;
                 FieldLengthValue = FieldLength.Three;
                 FieldConversePrecisionValue = FieldConversePrecision.None;
                 setMaxFieldValue();
                 break;
-            case ToothFeed:
+            case MillToothFeed:
                 FieldFieldDataTypeValue = FieldDataType.FLOAT;
                 FieldLengthValue = FieldLength.Six;
                 FieldConversePrecisionValue = FieldConversePrecision.High;
                 setMaxFieldValue();
                 break;
-            case MinuteFeed:
+            case MillMinuteFeed:
+                FieldFieldDataTypeValue = FieldDataType.FLOAT;
+                FieldLengthValue = FieldLength.Six;
+                FieldConversePrecisionValue = FieldConversePrecision.Low;
+                setMaxFieldValue();
+                break;
+            default:
                 FieldFieldDataTypeValue = FieldDataType.FLOAT;
                 FieldLengthValue = FieldLength.Six;
                 FieldConversePrecisionValue = FieldConversePrecision.Low;
