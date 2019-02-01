@@ -114,6 +114,9 @@ public class MILL_calc_detail extends Fragment implements Runnable {
         CustomViews.add(rootView.findViewById(R.id.MillField12));
         CustomViews.add(rootView.findViewById(R.id.MillField13));
 
+        LinearLayout Underground = rootView.findViewById(R.id.LAY_RESULTS);
+        Underground.getLayoutParams().height = 0;
+
         try {
             CustomViewArray CustomViewArr = new CustomViewArray(getContext(), CustomViews, MillDetail);
             CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);

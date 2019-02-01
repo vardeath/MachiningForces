@@ -38,7 +38,6 @@
                 android:id="@+id/HoldButton1"
                 android:layout_width="40dp"
                 android:layout_height="74dp"
-                android:layout_marginTop="8dp"
                 android:text="@string/but_lock"
                 app:layout_constraintBottom_toTopOf="@+id/MillField4"
                 app:layout_constraintEnd_toEndOf="@+id/MillField5"
@@ -51,6 +50,7 @@
                 android:layout_width="40dp"
                 android:layout_height="74dp"
                 android:text="@string/but_lock"
+                app:layout_constraintBottom_toBottomOf="@+id/MillField6"
                 app:layout_constraintEnd_toEndOf="@+id/MillField5"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,11 +60,12 @@
                 android:id="@+id/MillField1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/MillField2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.example.stayi.MachiningForces.CustomView.CustomView
                 android:id="@+id/MillField2"
