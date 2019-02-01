@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
-import com.example.stayi.MachiningForces.FragmentField.FieldType;
+import com.example.stayi.MachiningForces.Enumerations.FieldType;
 import com.example.stayi.MachiningForces.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -88,8 +88,8 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
         BaseFieldObjects.add(new FieldBaseObject(R.id.MillDiameter, FieldType.MillDiameter));
         BaseFieldObjects.add(new FieldBaseObject(R.id.CuttingSpeed, FieldType.MillCuttingSpeed));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.Revolution, FieldType.MillRevolution));
-        BaseFieldObjects.add(new FieldBaseObject(R.id.Teeth, FieldType.MillTeeth));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.Revolution, FieldType.MillRevolutionQuantity));
+        BaseFieldObjects.add(new FieldBaseObject(R.id.Teeth, FieldType.MillTeethQuantity));
         BaseFieldObjects.add(new FieldBaseObject(R.id.ToothFeed, FieldType.MillToothFeed));
         BaseFieldObjects.add(new FieldBaseObject(R.id.MinuteFeed, FieldType.MillMinuteFeed));
 

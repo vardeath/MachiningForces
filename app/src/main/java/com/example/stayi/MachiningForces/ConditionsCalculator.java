@@ -3,14 +3,9 @@ package com.example.stayi.MachiningForces;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.stayi.MachiningForces.FragmentField.FieldType;
+import com.example.stayi.MachiningForces.Enumerations.FieldType;
 
-import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillCuttingSpeed;
-import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillDiameter;
-import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillMinuteFeed;
-import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillRevolution;
-import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillTeeth;
-import static com.example.stayi.MachiningForces.FragmentField.FieldType.MillToothFeed;
+import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 
 class ConditionsCalculator {
     private Context context;
@@ -27,13 +22,14 @@ class ConditionsCalculator {
         int current_position = FieldAadaptor.getCurrentSelectedPosition();
 
         for (int i = current_position; i < CalcObjects.length; ++i) {
-            if (CalcObjects[i].getFieldType() == MillDiameter || CalcObjects[i].getFieldType() == MillTeeth) continue;
+            if (CalcObjects[i].getFieldType() == MillDiameter || CalcObjects[i].getFieldType() == MillTeethQuantity)
+                continue;
             if (CalcObjects[i].getAccessPermission()) {
                 if (CalcObjects[i].getFieldType() == MillCuttingSpeed) {
                     CalculateRevolution();
                     continue;
                 }
-                if (CalcObjects[i].getFieldType() == MillRevolution) {
+                if (CalcObjects[i].getFieldType() == MillRevolutionQuantity) {
                     CalculateCuttingSpeed();
                     continue;
                 }
@@ -58,7 +54,7 @@ class ConditionsCalculator {
     }
 
     private void CalculateRevolution() {
-        double MaxValue = getMaxValue(MillRevolution);
+        double MaxValue = getMaxValue(MillRevolutionQuantity);
         if (getDiameter() > 0) {
             //Проверка на максимально допустимое значение.
             if (getRevolution() > MaxValue) {
@@ -100,7 +96,7 @@ class ConditionsCalculator {
     }
 
     private double getCuttingSpeed() {
-        return (Math.PI * CalcObjects[findPositionOnCalcObjectsArray(MillRevolution)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillDiameter)].getFieldDoubleValue()) / 1000;
+        return (Math.PI * CalcObjects[findPositionOnCalcObjectsArray(MillRevolutionQuantity)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillDiameter)].getFieldDoubleValue()) / 1000;
     }
 
     private double getRevolution() {
@@ -108,12 +104,13 @@ class ConditionsCalculator {
     }
 
     private double getMinuteFeed() {
-        return CalcObjects[findPositionOnCalcObjectsArray(MillRevolution)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillTeeth)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillToothFeed)].getFieldDoubleValue();
+        return CalcObjects[findPositionOnCalcObjectsArray(MillRevolutionQuantity)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillTeethQuantity)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillToothFeed)].getFieldDoubleValue();
     }
 
     private double getToothFeed() {
-        if (CalcObjects[findPositionOnCalcObjectsArray(MillRevolution)].getFieldDoubleValue() == 0) return 0;
-        return CalcObjects[findPositionOnCalcObjectsArray(MillMinuteFeed)].getFieldDoubleValue() / (CalcObjects[findPositionOnCalcObjectsArray(MillTeeth)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillRevolution)].getFieldDoubleValue());
+        if (CalcObjects[findPositionOnCalcObjectsArray(MillRevolutionQuantity)].getFieldDoubleValue() == 0)
+            return 0;
+        return CalcObjects[findPositionOnCalcObjectsArray(MillMinuteFeed)].getFieldDoubleValue() / (CalcObjects[findPositionOnCalcObjectsArray(MillTeethQuantity)].getFieldDoubleValue() * CalcObjects[findPositionOnCalcObjectsArray(MillRevolutionQuantity)].getFieldDoubleValue());
     }
 
     private double getDiameter() {
@@ -121,7 +118,7 @@ class ConditionsCalculator {
     }
 
     private void setRevolution(double value) {
-        CalcObjects[findPositionOnCalcObjectsArray(MillRevolution)].setFieldDoubleValue(value);
+        CalcObjects[findPositionOnCalcObjectsArray(MillRevolutionQuantity)].setFieldDoubleValue(value);
     }
 
     private void setCuttingSpeed(double value) {

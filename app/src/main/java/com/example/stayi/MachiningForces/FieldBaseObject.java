@@ -1,9 +1,9 @@
 package com.example.stayi.MachiningForces;
 
-import com.example.stayi.MachiningForces.FragmentField.FieldConversePrecision;
-import com.example.stayi.MachiningForces.FragmentField.FieldDataType;
-import com.example.stayi.MachiningForces.FragmentField.FieldLength;
-import com.example.stayi.MachiningForces.FragmentField.FieldType;
+import com.example.stayi.MachiningForces.Enumerations.FieldConversePrecision;
+import com.example.stayi.MachiningForces.Enumerations.FieldDataType;
+import com.example.stayi.MachiningForces.Enumerations.FieldLength;
+import com.example.stayi.MachiningForces.Enumerations.FieldType;
 
 //Базовый обьект поля ввода, содержащий информацию о допустимых значениях параметров ввода.
 public class FieldBaseObject {
@@ -32,13 +32,13 @@ public class FieldBaseObject {
                 FieldConversePrecisionValue = FieldConversePrecision.Low;
                 setMaxFieldValue();
                 break;
-            case MillRevolution:
+            case MillRevolutionQuantity:
                 FieldFieldDataTypeValue = FieldDataType.FLOAT;
                 FieldLengthValue = FieldLength.Six;
                 FieldConversePrecisionValue = FieldConversePrecision.Low;
                 setMaxFieldValue();
                 break;
-            case MillTeeth:
+            case MillTeethQuantity:
                 FieldFieldDataTypeValue = FieldDataType.INT;
                 FieldLengthValue = FieldLength.Three;
                 FieldConversePrecisionValue = FieldConversePrecision.None;

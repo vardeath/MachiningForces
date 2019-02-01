@@ -29,32 +29,51 @@
     <string name="Send">Написать нам</string>
     <string name="Feedback">Обратная связь</string>
 
-    <!-- Input fields -->
+    <!-- Input fields Milling-->
+
+    <string name="Mill_Diameter_Description">Диаметр фрезы</string>
+    <string name="Mill_DIameter_unit">D, мм.</string>
+
+    <string name="Mill_Cutting_Speed_Description">Скорость резания</string>
+    <string name="Mill_Cutting_Speed_Unit">Vc, м/мин.</string>
+
+    <string name="Mill_Revolution_Description">Число оборотов</string>
+    <string name="Mill_Revolution_Unit">n, об/мин.</string>
+
+    <string name="Mill_Teeth_Quantity_Description">Число режущих кромок</string>
+    <string name="Mill_Teeth_Unit">z, шт.</string>
+
+    <string name="Mill_Feed_Per_Tooth_Description">Подача на зуб</string>
+    <string name="Mill_Feed_Per_Tooth_Unit">fz, мм.</string>
+
+    <string name="Mill_Minute_Feed_Description">Минутная подача</string>
+    <string name="Mill_Minute_Feed_Unit">Fмин, мм/мин.</string>
+
+    <string name="Mill_Revolution_Feed_Description">Подача на оборот</string>
+    <string name="Mill_Revolution_Feed_Unit">Fоб, мм/об.</string>
+
+    <string name="Mill_Cutting_Depth_Description">Глубина фрезерования</string>
+    <string name="Mill_Cutting_Depth_Unit">Ap, мм.</string>
+
+    <string name="Mill_Cutting_Width_Description">Ширина фрезерования</string>
+    <string name="Mill_Cutting_Width_Unit">Ae, мм.</string>
+
+    <string name="Mill_General_Angle_Description">Угол в плане</string>
+    <string name="Mill_General_Angle_Unit">a, град.</string>
+
+    <string name="Mill_Path_Length_Description">Длина пути фрезы</string>
+    <string name="Mill_Path_Length_Unit">L, мм/мин.</string>
+
+    <string name="Mill_Tool_Length_Description">Вылет инструмента</string>
+    <string name="Mill_Tool_Length_Unit">Lвыл, мм/мин.</string>
+
+    <string name="Mill_Front_Angle_Description">Передний угол</string>
+    <string name="Mill_Front_Angle_Unit">у, град.</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Go_to_MILL">Go_to_MILL</string>
     <string name="getMaterial">Обрабатываемый материал</string>
-    <string name="textview_name_diameter">Диаметр фрезы</string>
-    <string name="textview_cutting_width">Ширина фрезерования</string>
-    <string name="textview_cutting_depth">Глубина фрезерования</string>
-    <string name="textview_cutting_angle">Угол в плане</string>
-    <string name="Cutting_speed">Скорость резания</string>
-    <string name="Spendle_speed">Число оборотов</string>
-    <string name="Teeth_number">Число зубьев</string>
-    <string name="Feed_per_tooth">Подача на зуб</string>
-    <string name="Minute_feed">Минутная подача</string>
-    <string name="Path_lenth">Длина пути фрезы</string>
     <string name="zero">0</string>
-    <string name="TW_D_mm">D, мм.</string>
-    <string name="TW_Ae_mm">Ae, мм.</string>
-    <string name="TW_Ap_mm">Ap, мм.</string>
-    <string name="TW_Angle_mm">a, град.</string>
-    <string name="TW_Vc_mmin">Vc, м/мин.</string>
-    <string name="TW_rev">n, об/мин.</string>
-    <string name="TW_teeth">z, шт.</string>
-    <string name="TW_teeth_feed">fz, мм.</string>
-    <string name="TW_m_feed">F, мм/мин.</string>
-    <string name="TW_path">L, мм/мин.</string>
     <string name="example_text3">Параметр</string>
     <string name="example_text4">Ед. измерения</string>
 

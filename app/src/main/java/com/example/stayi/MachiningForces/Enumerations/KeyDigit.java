@@ -1,4 +1,4 @@
-package com.example.stayi.MachiningForces.FragmentField;
+package com.example.stayi.MachiningForces.Enumerations;
 
 public enum KeyDigit {
 

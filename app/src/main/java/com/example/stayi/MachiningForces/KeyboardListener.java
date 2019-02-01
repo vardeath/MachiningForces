@@ -9,10 +9,11 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.stayi.MachiningForces.FragmentField.KeyDigit;
+
+import com.example.stayi.MachiningForces.Enumerations.KeyDigit;
 import androidx.annotation.RequiresApi;
 
-import static com.example.stayi.MachiningForces.FragmentField.FieldDataType.FLOAT;
+import static com.example.stayi.MachiningForces.Enumerations.FieldDataType.FLOAT;
 
 @SuppressLint("Registered")
 public class KeyboardListener extends Activity implements View.OnClickListener {

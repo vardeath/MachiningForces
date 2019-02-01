@@ -1,6 +1,6 @@
 package com.example.stayi.MachiningForces;
 
-import com.example.stayi.MachiningForces.FragmentField.FieldType;
+import com.example.stayi.MachiningForces.Enumerations.FieldType;
 
 class CalculatingObject {
     private FieldAdaptedObject FObject;
