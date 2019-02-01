@@ -6,9 +6,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition.ONE;
-import static com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition.TWO;
-
 public class FragmentAdaptor implements View.OnClickListener {
     public static final int Position_ONE = 0;
     public static final int Position_TWO = 1;
@@ -18,7 +15,7 @@ public class FragmentAdaptor implements View.OnClickListener {
     private FieldAdaptedObject[] FieldAdaptedObjects;
     private View view;
     private int current_selected_position;
-    private List<ButtonRelatives> ButtonRelatives = new ArrayList<>();
+    private List<HoldButtonRelatives> HoldButtonRelatives = new ArrayList<>();
 
     public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context cont, String tag) {
         context = cont;
@@ -92,20 +89,20 @@ public class FragmentAdaptor implements View.OnClickListener {
      * Назначает родственную кнопку ReHold для 2-х полей ввода.
      */
 
-    public void setRelativeButton(List<ButtonRelatives> RelativeButtons) {
-        ButtonRelatives = RelativeButtons;
+    public void setRelativeButton(List<HoldButtonRelatives> RelativeButtons) {
+        HoldButtonRelatives = RelativeButtons;
         for (int i = 0; i < RelativeButtons.size(); ++i) {
             switch (RelativeButtons.get(i).getButtonPos()) {
                 case ONE:
-                    FieldAdaptedObjects[ButtonRelatives.get(i).getFirstFieldPosition()].setAccessToSelectState(false);
+                    FieldAdaptedObjects[HoldButtonRelatives.get(i).getFirstFieldPosition()].setAccessToSelectState(false);
                     refreshInputFields();
                     break;
                 case TWO:
-                    FieldAdaptedObjects[ButtonRelatives.get(i).getSecondFieldPosition()].setAccessToSelectState(false);
+                    FieldAdaptedObjects[HoldButtonRelatives.get(i).getSecondFieldPosition()].setAccessToSelectState(false);
                     refreshInputFields();
                     break;
             }
-            view.findViewById(ButtonRelatives.get(i).getButtonId()).setOnClickListener(this);
+            view.findViewById(HoldButtonRelatives.get(i).getButtonId()).setOnClickListener(this);
         }
     }
 
@@ -159,9 +156,9 @@ public class FragmentAdaptor implements View.OnClickListener {
     }
 
     private void doButtonAction(int id) {
-        for (int i = 0; i < ButtonRelatives.size(); ++i) {
-            if (ButtonRelatives.get(i).getButtonId() == id) {
-                ReHold(ButtonRelatives.get(i).getFirstFieldPosition(), ButtonRelatives.get(i).getSecondFieldPosition());
+        for (int i = 0; i < HoldButtonRelatives.size(); ++i) {
+            if (HoldButtonRelatives.get(i).getButtonId() == id) {
+                ReHold(HoldButtonRelatives.get(i).getFirstFieldPosition(), HoldButtonRelatives.get(i).getSecondFieldPosition());
             }
         }
     }

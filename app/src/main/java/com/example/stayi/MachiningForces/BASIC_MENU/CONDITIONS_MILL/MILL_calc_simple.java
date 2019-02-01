@@ -34,6 +34,7 @@ import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillCutti
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillMinuteFeed;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillRevolutionQuantity;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillToothFeed;
+import static com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType.MillSimple;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,7 +94,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_simple, container, false);
 
-        String TAG = "MillSimple"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
+        String TAG = String.valueOf(MillSimple); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
         List<CustomView> CustomViews = new ArrayList<CustomView>();
         CustomViews.add(rootView.findViewById(R.id.MillField1));
@@ -105,7 +106,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         //Инициализация полей TextVIew для хранения и ввода данных.
 
         try {
-            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), CustomViews, PresetFieldsArrayType.MillSimple);
+            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), CustomViews, MillSimple);
             CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);
             CustomViewArr.setRelativeButton(R.id.HoldButton2, MillToothFeed, MillMinuteFeed, ButtonLockPosition.TWO);
 
