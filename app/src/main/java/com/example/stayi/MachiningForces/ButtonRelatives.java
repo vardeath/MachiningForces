@@ -1,12 +1,18 @@
 package com.example.stayi.MachiningForces;
 
+import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
+
 public class ButtonRelatives {
     private int Button_ID;
     private int FirstFieldPosition = 0;
     private int SecondFieldPosition = 0;
+    private ButtonLockPosition ButtonPos= null;
 
-    ButtonRelatives(int B_id) {
+    public ButtonRelatives(int B_id, int first_pos, int second_pos, ButtonLockPosition pos) {
         Button_ID = B_id;
+        FirstFieldPosition = first_pos;
+        SecondFieldPosition = second_pos;
+        ButtonPos = pos;
     }
 
     int getButtonId(){
@@ -19,6 +25,10 @@ public class ButtonRelatives {
 
     int getSecondFieldPosition(){
         return SecondFieldPosition;
+    }
+
+    ButtonLockPosition getButtonPos() {
+        return ButtonPos;
     }
 
     void setFirstFieldPosition(int pos){

@@ -16,13 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.example.stayi.MachiningForces.Enumerations.TemplateType;
-import com.example.stayi.MachiningForces.TemplateField;
+import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
+import com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType;
+import com.example.stayi.MachiningForces.CustomView.CustomView;
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
 import com.example.stayi.MachiningForces.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
-import com.example.stayi.MachiningForces.TemplateFieldArray;
+import com.example.stayi.MachiningForces.CustomView.CustomViewArray;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillCutti
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillMinuteFeed;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillRevolutionQuantity;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillToothFeed;
+import static com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType.MillDetail;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +44,7 @@ import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillTooth
  * Use the {@link MILL_calc_detail#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MILL_calc_detail extends Fragment implements Runnable{
+public class MILL_calc_detail extends Fragment implements Runnable {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -94,9 +96,9 @@ public class MILL_calc_detail extends Fragment implements Runnable{
         View rootView = inflater.inflate(R.layout.mill_calc_detail, container, false);
         ScrollView myScroll = (ScrollView) rootView.findViewById(R.id.millScroll);
 
-        String TAG = "MillDetail"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
+        String TAG = String.valueOf(MillDetail); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
-        List<TemplateField> CustomViews = new ArrayList<TemplateField>();
+        List<CustomView> CustomViews = new ArrayList<CustomView>();
         CustomViews.add(rootView.findViewById(R.id.MillField1));
         CustomViews.add(rootView.findViewById(R.id.MillField2));
         CustomViews.add(rootView.findViewById(R.id.MillField3));
@@ -110,19 +112,15 @@ public class MILL_calc_detail extends Fragment implements Runnable{
         CustomViews.add(rootView.findViewById(R.id.MillField11));
         CustomViews.add(rootView.findViewById(R.id.MillField12));
         CustomViews.add(rootView.findViewById(R.id.MillField13));
-
-        TemplateFieldArray TFarray = new TemplateFieldArray(getContext(), CustomViews, TemplateType.MillDetail);
         try {
-            List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
-            for (int i = 0; i < CustomViews.size(); ++i) {
-                BaseFieldObjects.add(new FieldBaseObject(CustomViews.get(i).getGeneralTextViewId(), CustomViews.get(i).getGeneralTextViewFieldType()));
-            }
+            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), CustomViews, MillDetail);
+            CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);
+            CustomViewArr.setRelativeButton(R.id.HoldButton2, MillToothFeed, MillMinuteFeed, ButtonLockPosition.TWO);
+
+            List<FieldBaseObject> BaseFieldObjects = CustomViewArr.getBaseFieldObjects();
 
             FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
-            ButHoldAdapt.setRelativeButton(R.id.HoldButton1, TFarray.getFieldIdByType(MillCuttingSpeed),
-                    TFarray.getFieldIdByType(MillRevolutionQuantity), FragmentAdaptor.Position_TWO);
-            ButHoldAdapt.setRelativeButton(R.id.HoldButton2, TFarray.getFieldIdByType(MillToothFeed),
-                    TFarray.getFieldIdByType(MillMinuteFeed), FragmentAdaptor.Position_TWO);
+            ButHoldAdapt.setRelativeButton(CustomViewArr.getRelativeButtonArr());
 
             View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);
@@ -131,7 +129,7 @@ public class MILL_calc_detail extends Fragment implements Runnable{
             behavior.setPeekHeight(0);
             behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } catch (Exception e) {
-            Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         return rootView;

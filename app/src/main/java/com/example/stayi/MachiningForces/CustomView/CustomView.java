@@ -1,4 +1,4 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.CustomView;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,10 +11,11 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
+import com.example.stayi.MachiningForces.R;
 
 import static android.app.PendingIntent.getActivity;
 
-public class TemplateField extends LinearLayout {
+public class CustomView extends LinearLayout {
 
     private static int id = 1;
     private Context contxt;
@@ -28,23 +29,23 @@ public class TemplateField extends LinearLayout {
         initializeViews(context);
     }
 
-    public TemplateField(Context context) {
+    public CustomView(Context context) {
         super(context);
         init(context);
     }
 
-    public TemplateField(Context context, @Nullable AttributeSet attrs) {
+    public CustomView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public TemplateField(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public TemplateField(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
@@ -74,16 +75,16 @@ public class TemplateField extends LinearLayout {
         mGeneralTextVIewFieldType = ftp;
     }
 
-    public FieldType getGeneralTextViewFieldType() {
+    public FieldType getMainTextViewFieldType() {
         return mGeneralTextVIewFieldType;
     }
 
-    public int getGeneralTextViewId() {
+    public int getMainTextViewId() {
         return mGeneralTextVIew.getId();
     }
 
-    public void setText(TemplateStringPairs templateStringPairs) {
-        mDescription.setText(templateStringPairs.getFirstValue());
-        mUnit.setText(templateStringPairs.getSecondValue());
+    public void setText(CustomViewStringUnits customViewStringUnits) {
+        mDescription.setText(customViewStringUnits.getFirstValue());
+        mUnit.setText(customViewStringUnits.getSecondValue());
     }
 }

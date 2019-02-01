@@ -11,18 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.stayi.MachiningForces.Enumerations.TemplateType;
+import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
+import com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType;
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
-import com.example.stayi.MachiningForces.Enumerations.FieldType;
 import com.example.stayi.MachiningForces.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
-import com.example.stayi.MachiningForces.TemplateField;
-import com.example.stayi.MachiningForces.TemplateFieldArray;
+import com.example.stayi.MachiningForces.CustomView.CustomView;
+import com.example.stayi.MachiningForces.CustomView.CustomViewArray;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -68,17 +70,17 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
      */
     // TODO: Rename and change types and number of parameters
     private static MILL_calc_simple newInstance(String param1, String param2) {
-        MILL_calc_simple fragment = new MILL_calc_simple ();
-        Bundle args = new Bundle ();
-        args.putString (ARG_PARAM1, param1);
-        args.putString (ARG_PARAM2, param2);
-        fragment.setArguments (args);
+        MILL_calc_simple fragment = new MILL_calc_simple();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
+        super.onCreate(savedInstanceState);
         /*if (getArguments () != null) {
         }*/
         setHasOptionsMenu(true);
@@ -93,7 +95,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
         String TAG = "MillSimple"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
-        List<TemplateField> CustomViews = new ArrayList<TemplateField>();
+        List<CustomView> CustomViews = new ArrayList<CustomView>();
         CustomViews.add(rootView.findViewById(R.id.MillField1));
         CustomViews.add(rootView.findViewById(R.id.MillField2));
         CustomViews.add(rootView.findViewById(R.id.MillField3));
@@ -101,18 +103,16 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         CustomViews.add(rootView.findViewById(R.id.MillField5));
         CustomViews.add(rootView.findViewById(R.id.MillField6));
         //Инициализация полей TextVIew для хранения и ввода данных.
-        TemplateFieldArray TFarray = new TemplateFieldArray(getContext(), CustomViews, TemplateType.MillSimple);
+
         try {
-            List<FieldBaseObject> BaseFieldObjects = new ArrayList<FieldBaseObject>();
-            for (int i = 0; i < CustomViews.size(); ++i) {
-                BaseFieldObjects.add(new FieldBaseObject(CustomViews.get(i).getGeneralTextViewId(), CustomViews.get(i).getGeneralTextViewFieldType()));
-            }
+            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), CustomViews, PresetFieldsArrayType.MillSimple);
+            CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);
+            CustomViewArr.setRelativeButton(R.id.HoldButton2, MillToothFeed, MillMinuteFeed, ButtonLockPosition.TWO);
+
+            List<FieldBaseObject> BaseFieldObjects = CustomViewArr.getBaseFieldObjects();
 
             FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
-            ButHoldAdapt.setRelativeButton(R.id.HoldButton1, TFarray.getFieldIdByType(MillCuttingSpeed),
-                    TFarray.getFieldIdByType(MillRevolutionQuantity), FragmentAdaptor.Position_TWO);
-            ButHoldAdapt.setRelativeButton(R.id.HoldButton2, TFarray.getFieldIdByType(MillToothFeed),
-                    TFarray.getFieldIdByType(MillMinuteFeed), FragmentAdaptor.Position_TWO);
+            ButHoldAdapt.setRelativeButton(CustomViewArr.getRelativeButtonArr());
 
             View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext());
@@ -121,7 +121,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
             behavior.setPeekHeight(700);
             behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } catch (Exception e) {
-            Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         return rootView;
@@ -130,17 +130,17 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction (uri);
+            mListener.onFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
-        super.onAttach (context);
+        super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException (context.toString ()
+            throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
@@ -157,7 +157,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
     @Override
     public void onDetach() {
-        super.onDetach ();
+        super.onDetach();
         mListener = null;
     }
 

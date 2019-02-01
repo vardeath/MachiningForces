@@ -6,6 +6,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition.ONE;
+import static com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition.TWO;
+
 public class FragmentAdaptor implements View.OnClickListener {
     public static final int Position_ONE = 0;
     public static final int Position_TWO = 1;
@@ -88,23 +91,22 @@ public class FragmentAdaptor implements View.OnClickListener {
     /**
      * Назначает родственную кнопку ReHold для 2-х полей ввода.
      */
-    public void setRelativeButton(int ButtonID, int FirstFieldID, int SecondFieldID, int HoldedPositionDefault) {
-        ButtonRelatives Object = new ButtonRelatives(ButtonID);
-        Object.setFirstFieldPosition(getPositionById(FirstFieldID));
-        Object.setSecondFieldPosition(getPositionById(SecondFieldID));
-        ButtonRelatives.add(Object);
 
-        switch (HoldedPositionDefault) {
-            case Position_ONE:
-                FieldAdaptedObjects[Object.getFirstFieldPosition()].setAccessToSelectState(false);
-                refreshInputFields();
-                break;
-            case Position_TWO:
-                FieldAdaptedObjects[Object.getSecondFieldPosition()].setAccessToSelectState(false);
-                refreshInputFields();
-                break;
+    public void setRelativeButton(List<ButtonRelatives> RelativeButtons) {
+        ButtonRelatives = RelativeButtons;
+        for (int i = 0; i < RelativeButtons.size(); ++i) {
+            switch (RelativeButtons.get(i).getButtonPos()) {
+                case ONE:
+                    FieldAdaptedObjects[ButtonRelatives.get(i).getFirstFieldPosition()].setAccessToSelectState(false);
+                    refreshInputFields();
+                    break;
+                case TWO:
+                    FieldAdaptedObjects[ButtonRelatives.get(i).getSecondFieldPosition()].setAccessToSelectState(false);
+                    refreshInputFields();
+                    break;
+            }
+            view.findViewById(ButtonRelatives.get(i).getButtonId()).setOnClickListener(this);
         }
-        view.findViewById(ButtonID).setOnClickListener(this);
     }
 
     private TextView[] getTextViewsArray() {

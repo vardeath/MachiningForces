@@ -1,17 +1,18 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.CustomView;
 
 import android.content.Context;
 
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
-import com.example.stayi.MachiningForces.Enumerations.TemplateType;
+import com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType;
+import com.example.stayi.MachiningForces.R;
 
-class TemplateStringPairs {
+class CustomViewStringUnits {
 
     private Context context = null;
     private String first = null;
     private String second = null;
 
-    TemplateStringPairs(Context cont, FieldType fType, TemplateType tType) {
+    CustomViewStringUnits(Context cont, FieldType fType, PresetFieldsArrayType tType) {
         context = cont;
         switch (tType) {
             case MillDetail:
