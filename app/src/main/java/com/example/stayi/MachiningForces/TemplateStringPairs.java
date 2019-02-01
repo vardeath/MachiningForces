@@ -16,6 +16,10 @@ class TemplateStringPairs {
         switch (tType) {
             case MillDetail:
                 setMillDetailValues(fType);
+                break;
+            case MillSimple:
+                setMillSimpleValues(fType);
+                break;
         }
     }
 
@@ -63,6 +67,29 @@ class TemplateStringPairs {
         }
     }
 
+    private void setMillSimpleValues(FieldType ftype) {
+        switch (ftype) {
+            case MillDiameter:
+                applyValues(getStringValue(R.string.Mill_Diameter_Description), getStringValue(R.string.Mill_DIameter_unit));
+                break;
+            case MillCuttingSpeed:
+                applyValues(getStringValue(R.string.Mill_Cutting_Speed_Description), getStringValue(R.string.Mill_Cutting_Speed_Unit));
+                break;
+            case MillRevolutionQuantity:
+                applyValues(getStringValue(R.string.Mill_Revolution_Description), getStringValue(R.string.Mill_Revolution_Unit));
+                break;
+            case MillTeethQuantity:
+                applyValues(getStringValue(R.string.Mill_Teeth_Quantity_Description), getStringValue(R.string.Mill_Teeth_Unit));
+                break;
+            case MillToothFeed:
+                applyValues(getStringValue(R.string.Mill_Feed_Per_Tooth_Description), getStringValue(R.string.Mill_Feed_Per_Tooth_Unit));
+                break;
+            case MillMinuteFeed:
+                applyValues(getStringValue(R.string.Mill_Minute_Feed_Description), getStringValue(R.string.Mill_Minute_Feed_Unit));
+                break;
+        }
+    }
+
     private void applyValues(String value1, String value2) {
         first = value1;
         second = value2;
@@ -72,11 +99,11 @@ class TemplateStringPairs {
         return context.getString(index);
     }
 
-    public String getFirstValue() {
+    String getFirstValue() {
         return first;
     }
 
-    public String getSecondValue() {
+    String getSecondValue() {
         return second;
     }
 }

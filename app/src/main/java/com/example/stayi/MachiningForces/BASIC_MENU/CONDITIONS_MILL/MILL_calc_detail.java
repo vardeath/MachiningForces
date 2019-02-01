@@ -97,19 +97,19 @@ public class MILL_calc_detail extends Fragment implements Runnable{
         String TAG = "MillDetail"; //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
         List<TemplateField> CustomViews = new ArrayList<TemplateField>();
-        CustomViews.add(rootView.findViewById(R.id.MillDiameter));
-        CustomViews.add(rootView.findViewById(R.id.MillCuttingSpeed));
-        CustomViews.add(rootView.findViewById(R.id.MillRevolution));
-        CustomViews.add(rootView.findViewById(R.id.MillTeethQuantity));
-        CustomViews.add(rootView.findViewById(R.id.MillCuttingDepth));
-        CustomViews.add(rootView.findViewById(R.id.MillCuttingWidth));
-        CustomViews.add(rootView.findViewById(R.id.MillGeneralAngle));
-        CustomViews.add(rootView.findViewById(R.id.MillToothFeed));
-        CustomViews.add(rootView.findViewById(R.id.MillRevolutionFeed));
-        CustomViews.add(rootView.findViewById(R.id.MillMinuteFeed));
-        CustomViews.add(rootView.findViewById(R.id.MillPathLength));
-        CustomViews.add(rootView.findViewById(R.id.MillToolLength));
-        CustomViews.add(rootView.findViewById(R.id.MillAttackAngle));
+        CustomViews.add(rootView.findViewById(R.id.MillField1));
+        CustomViews.add(rootView.findViewById(R.id.MillField2));
+        CustomViews.add(rootView.findViewById(R.id.MillField3));
+        CustomViews.add(rootView.findViewById(R.id.MillField4));
+        CustomViews.add(rootView.findViewById(R.id.MillField5));
+        CustomViews.add(rootView.findViewById(R.id.MillField6));
+        CustomViews.add(rootView.findViewById(R.id.MillField7));
+        CustomViews.add(rootView.findViewById(R.id.MillField8));
+        CustomViews.add(rootView.findViewById(R.id.MillField9));
+        CustomViews.add(rootView.findViewById(R.id.MillField10));
+        CustomViews.add(rootView.findViewById(R.id.MillField11));
+        CustomViews.add(rootView.findViewById(R.id.MillField12));
+        CustomViews.add(rootView.findViewById(R.id.MillField13));
 
         TemplateFieldArray TFarray = new TemplateFieldArray(getContext(), CustomViews, TemplateType.MillDetail);
         try {
@@ -118,18 +118,11 @@ public class MILL_calc_detail extends Fragment implements Runnable{
                 BaseFieldObjects.add(new FieldBaseObject(CustomViews.get(i).getGeneralTextViewId(), CustomViews.get(i).getGeneralTextViewFieldType()));
             }
 
-            /*int cutspeed = 0;
-            int revolution = 0;
-            for (int i = 0; i < CustomViews.size(); ++i) {
-                if (CustomViews.get(i).getGeneralTextViewFieldType() == MillCuttingSpeed) cutspeed = CustomViews.get(i).getGeneralTextViewId();
-                if (CustomViews.get(i).getGeneralTextViewFieldType() == MillRevolutionQuantity) revolution = CustomViews.get(i).getGeneralTextViewId();
-            }*/
-
             FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
-            ButHoldAdapt.setRelativeButton(R.id.HoldCutRev, CustomViews.get(TFarray.getFieldPositionByType(MillCuttingSpeed)).getGeneralTextViewId(),
-                    CustomViews.get(TFarray.getFieldPositionByType(MillRevolutionQuantity)).getGeneralTextViewId(), FragmentAdaptor.Position_TWO);
-            ButHoldAdapt.setRelativeButton(R.id.HoldButton2, TFarray.getFieldPositionByType(MillToothFeed), TFarray.getFieldPositionByType(MillMinuteFeed), FragmentAdaptor.Position_TWO);
-            //ButHoldAdapt.setRelativeButton(R.id.HoldButton2, R.id.ToothFeed, R.id.MinuteFeed, FragmentAdaptor.Position_TWO);
+            ButHoldAdapt.setRelativeButton(R.id.HoldButton1, TFarray.getFieldIdByType(MillCuttingSpeed),
+                    TFarray.getFieldIdByType(MillRevolutionQuantity), FragmentAdaptor.Position_TWO);
+            ButHoldAdapt.setRelativeButton(R.id.HoldButton2, TFarray.getFieldIdByType(MillToothFeed),
+                    TFarray.getFieldIdByType(MillMinuteFeed), FragmentAdaptor.Position_TWO);
 
             View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);

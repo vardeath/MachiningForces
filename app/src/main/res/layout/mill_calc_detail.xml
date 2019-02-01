@@ -41,151 +41,151 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/getMaterial"
-                app:layout_constraintBottom_toTopOf="@+id/MillDiameter"
+                app:layout_constraintBottom_toTopOf="@+id/MillField1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <Button
-                android:id="@+id/HoldCutRev"
+                android:id="@+id/HoldButton1"
                 android:layout_width="40dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/but_lock"
-                app:layout_constraintBottom_toTopOf="@+id/MillTeethQuantity"
-                app:layout_constraintEnd_toEndOf="@+id/MillCuttingDepth"
+                app:layout_constraintBottom_toTopOf="@+id/MillField4"
+                app:layout_constraintEnd_toEndOf="@+id/MillField5"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/MillCuttingDepth"
-                app:layout_constraintTop_toTopOf="@+id/MillCuttingSpeed" />
+                app:layout_constraintStart_toStartOf="@+id/MillField5"
+                app:layout_constraintTop_toTopOf="@+id/MillField2" />
 
             <Button
                 android:id="@+id/HoldButton2"
-                android:layout_width="39dp"
-                android:layout_height="78dp"
+                android:layout_width="40dp"
+                android:layout_height="74dp"
                 android:text="@string/but_lock"
-                app:layout_constraintBottom_toTopOf="@+id/MillGeneralAngle"
-                app:layout_constraintEnd_toEndOf="@+id/MillCuttingDepth"
+                app:layout_constraintBottom_toTopOf="@+id/MillField7"
+                app:layout_constraintEnd_toEndOf="@+id/MillField5"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/MillCuttingDepth" />
+                app:layout_constraintTop_toTopOf="@+id/MillField5" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillDiameter"
+                android:id="@+id/MillField1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillCuttingSpeed"
+                app:layout_constraintBottom_toTopOf="@+id/MillField2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/butGetMaterial" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillCuttingSpeed"
+                android:id="@+id/MillField2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillRevolution"
+                app:layout_constraintBottom_toTopOf="@+id/MillField3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillDiameter" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField1" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillRevolution"
+                android:id="@+id/MillField3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillTeethQuantity"
+                app:layout_constraintBottom_toTopOf="@+id/MillField4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillCuttingSpeed" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField2" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillTeethQuantity"
+                android:id="@+id/MillField4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillCuttingDepth"
+                app:layout_constraintBottom_toTopOf="@+id/MillField5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillRevolution" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField3" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillCuttingDepth"
+                android:id="@+id/MillField5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillCuttingWidth"
+                app:layout_constraintBottom_toTopOf="@+id/MillField6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillTeethQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField4" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillCuttingWidth"
+                android:id="@+id/MillField6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillGeneralAngle"
+                app:layout_constraintBottom_toTopOf="@+id/MillField7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillCuttingDepth" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField5" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillGeneralAngle"
+                android:id="@+id/MillField7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillToothFeed"
+                app:layout_constraintBottom_toTopOf="@+id/MillField8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillCuttingWidth" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField6" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillToothFeed"
+                android:id="@+id/MillField8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillRevolutionFeed"
+                app:layout_constraintBottom_toTopOf="@+id/MillField9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillGeneralAngle" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField7" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillRevolutionFeed"
+                android:id="@+id/MillField9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillMinuteFeed"
+                app:layout_constraintBottom_toTopOf="@+id/MillField10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillToothFeed" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField8" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillMinuteFeed"
+                android:id="@+id/MillField10"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillPathLength"
+                app:layout_constraintBottom_toTopOf="@+id/MillField11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillRevolutionFeed" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField9" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillPathLength"
+                android:id="@+id/MillField11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillToolLength"
+                app:layout_constraintBottom_toTopOf="@+id/MillField12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillMinuteFeed" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField10" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillToolLength"
+                android:id="@+id/MillField12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/MillAttackAngle"
+                app:layout_constraintBottom_toTopOf="@+id/MillField13"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillPathLength" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField11" />
 
             <com.example.stayi.MachiningForces.TemplateField
-                android:id="@+id/MillAttackAngle"
+                android:id="@+id/MillField13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MillToolLength" />
+                app:layout_constraintTop_toBottomOf="@+id/MillField12" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
