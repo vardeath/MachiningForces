@@ -1,70 +1,45 @@
 package com.example.stayi.MachiningForces.CustomView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
-import com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType;
+import com.example.stayi.MachiningForces.Enumerations.ConditionsPreset;
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.HoldButtonRelatives;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
-
 public class CustomViewArray {
 
-    @SuppressLint("StaticFieldLeak")
-    private static Context cont = null;
-    private static PresetFieldsArrayType Template = null;
+    private List<CustomViewObject> customViewObjectArray;
 
-    private static FieldType[] MillDetailArray = new FieldType[]{
-            MillDiameter, MillCuttingSpeed, MillRevolutionQuantity, MillTeethQuantity,
-            MillToothFeed, MillMinuteFeed, MillRevolutionFeed, MillCuttingDepth, MillCuttingWidth, MillGeneralAngle,
-            MillPathLength, MillToolLength, MillAttackAngle
-    };
-
-    private static FieldType[] MillSimpleArray = new FieldType[]{
-            MillDiameter, MillCuttingSpeed, MillRevolutionQuantity, MillTeethQuantity,
-            MillToothFeed, MillMinuteFeed
-    };
-
-    private List<CustomView> CustomViewArray;
-
-    List<FieldBaseObject> BaseFieldObject = new ArrayList<FieldBaseObject>();
+    private List<FieldBaseObject> BaseFieldObject = new ArrayList<FieldBaseObject>();
 
     private List<HoldButtonRelatives> ButtonRelatives = new ArrayList<HoldButtonRelatives>();
 
-    public CustomViewArray(Context context, List<CustomView> Array, PresetFieldsArrayType Fieldtype) {
-        cont = context;
-        CustomViewArray = Array;
-        Template = Fieldtype;
-        switch (Fieldtype) {
-            case MillDetail:
-                init(Array, MillDetailArray, Fieldtype);
-                break;
-            case MillSimple:
-                init(Array, MillSimpleArray, Fieldtype);
-                break;
-        }
+    public CustomViewArray(Context context, List<CustomViewObject> Array, ConditionsPreset CondPreset) {
+        customViewObjectArray = Array;
+
+        CustomValuesPreset valuesPreset = new CustomValuesPreset(context);
+        List<CustomViewValuesObject> CurrentValues = valuesPreset.getPreset(CondPreset);
+
+        init(CurrentValues);
         for (int i = 0; i < Array.size(); ++i) {
-            BaseFieldObject.add(new FieldBaseObject(CustomViewArray.get(i).getMainTextViewId(), CustomViewArray.get(i).getMainTextViewFieldType()));
+            BaseFieldObject.add(new FieldBaseObject(customViewObjectArray.get(i).getMainTextViewId(), customViewObjectArray.get(i).getMainTextViewFieldType()));
         }
     }
 
-    private void init(List<CustomView> Array, FieldType[] Ftype, PresetFieldsArrayType Ttype) {
-        for (int i = 0; i < Array.size(); ++i) {
-            Array.get(i).setGeneralTextViewFieldType(Ftype[i]);
-            Array.get(i).setText(new CustomViewStringUnits(cont, Ftype[i], Ttype));
+    private void init(List<CustomViewValuesObject> ValuesObject) {
+        for (int i = 0; i < customViewObjectArray.size(); ++i) {
+            customViewObjectArray.get(i).setValues(ValuesObject.get(i));
         }
     }
 
-    public int getFieldPositionInArray(FieldType ftype) {
+    private int getFieldPositionInArray(FieldType ftype) {
         int x = 0;
-        for (int i = 0; i < MillSimpleArray.length; ++i) {
-            if (CustomViewArray.get(i).getMainTextViewFieldType() == ftype) x = i;
+        for (int i = 0; i < customViewObjectArray.size(); ++i) {
+            if (customViewObjectArray.get(i).getMainTextViewFieldType() == ftype) x = i;
 
         }
         return x;
@@ -83,5 +58,4 @@ public class CustomViewArray {
     public List<HoldButtonRelatives> getRelativeButtonArr() {
         return ButtonRelatives;
     }
-
 }

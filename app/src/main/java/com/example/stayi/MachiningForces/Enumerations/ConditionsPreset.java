@@ -1,6 +1,6 @@
 package com.example.stayi.MachiningForces.Enumerations;
 
-public enum PresetFieldsArrayType {
+public enum ConditionsPreset {
     MillSimple,
     MillDetail,
     TurningSimple,

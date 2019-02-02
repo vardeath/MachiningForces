@@ -1,5 +1,6 @@
 package com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,8 +18,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
-import com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType;
-import com.example.stayi.MachiningForces.CustomView.CustomView;
+import com.example.stayi.MachiningForces.CustomView.CustomViewObject;
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
 import com.example.stayi.MachiningForces.KeyboardListener;
@@ -35,7 +34,7 @@ import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillCutti
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillMinuteFeed;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillRevolutionQuantity;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillToothFeed;
-import static com.example.stayi.MachiningForces.Enumerations.PresetFieldsArrayType.MillDetail;
+import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.MillDetail;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,26 +98,26 @@ public class MILL_calc_detail extends Fragment implements Runnable {
 
         String TAG = String.valueOf(MillDetail); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
-        List<CustomView> CustomViews = new ArrayList<CustomView>();
-        CustomViews.add(rootView.findViewById(R.id.MillField1));
-        CustomViews.add(rootView.findViewById(R.id.MillField2));
-        CustomViews.add(rootView.findViewById(R.id.MillField3));
-        CustomViews.add(rootView.findViewById(R.id.MillField4));
-        CustomViews.add(rootView.findViewById(R.id.MillField5));
-        CustomViews.add(rootView.findViewById(R.id.MillField6));
-        CustomViews.add(rootView.findViewById(R.id.MillField7));
-        CustomViews.add(rootView.findViewById(R.id.MillField8));
-        CustomViews.add(rootView.findViewById(R.id.MillField9));
-        CustomViews.add(rootView.findViewById(R.id.MillField10));
-        CustomViews.add(rootView.findViewById(R.id.MillField11));
-        CustomViews.add(rootView.findViewById(R.id.MillField12));
-        CustomViews.add(rootView.findViewById(R.id.MillField13));
+        List<CustomViewObject> customViewObjects = new ArrayList<CustomViewObject>();
+        customViewObjects.add(rootView.findViewById(R.id.MillField1));
+        customViewObjects.add(rootView.findViewById(R.id.MillField2));
+        customViewObjects.add(rootView.findViewById(R.id.MillField3));
+        customViewObjects.add(rootView.findViewById(R.id.MillField4));
+        customViewObjects.add(rootView.findViewById(R.id.MillField5));
+        customViewObjects.add(rootView.findViewById(R.id.MillField6));
+        customViewObjects.add(rootView.findViewById(R.id.MillField7));
+        customViewObjects.add(rootView.findViewById(R.id.MillField8));
+        customViewObjects.add(rootView.findViewById(R.id.MillField9));
+        customViewObjects.add(rootView.findViewById(R.id.MillField10));
+        customViewObjects.add(rootView.findViewById(R.id.MillField11));
+        customViewObjects.add(rootView.findViewById(R.id.MillField12));
+        customViewObjects.add(rootView.findViewById(R.id.MillField13));
 
         LinearLayout Underground = rootView.findViewById(R.id.LAY_RESULTS);
         Underground.getLayoutParams().height = 0;
 
         try {
-            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), CustomViews, MillDetail);
+            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), customViewObjects, MillDetail);
             CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);
             CustomViewArr.setRelativeButton(R.id.HoldButton2, MillToothFeed, MillMinuteFeed, ButtonLockPosition.TWO);
 
