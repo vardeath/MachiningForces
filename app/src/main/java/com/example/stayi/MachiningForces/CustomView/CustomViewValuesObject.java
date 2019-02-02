@@ -1,20 +1,22 @@
 package com.example.stayi.MachiningForces.CustomView;
 
 import android.content.Context;
-
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
 
-public class CustomViewValuesObject {
-    private Context cont;
-    private FieldType FieldTyp;
-    private String DedcriptionID;
-    private String UnitID;
+/**
+ * Обьект класса содержит значения, используемые при инициализации обьекта класса CustomView.
+ */
+class CustomViewValuesObject {
+    private Context cont; //Контекст приложения.
+    private FieldType FieldType; //Логический тип инициализируемого поля ввода (диаметр, скорость, подача и тд).
+    private String Description; //Обозначение поля ввода.
+    private String Unit; //Единицы измерения.
 
     CustomViewValuesObject(Context context, FieldType Ftype, int Description_ID, int Unit_ID) {
         cont = context;
-        FieldTyp = Ftype;
-        DedcriptionID = getStringValue(Description_ID);
-        UnitID = getStringValue(Unit_ID);
+        FieldType = Ftype;
+        Description = getStringValue(Description_ID);
+        Unit = getStringValue(Unit_ID);
     }
 
     private String getStringValue(int index) {
@@ -22,15 +24,14 @@ public class CustomViewValuesObject {
     }
 
     FieldType getFieldType() {
-        return FieldTyp;
+        return FieldType;
     }
 
-    String getDedcription() {
-        return DedcriptionID;
+    String getDescription() {
+        return Description;
     }
 
     String getUnit() {
-        return UnitID;
+        return Unit;
     }
-
 }

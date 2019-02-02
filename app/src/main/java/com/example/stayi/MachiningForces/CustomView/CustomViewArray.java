@@ -10,36 +10,39 @@ import com.example.stayi.MachiningForces.HoldButtonRelatives;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, инициализирующий массив кастомных View с параметрами согласно пресету.
+ */
 public class CustomViewArray {
 
-    private List<CustomViewObject> customViewObjectArray;
+    private List<CustomViewObject> CustomViews; //Основной массив Custom Views - группы Text Views (поле ввода, обозначение, единицы измерения.
 
-    private List<FieldBaseObject> BaseFieldObject = new ArrayList<FieldBaseObject>();
+    private List<FieldBaseObject> BaseFieldObject = new ArrayList<FieldBaseObject>(); //Массив базовых обьектов, с первичной информацией для FragmentAdaptor. Получает ID основного TextVIew из кастомноый группы.
 
-    private List<HoldButtonRelatives> ButtonRelatives = new ArrayList<HoldButtonRelatives>();
+    private List<HoldButtonRelatives> ButtonRelatives = new ArrayList<HoldButtonRelatives>(); //Массив со связями ID Hold Button и IDes родственых полей ввода.
 
-    public CustomViewArray(Context context, List<CustomViewObject> Array, ConditionsPreset CondPreset) {
-        customViewObjectArray = Array;
+    public CustomViewArray(Context context, List<CustomViewObject> CustomViewsArr, ConditionsPreset CondPreset) {
+        CustomViews = CustomViewsArr;
 
         CustomValuesPreset valuesPreset = new CustomValuesPreset(context);
         List<CustomViewValuesObject> CurrentValues = valuesPreset.getPreset(CondPreset);
 
         init(CurrentValues);
-        for (int i = 0; i < Array.size(); ++i) {
-            BaseFieldObject.add(new FieldBaseObject(customViewObjectArray.get(i).getMainTextViewId(), customViewObjectArray.get(i).getMainTextViewFieldType()));
+        for (int i = 0; i < CustomViewsArr.size(); ++i) {
+            BaseFieldObject.add(new FieldBaseObject(CustomViews.get(i).getMainTextViewId(), CustomViews.get(i).getMainTextViewFieldType()));
         }
     }
 
     private void init(List<CustomViewValuesObject> ValuesObject) {
-        for (int i = 0; i < customViewObjectArray.size(); ++i) {
-            customViewObjectArray.get(i).setValues(ValuesObject.get(i));
+        for (int i = 0; i < CustomViews.size(); ++i) {
+            CustomViews.get(i).setValues(ValuesObject.get(i));
         }
     }
 
     private int getFieldPositionInArray(FieldType ftype) {
         int x = 0;
-        for (int i = 0; i < customViewObjectArray.size(); ++i) {
-            if (customViewObjectArray.get(i).getMainTextViewFieldType() == ftype) x = i;
+        for (int i = 0; i < CustomViews.size(); ++i) {
+            if (CustomViews.get(i).getMainTextViewFieldType() == ftype) x = i;
 
         }
         return x;

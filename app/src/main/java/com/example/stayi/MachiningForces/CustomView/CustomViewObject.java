@@ -73,7 +73,7 @@ public class CustomViewObject extends LinearLayout {
 
     public void setValues(CustomViewValuesObject Object) {
         mGeneralTextVIewFieldType = Object.getFieldType();
-        mDescription.setText(Object.getDedcription());
+        mDescription.setText(Object.getDescription());
         mUnit.setText(Object.getUnit());
     }
 }

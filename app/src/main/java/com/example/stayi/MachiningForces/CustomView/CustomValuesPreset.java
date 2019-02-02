@@ -13,8 +13,8 @@ import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 class CustomValuesPreset {
 
     private Context cont;
-    private List<CustomViewValuesObject> MillSimpleValuesArray = new ArrayList<CustomViewValuesObject>();
-    private List<CustomViewValuesObject> MillDetailValuesArray = new ArrayList<CustomViewValuesObject>();
+    private static List<CustomViewValuesObject> MillSimpleValuesArray = new ArrayList<CustomViewValuesObject>();
+    private static List<CustomViewValuesObject> MillDetailValuesArray = new ArrayList<CustomViewValuesObject>();
 
     CustomValuesPreset(Context context) {
         cont = context;
