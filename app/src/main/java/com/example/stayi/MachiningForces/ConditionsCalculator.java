@@ -7,18 +7,18 @@ import com.example.stayi.MachiningForces.Enumerations.FieldType;
 
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 
-class ConditionsCalculator {
+public class ConditionsCalculator {
     private Context context;
     private FragmentAdaptor FieldAadaptor;
     private CalculatingObject[] CalcObjects;
 
-    ConditionsCalculator(FragmentAdaptor fieldAdaptor, Context cont) {
+    public ConditionsCalculator(FragmentAdaptor fieldAdaptor, Context cont) {
         context = cont;
         FieldAadaptor = fieldAdaptor;
         CalcObjects = fieldAdaptor.getCalculatingObjects();
     }
 
-    void calculate() {
+    public void calculate() {
         int current_position = FieldAadaptor.getCurrentSelectedPosition();
 
         for (int i = current_position; i < CalcObjects.length; ++i) {

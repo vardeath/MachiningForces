@@ -58,7 +58,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         return Calc;
     }
 
-    void SaveInstanceState() {
+    public void SaveInstanceState() {
         nav_var_storage.init(context);
         for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
             nav_var_storage.addProperty(TAG + i, FieldAdaptedObjects[i].getFieldStringValue());
@@ -73,7 +73,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         return current_selected_position;
     }
 
-    FieldAdaptedObject getSelectedFieldAdaptedObject() {
+    public FieldAdaptedObject getSelectedFieldAdaptedObject() {
         return FieldAdaptedObjects[getCurrentSelectedPosition()];
     }
 
@@ -163,7 +163,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         }
     }
 
-    void incrementSelectedPosition(){
+    public void incrementSelectedPosition() {
         int pos = getCurrentSelectedPosition();
         int min_pos = 0;
         int max_pos = FieldAdaptedObjects.length - 1;
@@ -176,7 +176,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         refreshInputFields();
     }
 
-    void decrementSelectedPosition(){
+    public void decrementSelectedPosition() {
         int pos = getCurrentSelectedPosition();
         int min_pos = 0;
         int max_pos = FieldAdaptedObjects.length - 1;
@@ -189,15 +189,15 @@ public class FragmentAdaptor implements View.OnClickListener {
         refreshInputFields();
     }
 
-    void makeSelectDefault(){
+    public void makeSelectDefault() {
         setSelectedField(FieldAdaptedObjects[0].getFieldID());
     }
 
-    int getSelectedMaxLength() {
+    public int getSelectedMaxLength() {
         return FieldAdaptedObjects[getCurrentSelectedPosition()].getBaseObject().getFieldLengthValue().getValue();
     }
 
-    void setZeroValuesAll() {
+    public void setZeroValuesAll() {
         for (FieldAdaptedObject x : FieldAdaptedObjects) {x.setZeroValue();}
     }
 

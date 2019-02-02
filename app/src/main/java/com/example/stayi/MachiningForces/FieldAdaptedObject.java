@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import static java.lang.String.format;
 
-class FieldAdaptedObject {
+public class FieldAdaptedObject {
     private Context context;
     //Набор базовых параметров элемента поля ввода.
     private View root_view; //Корневой View поля ввода.
@@ -42,11 +42,11 @@ class FieldAdaptedObject {
         Zero = "0";
     }
 
-    FieldBaseObject getBaseObject() {
+    public FieldBaseObject getBaseObject() {
         return BaseObject;
     }
 
-    String getFieldStringValue() {
+    public String getFieldStringValue() {
         TextView temp_view = root_view.findViewById(TextView_id);
         return temp_view.getText().toString();
     }
@@ -93,7 +93,7 @@ class FieldAdaptedObject {
         return AccessToSelect;
     }
 
-    TextView getField() {
+    public TextView getField() {
         return Text_view;
     }
 

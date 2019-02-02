@@ -1,4 +1,4 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.ConditionsModule;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,7 +10,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.stayi.MachiningForces.ConditionsCalculator;
 import com.example.stayi.MachiningForces.Enumerations.KeyDigit;
+import com.example.stayi.MachiningForces.FieldAdaptedObject;
+import com.example.stayi.MachiningForces.FragmentAdaptor;
+import com.example.stayi.MachiningForces.R;
+
 import androidx.annotation.RequiresApi;
 
 import static com.example.stayi.MachiningForces.Enumerations.FieldDataType.FLOAT;

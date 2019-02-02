@@ -1,6 +1,5 @@
 package com.example.stayi.MachiningForces.BASIC_MENU.CONDITIONS_MILL;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
@@ -21,7 +20,7 @@ import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 import com.example.stayi.MachiningForces.CustomView.CustomViewObject;
 import com.example.stayi.MachiningForces.FieldBaseObject;
 import com.example.stayi.MachiningForces.FragmentAdaptor;
-import com.example.stayi.MachiningForces.KeyboardListener;
+import com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.CustomView.CustomViewArray;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;

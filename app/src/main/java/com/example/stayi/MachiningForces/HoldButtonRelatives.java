@@ -4,9 +4,9 @@ import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 
 public class HoldButtonRelatives {
     private int Button_ID;
-    private int FirstFieldPosition = 0;
-    private int SecondFieldPosition = 0;
-    private ButtonLockPosition ButtonPos= null;
+    private int FirstFieldPosition;
+    private int SecondFieldPosition;
+    private ButtonLockPosition ButtonPos;
 
     public HoldButtonRelatives(int B_id, int first_pos, int second_pos, ButtonLockPosition pos) {
         Button_ID = B_id;
@@ -29,13 +29,5 @@ public class HoldButtonRelatives {
 
     ButtonLockPosition getButtonPos() {
         return ButtonPos;
-    }
-
-    void setFirstFieldPosition(int pos){
-        FirstFieldPosition = pos;
-    }
-
-    void setSecondFieldPosition(int pos){
-        SecondFieldPosition = pos;
     }
 }

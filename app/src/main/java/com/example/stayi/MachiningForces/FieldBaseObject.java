@@ -84,7 +84,7 @@ public class FieldBaseObject {
         return MaxFieldValue;
     }
 
-    FieldDataType getFieldFieldDataTypeValue() {
+    public FieldDataType getFieldFieldDataTypeValue() {
         return FieldFieldDataTypeValue;
     }
 

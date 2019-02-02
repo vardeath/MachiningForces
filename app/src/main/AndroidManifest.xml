@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.stayi.MachiningForces.KeyboardListener" />
+        <activity android:name="com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener" />
     </application>
 
 </manifest>
