@@ -1,24 +1,26 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.ConditionsModule;
 
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.stayi.MachiningForces.ConditionsModule.CalculatingObject;
+import com.example.stayi.MachiningForces.ConditionsModule.FragmentAdaptor;
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
 
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 
-public class ConditionsCalculator {
+class ConditionsCalculator {
     private Context context;
     private FragmentAdaptor FieldAadaptor;
     private CalculatingObject[] CalcObjects;
 
-    public ConditionsCalculator(FragmentAdaptor fieldAdaptor, Context cont) {
+    ConditionsCalculator(FragmentAdaptor fieldAdaptor, Context cont) {
         context = cont;
         FieldAadaptor = fieldAdaptor;
         CalcObjects = fieldAdaptor.getCalculatingObjects();
     }
 
-    public void calculate() {
+    void calculate() {
         int current_position = FieldAadaptor.getCurrentSelectedPosition();
 
         for (int i = current_position; i < CalcObjects.length; ++i) {

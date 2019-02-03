@@ -1,4 +1,4 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.ConditionsModule;
 
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
 

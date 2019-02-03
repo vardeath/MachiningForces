@@ -5,8 +5,8 @@ import android.content.Context;
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
 import com.example.stayi.MachiningForces.Enumerations.ConditionsPreset;
-import com.example.stayi.MachiningForces.FieldBaseObject;
-import com.example.stayi.MachiningForces.HoldButtonRelatives;
+import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
+import com.example.stayi.MachiningForces.ConditionsModule.HoldButtonRelatives;
 import java.util.ArrayList;
 import java.util.List;
 

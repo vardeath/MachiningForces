@@ -12,8 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
-import com.example.stayi.MachiningForces.FieldBaseObject;
-import com.example.stayi.MachiningForces.FragmentAdaptor;
+import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
+import com.example.stayi.MachiningForces.ConditionsModule.FragmentAdaptor;
 import com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.CustomView.CustomViewObject;
@@ -177,8 +177,8 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
         int id = item.getItemId();
         if (id != R.id.action_mill_simple) {
         //Запоминаем состояние меню фрагмента.
-        nav_var_storage.init(getContext());
-        nav_var_storage.addProperty("hasVisited", false);
+        Storage.init(getContext());
+        Storage.addProperty("hasVisited", false);
         NavController navController;
         navController = Navigation.findNavController (Objects.requireNonNull (getActivity ()), R.id.fragment);
         //navController.navigate(action_MILL_calc_simple_to_MILL_calc_detail2);

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-//Хранилище переменных использующихся в навигации приложения.
-public class nav_var_storage {
+//Хранилище переменных и параметров приложения.
+public class Storage {
     private static final String STORAGE_NAME = "StorageName";
 
     private static SharedPreferences settings = null;
@@ -13,7 +13,7 @@ public class nav_var_storage {
     @SuppressLint("StaticFieldLeak")
     private static Context context = null;
 
-    static void init(Context cntxt) {
+    public static void init(Context cntxt) {
         context = cntxt;
     }
 
@@ -23,33 +23,29 @@ public class nav_var_storage {
         editor = settings.edit();
     }
 
-    static void addProperty(String name, boolean value) {
-        if( settings == null ){
-            init();
-        }
+    private static void settingsInit() {
+        if (settings == null) init();
+    }
+
+    public static void addProperty(String name, boolean value) {
+        settingsInit();
         editor.putBoolean( name, value );
         editor.apply();
     }
 
-    static void addProperty(String name, String value) {
-        if (settings == null) {
-            init();
-        }
+    public static void addProperty(String name, String value) {
+        settingsInit();
         editor.putString(name, value);
         editor.apply();
     }
 
-    static boolean getProperty(String name, boolean b) {
-        if( settings == null ){
-            init();
-        }
+    public static boolean getProperty(String name, boolean b) {
+        settingsInit();
         return settings.getBoolean( name, Boolean.parseBoolean(null));
     }
 
-    static String getProperty(String name) {
-        if (settings == null) {
-            init();
-        }
+    public static String getProperty(String name) {
+        settingsInit();
         return settings.getString(name, "0");
     }
 }

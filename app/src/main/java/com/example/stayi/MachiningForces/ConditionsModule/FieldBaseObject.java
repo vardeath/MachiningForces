@@ -1,4 +1,4 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.ConditionsModule;
 
 import com.example.stayi.MachiningForces.Enumerations.FieldConversePrecision;
 import com.example.stayi.MachiningForces.Enumerations.FieldDataType;
@@ -84,7 +84,7 @@ public class FieldBaseObject {
         return MaxFieldValue;
     }
 
-    public FieldDataType getFieldFieldDataTypeValue() {
+    FieldDataType getFieldFieldDataTypeValue() {
         return FieldFieldDataTypeValue;
     }
 
@@ -96,7 +96,7 @@ public class FieldBaseObject {
         return FieldLengthValue;
     }
 
-    FieldConversePrecision getFieldConversePrecisionValue() {
+    FieldConversePrecision getConversePrecisionLevel() {
         return FieldConversePrecisionValue;
     }
 }

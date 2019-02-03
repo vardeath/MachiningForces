@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 import com.example.stayi.MachiningForces.CustomView.CustomViewObject;
-import com.example.stayi.MachiningForces.FieldBaseObject;
-import com.example.stayi.MachiningForces.FragmentAdaptor;
+import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
+import com.example.stayi.MachiningForces.ConditionsModule.FragmentAdaptor;
 import com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.CustomView.CustomViewArray;
@@ -93,11 +93,11 @@ public class MILL_calc_detail extends Fragment implements Runnable {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_detail, container, false);
-        ScrollView myScroll = (ScrollView) rootView.findViewById(R.id.millScroll);
+        ScrollView myScroll = rootView.findViewById(R.id.millScroll);
 
         String TAG = String.valueOf(MillDetail); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
-        List<CustomViewObject> customViewObjects = new ArrayList<CustomViewObject>();
+        List<CustomViewObject> customViewObjects = new ArrayList<>();
         customViewObjects.add(rootView.findViewById(R.id.MillField1));
         customViewObjects.add(rootView.findViewById(R.id.MillField2));
         customViewObjects.add(rootView.findViewById(R.id.MillField3));
@@ -194,8 +194,8 @@ public class MILL_calc_detail extends Fragment implements Runnable {
         int id = item.getItemId();
         //Запоминаем состояние меню фрагмента.
         if (id !=R.id.action_mill_detail) {
-            nav_var_storage.init(getContext());
-            nav_var_storage.addProperty("hasVisited", true);
+            Storage.init(getContext());
+            Storage.addProperty("hasVisited", true);
             NavController navController;
             navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.fragment);
             //navController.navigate(action_MILL_calc_detail_to_MILL_calc_simple);

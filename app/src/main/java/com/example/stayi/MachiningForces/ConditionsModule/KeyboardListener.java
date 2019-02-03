@@ -10,10 +10,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.stayi.MachiningForces.ConditionsCalculator;
 import com.example.stayi.MachiningForces.Enumerations.KeyDigit;
-import com.example.stayi.MachiningForces.FieldAdaptedObject;
-import com.example.stayi.MachiningForces.FragmentAdaptor;
 import com.example.stayi.MachiningForces.R;
 
 import androidx.annotation.RequiresApi;
@@ -183,6 +180,6 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
                 FieldAdaptor.setZeroValuesAll();
                 break;
         }
-        FieldAdaptor.SaveInstanceState();
+        FieldAdaptor.setStorageValues();
     }
 }

@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity
         });
 
         //Устанавливаем значения навигационных переменных для фрагментов меню по умолчанию при первом запуске программы.
-        nav_var_storage.init(this);
-        boolean hasVisited = nav_var_storage.getProperty("hasVisited", true);
+        Storage.init(this);
+        boolean hasVisited = Storage.getProperty("hasVisited", true);
         if (!hasVisited) {
-            nav_var_storage.addProperty("hasVisited", false);
+            Storage.addProperty("hasVisited", false);
         }
     }
 

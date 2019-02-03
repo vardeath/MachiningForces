@@ -1,20 +1,19 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.ConditionsModule;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.stayi.MachiningForces.R;
 import static java.lang.String.format;
 
-public class FieldAdaptedObject {
-    private Context context;
+class FieldAdaptedObject {
     //Набор базовых параметров элемента поля ввода.
     private View root_view; //Корневой View поля ввода.
     private FieldBaseObject BaseObject; //Обьект с базовой информацией о поле воода.
     private int TextView_id;
     private TextView Text_view;
-    private String TextView_string_value;
     private boolean SelectedState; //Состояние выделения пользователем поля ввода: выделено/не выделено.
     private boolean AccessToSelect; //Представляет разрешение для выделения поля ввода.
 
@@ -28,7 +27,6 @@ public class FieldAdaptedObject {
     private final String Zero;
 
     FieldAdaptedObject(FieldBaseObject fieldBaseObject, View v, Context cont) {
-        context = cont;
         root_view = v;
         BaseObject = fieldBaseObject;
         TextView_id = BaseObject.getFieldId();
@@ -42,11 +40,11 @@ public class FieldAdaptedObject {
         Zero = "0";
     }
 
-    public FieldBaseObject getBaseObject() {
+    FieldBaseObject getBaseObject() {
         return BaseObject;
     }
 
-    public String getFieldStringValue() {
+    String getFieldStringValue() {
         TextView temp_view = root_view.findViewById(TextView_id);
         return temp_view.getText().toString();
     }
@@ -56,9 +54,8 @@ public class FieldAdaptedObject {
     }
 
     private void setTextViewStringValue(String text) {
-        TextView_string_value = text;
         TextView temp_view = root_view.findViewById(TextView_id);
-        temp_view.setText(TextView_string_value);
+        temp_view.setText(text);
     }
 
     void setFieldDoubleValue(Double val) {
@@ -93,7 +90,7 @@ public class FieldAdaptedObject {
         return AccessToSelect;
     }
 
-    public TextView getField() {
+    TextView getField() {
         return Text_view;
     }
 
@@ -146,7 +143,7 @@ public class FieldAdaptedObject {
         final double HighPrecisionMiddleLimit = 0.1;
         final double HighPrecisionDownLimit = 0.001;
 
-        switch (getBaseObject().getFieldConversePrecisionValue()) {
+        switch (getBaseObject().getConversePrecisionLevel()) {
             case Low:
                 if (val > LowPrecisionUpLimit) {
                     Result = RoundingValue(val, stageONE);

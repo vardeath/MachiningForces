@@ -1,4 +1,4 @@
-package com.example.stayi.MachiningForces;
+package com.example.stayi.MachiningForces.ConditionsModule;
 
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 
@@ -15,19 +15,19 @@ public class HoldButtonRelatives {
         ButtonPos = pos;
     }
 
-    int getButtonId(){
+    public int getButtonId() {
         return Button_ID;
     }
 
-    int getFirstFieldPosition(){
+    public int getFirstFieldPosition() {
         return FirstFieldPosition;
     }
 
-    int getSecondFieldPosition(){
+    public int getSecondFieldPosition() {
         return SecondFieldPosition;
     }
 
-    ButtonLockPosition getButtonPos() {
+    public ButtonLockPosition getLockedFieldPosition() {
         return ButtonPos;
     }
 }
