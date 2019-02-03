@@ -19,52 +19,52 @@ public class FragmentAdaptor implements View.OnClickListener {
      **/
     private Context context;
     private View view;
-    private String TAG; //Уникальный тег, для генерации имен при записи/чтении в хранилище (Storage).
-    private FieldAdaptedObject[] FieldAdaptedObjects; //Массив обьектов с информацией о поле ввода, его состоянии выделения, дуступе к изменению состояния выделения, состоянии блокировки.
-    private List<HoldButtonRelatives> HoldButtonRelatives = new ArrayList<>(); //Массив с данными ID кнопки блокировки поля, и родственных полей ввода.
+    private String mTAG; //Уникальный тег, для генерации имен при записи/чтении в хранилище (Storage).
+    private FieldAdaptedObject[] mFieldAdaptedObjects; //Массив обьектов с информацией о поле ввода, его состоянии выделения, дуступе к изменению состояния выделения, состоянии блокировки.
+    private List<HoldButtonRelatives> mHoldButtonRelatives = new ArrayList<>(); //Массив с данными ID кнопки блокировки поля, и родственных полей ввода.
     private int current_selected_position; //Позиция текущего выделенного поля ввода.
 
-    public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context cont, String tag) {
-        context = cont;
+    public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context context, String tag) {
+        this.context = context;
         view = v;
-        TAG = tag;
-        FieldAdaptedObjects = new FieldAdaptedObject[FieldBaseObject.size()];
-        for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
-            FieldAdaptedObjects[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v, cont); //Инициализация адаптированных обьектов.
-            FieldAdaptedObjects[i].setAccessToSelectState(true); //Разрешаение доступа к выделению поля ввода.
-            FieldAdaptedObjects[i].getField().setOnClickListener(this); //Слушатель поля ввода.
+        mTAG = tag;
+        mFieldAdaptedObjects = new FieldAdaptedObject[FieldBaseObject.size()];
+        for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
+            mFieldAdaptedObjects[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v, context); //Инициализация адаптированных обьектов.
+            mFieldAdaptedObjects[i].setAccessToSelectState(true); //Разрешаение доступа к выделению поля ввода.
+            mFieldAdaptedObjects[i].getField().setOnClickListener(this);
             if (i == 0) {
-                FieldAdaptedObjects[i].setSelectedState(true); //Первое поле ввода выделено по умолчанию.
+                mFieldAdaptedObjects[i].setSelectedState(true); //Первое поле ввода выделено по умолчанию.
                 current_selected_position = 0;
-            } else FieldAdaptedObjects[i].setSelectedState(false); //Поле ввода не выделено.
+            } else mFieldAdaptedObjects[i].setSelectedState(false); //Поле ввода не выделено.
         }
         restoreStorageValues();
     }
 
     private void restoreStorageValues() { //Восстановить значения полей ввода из хранилища.
         Storage.init(context);
-        if (Storage.getProperty(TAG, true)) {
-            for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
-                FieldAdaptedObjects[i].setFieldDoubleValue(Double.valueOf(Storage.getProperty(TAG + i)));
+        if (Storage.getProperty(mTAG, true)) {
+            for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
+                mFieldAdaptedObjects[i].setFieldDoubleValue(Double.valueOf(Storage.getProperty(mTAG + i)));
             }
         } else {
-            Storage.addProperty(TAG, true); //Первичная инициализация переменных в хранилище.
+            Storage.addProperty(mTAG, true); //Первичная инициализация переменных в хранилище.
             setStorageValues();
         }
     }
 
     CalculatingObject[] getCalculatingObjects() { //Обьект передает набор параметров для математического расчета.
-        CalculatingObject[] Calc = new CalculatingObject[FieldAdaptedObjects.length];
-        for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
-            Calc[i] = new CalculatingObject(FieldAdaptedObjects[i]);
+        CalculatingObject[] Calc = new CalculatingObject[mFieldAdaptedObjects.length];
+        for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
+            Calc[i] = new CalculatingObject(mFieldAdaptedObjects[i]);
         }
         return Calc;
     }
 
     void setStorageValues() { //Записать значения в хранилище.
         Storage.init(context);
-        for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
-            Storage.addProperty(TAG + i, FieldAdaptedObjects[i].getFieldStringValue());
+        for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
+            Storage.addProperty(mTAG + i, mFieldAdaptedObjects[i].getFieldStringValue());
         }
     }
 
@@ -77,46 +77,46 @@ public class FragmentAdaptor implements View.OnClickListener {
     }
 
     FieldAdaptedObject getSelectedFieldAdaptedObject() {
-        return FieldAdaptedObjects[getCurrentSelectedPosition()];
+        return mFieldAdaptedObjects[getCurrentSelectedPosition()];
     }
 
     /**
      * Назначает родственную кнопку ReHold для 2-х полей ввода.
      */
     public void setRelativeButton(List<HoldButtonRelatives> RelativeButtons) {
-        HoldButtonRelatives = RelativeButtons;
+        mHoldButtonRelatives = RelativeButtons;
         for (int i = 0; i < RelativeButtons.size(); ++i) {
             switch (RelativeButtons.get(i).getLockedFieldPosition()) {
                 case ONE:
-                    FieldAdaptedObjects[HoldButtonRelatives.get(i).getFirstFieldPosition()].setAccessToSelectState(false);
+                    mFieldAdaptedObjects[mHoldButtonRelatives.get(i).getFirstFieldPosition()].setAccessToSelectState(false);
                     refreshInputFields();
                     break;
                 case TWO:
-                    FieldAdaptedObjects[HoldButtonRelatives.get(i).getSecondFieldPosition()].setAccessToSelectState(false);
+                    mFieldAdaptedObjects[mHoldButtonRelatives.get(i).getSecondFieldPosition()].setAccessToSelectState(false);
                     refreshInputFields();
                     break;
             }
-            view.findViewById(HoldButtonRelatives.get(i).getButtonId()).setOnClickListener(this);
+            view.findViewById(mHoldButtonRelatives.get(i).getButtonId()).setOnClickListener(this);
         }
     }
 
     private void refreshInputFields() { //Обновить экран.
-        for (FieldAdaptedObject x : FieldAdaptedObjects) {
+        for (FieldAdaptedObject x : mFieldAdaptedObjects) {
             x.setSelectedState(x.getSelectedState());
         }
     }
 
     private boolean setSelectedField(int id) { //Выделить поле ввода.
         boolean result = false;
-        for (int i = 0; i < FieldAdaptedObjects.length; ++i) {
-            if (FieldAdaptedObjects[i].getFieldID() == id) {
-                if (FieldAdaptedObjects[i].getAllowedToSelectState()) {
-                    FieldAdaptedObjects[getCurrentSelectedPosition()].setSelectedState(false);
-                    FieldAdaptedObjects[i].setSelectedState(true);
+        for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
+            if (mFieldAdaptedObjects[i].getFieldID() == id) {
+                if (mFieldAdaptedObjects[i].getAllowedToSelectState()) {
+                    mFieldAdaptedObjects[getCurrentSelectedPosition()].setSelectedState(false);
+                    mFieldAdaptedObjects[i].setSelectedState(true);
                     setCurrentSelectedPosition(i);
                     result =  true;
                 } else {
-                    FieldAdaptedObjects[i].setSelectedState(false);
+                    mFieldAdaptedObjects[i].setSelectedState(false);
                 }
             }
         }
@@ -125,26 +125,26 @@ public class FragmentAdaptor implements View.OnClickListener {
     }
 
     private void ReHold(int FieldFirstPosition, int FieldSecondPosition) {
-        if (FieldAdaptedObjects[FieldFirstPosition].getAllowedToSelectState()) {
-            FieldAdaptedObjects[FieldFirstPosition].setAccessToSelectState(false);
-            FieldAdaptedObjects[FieldSecondPosition].setAccessToSelectState(true);
+        if (mFieldAdaptedObjects[FieldFirstPosition].getAllowedToSelectState()) {
+            mFieldAdaptedObjects[FieldFirstPosition].setAccessToSelectState(false);
+            mFieldAdaptedObjects[FieldSecondPosition].setAccessToSelectState(true);
             if (getCurrentSelectedPosition() == FieldFirstPosition) {
-                setSelectedField(FieldAdaptedObjects[FieldSecondPosition].getFieldID());
+                setSelectedField(mFieldAdaptedObjects[FieldSecondPosition].getFieldID());
             }
-        } else if (FieldAdaptedObjects[FieldSecondPosition].getAllowedToSelectState()) {
-            FieldAdaptedObjects[FieldSecondPosition].setAccessToSelectState(false);
-            FieldAdaptedObjects[FieldFirstPosition].setAccessToSelectState(true);
+        } else if (mFieldAdaptedObjects[FieldSecondPosition].getAllowedToSelectState()) {
+            mFieldAdaptedObjects[FieldSecondPosition].setAccessToSelectState(false);
+            mFieldAdaptedObjects[FieldFirstPosition].setAccessToSelectState(true);
             if (getCurrentSelectedPosition() == FieldSecondPosition) {
-                setSelectedField(FieldAdaptedObjects[FieldFirstPosition].getFieldID());
+                setSelectedField(mFieldAdaptedObjects[FieldFirstPosition].getFieldID());
             }
         }
         refreshInputFields();
     }
 
     private void doButtonAction(int id) {
-        for (int i = 0; i < HoldButtonRelatives.size(); ++i) {
-            if (HoldButtonRelatives.get(i).getButtonId() == id) {
-                ReHold(HoldButtonRelatives.get(i).getFirstFieldPosition(), HoldButtonRelatives.get(i).getSecondFieldPosition());
+        for (int i = 0; i < mHoldButtonRelatives.size(); ++i) {
+            if (mHoldButtonRelatives.get(i).getButtonId() == id) {
+                ReHold(mHoldButtonRelatives.get(i).getFirstFieldPosition(), mHoldButtonRelatives.get(i).getSecondFieldPosition());
             }
         }
     }
@@ -152,11 +152,11 @@ public class FragmentAdaptor implements View.OnClickListener {
     void incrementSelectedPosition() {
         int pos = getCurrentSelectedPosition();
         int min_pos = 0;
-        int max_pos = FieldAdaptedObjects.length - 1;
+        int max_pos = mFieldAdaptedObjects.length - 1;
         while (true) {
             ++pos;
             if (pos > max_pos) pos = min_pos;
-            boolean res = setSelectedField(FieldAdaptedObjects[pos].getFieldID());
+            boolean res = setSelectedField(mFieldAdaptedObjects[pos].getFieldID());
             if (res) break;
         }
         refreshInputFields();
@@ -165,26 +165,28 @@ public class FragmentAdaptor implements View.OnClickListener {
     void decrementSelectedPosition() {
         int pos = getCurrentSelectedPosition();
         int min_pos = 0;
-        int max_pos = FieldAdaptedObjects.length - 1;
+        int max_pos = mFieldAdaptedObjects.length - 1;
         while (true) {
             --pos;
             if (pos < min_pos) pos = max_pos;
-            boolean res = setSelectedField(FieldAdaptedObjects[pos].getFieldID());
+            boolean res = setSelectedField(mFieldAdaptedObjects[pos].getFieldID());
             if (res) break;
         }
         refreshInputFields();
     }
 
     void makeSelectDefault() {
-        setSelectedField(FieldAdaptedObjects[0].getFieldID());
+        setSelectedField(mFieldAdaptedObjects[0].getFieldID());
     }
 
     int getSelectedMaxLength() {
-        return FieldAdaptedObjects[getCurrentSelectedPosition()].getBaseObject().getFieldLengthValue().getValue();
+        return mFieldAdaptedObjects[getCurrentSelectedPosition()].getBaseObject().getFieldLengthValue().getValue();
     }
 
     void setZeroValuesAll() {
-        for (FieldAdaptedObject x : FieldAdaptedObjects) {x.setZeroValue();}
+        for (FieldAdaptedObject x : mFieldAdaptedObjects) {
+            x.setZeroValue();
+        }
     }
 
     @Override

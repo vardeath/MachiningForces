@@ -3,7 +3,6 @@ package com.example.stayi.MachiningForces.ConditionsModule;
 import android.content.Context;
 import android.widget.Toast;
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
-
 import java.util.concurrent.atomic.AtomicInteger;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 

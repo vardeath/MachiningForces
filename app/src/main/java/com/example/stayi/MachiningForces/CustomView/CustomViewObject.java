@@ -47,7 +47,7 @@ public class CustomViewObject extends LinearLayout {
     private void initializeViews(Context context) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.example_view, this);
+        inflater.inflate(R.layout.custom_view, this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)

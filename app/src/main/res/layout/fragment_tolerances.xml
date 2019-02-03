@@ -7,8 +7,8 @@
     android:gravity="bottom"
     sothree:chainUseRtl="true"
     sothree:umanoOverlay="false"
-    sothree:umanoPanelHeight="30dp"
-    sothree:umanoShadowHeight="10dp">
+    sothree:umanoPanelHeight="0dp"
+    sothree:umanoShadowHeight="0dp">
 
         <ScrollView
             android:layout_width="match_parent"
