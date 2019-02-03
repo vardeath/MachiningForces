@@ -9,11 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.widget.TextView;
-
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
 import com.example.stayi.MachiningForces.R;
-
-import static android.app.PendingIntent.getActivity;
 
 public class CustomViewObject extends LinearLayout {
 
@@ -57,10 +54,10 @@ public class CustomViewObject extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mGeneralTextVIew = (TextView) this.findViewById(R.id.example_element_2);
+        mGeneralTextVIew = this.findViewById(R.id.example_element_2);
         mGeneralTextVIew.setId(View.generateViewId());
-        mDescription = (TextView) this.findViewById(R.id.example_element_3);
-        mUnit = (TextView) this.findViewById(R.id.example_element_4);
+        mDescription = this.findViewById(R.id.example_element_3);
+        mUnit = this.findViewById(R.id.example_element_4);
     }
 
     public FieldType getMainTextViewFieldType() {

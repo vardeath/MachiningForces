@@ -11,7 +11,8 @@
     android:weightSum="1.0"
     app:behavior_hideable="false"
     app:behavior_peekHeight="0dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    tools:ignore="RtlHardcoded">
 
     <TableLayout
         android:id="@+id/slide_keyboard"
@@ -23,7 +24,8 @@
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
         android:layout_marginBottom="3dp"
-        android:gravity="center_vertical|center_horizontal|center">
+        android:gravity="center_vertical|center_horizontal|center"
+        tools:ignore="UselessParent">
 
         <TableRow
             android:layout_width="match_parent"
