@@ -16,6 +16,9 @@ class CustomValuesPreset {
     private static List<CustomViewValuesObject> MillSimpleValuesArray = new ArrayList<CustomViewValuesObject>();
     private static List<CustomViewValuesObject> MillDetailValuesArray = new ArrayList<CustomViewValuesObject>();
 
+    private static List<CustomOutputObject> MillDetailOutputValuesArray = new ArrayList<>();
+
+
     CustomValuesPreset(Context context) {
         cont = context;
         initMillSimpleArray();
@@ -47,7 +50,7 @@ class CustomValuesPreset {
         MillDetailValuesArray.add(new CustomViewValuesObject(cont, MillAttackAngle, R.string.Mill_Front_Angle_Description, R.string.Mill_Front_Angle_Unit));
     }
 
-    List<CustomViewValuesObject> getPreset(ConditionsPreset PresetType) {
+    List<CustomViewValuesObject> getFieldPreset(ConditionsPreset PresetType) {
         switch (PresetType) {
             case MillSimple:
                 return MillSimpleValuesArray;

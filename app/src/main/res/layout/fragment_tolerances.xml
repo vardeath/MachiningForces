@@ -7,8 +7,8 @@
     android:gravity="bottom"
     sothree:chainUseRtl="true"
     sothree:umanoOverlay="false"
-    sothree:umanoPanelHeight="0dp"
-    sothree:umanoShadowHeight="0dp">
+    sothree:umanoPanelHeight="30dp"
+    sothree:umanoShadowHeight="20dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -16,9 +16,9 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="The Awesome Sliding Up Panel"
+                android:text="@string/the_awesome_sliding_up_panel"
                 android:textSize="16sp" />
         </ScrollView>
 
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Main Content"
+        android:text="@string/main_content"
         android:textSize="16sp" />
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

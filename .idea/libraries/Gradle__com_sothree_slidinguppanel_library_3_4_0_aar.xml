@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.sothree.slidinguppanel:library:3.4.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-library-3.4.0.aar/6e5fbeaadfcdc37ef9d8c2944f927ddd/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-library-3.4.0.aar/6e5fbeaadfcdc37ef9d8c2944f927ddd/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-library-3.4.0.aar/6d70832b2a8c95fbf02623e248b4b19b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-library-3.4.0.aar/6d70832b2a8c95fbf02623e248b4b19b/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

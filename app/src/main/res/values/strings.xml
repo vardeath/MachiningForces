@@ -124,4 +124,6 @@
     <string name="radiobutton_fz" />
     <string name="radiobutton_F" />
     <string name="but_lock">re</string>
+    <string name="the_awesome_sliding_up_panel">The Awesome Sliding Up Panel</string>
+    <string name="main_content">Main Content</string>
 </resources>

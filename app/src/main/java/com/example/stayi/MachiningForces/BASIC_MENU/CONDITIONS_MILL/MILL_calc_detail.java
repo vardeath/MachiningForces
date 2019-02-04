@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.example.stayi.MachiningForces.CustomView.CustomOutputObject;
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 import com.example.stayi.MachiningForces.CustomView.CustomViewObject;
 import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
@@ -29,11 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillCuttingSpeed;
-import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillMinuteFeed;
-import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillRevolutionQuantity;
-import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillToothFeed;
-import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.MillDetail;
+import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
+import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -111,6 +109,13 @@ public class MILL_calc_detail extends Fragment implements Runnable {
         customViewObjects.add(rootView.findViewById(R.id.MillField11));
         customViewObjects.add(rootView.findViewById(R.id.MillField12));
         customViewObjects.add(rootView.findViewById(R.id.MillField13));
+
+        List<CustomOutputObject> customOutputObjectsObjects = new ArrayList<>();
+        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField14));
+        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField15));
+        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField16));
+        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField17));
+        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField18));
 
         /*LinearLayout Underground = rootView.findViewById(R.id.LAY_RESULTS);
         Underground.getLayoutParams().height = 0;*/

@@ -45,8 +45,6 @@ import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.Mi
  */
 public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
-    private int FRAGMENT_ID;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -57,7 +55,6 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
     private boolean[] Fix_values;
 
     public MILL_calc_simple() {
-        FRAGMENT_ID = R.id.MILL_calc_simple;
     }
 
     /**

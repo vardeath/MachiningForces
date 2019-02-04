@@ -21,11 +21,13 @@ public class CustomViewArray {
 
     private List<HoldButtonRelatives> ButtonRelatives = new ArrayList<HoldButtonRelatives>(); //Массив со связями ID Hold Button и IDes родственых полей ввода.
 
+    private List<CustomOutputObject> customOutputObjectsObjects = new ArrayList<>(); //Массив обьектов для вывода расчетов.
+
     public CustomViewArray(Context context, List<CustomViewObject> CustomViewsArr, ConditionsPreset CondPreset) {
         CustomViews = CustomViewsArr;
 
         CustomValuesPreset valuesPreset = new CustomValuesPreset(context);
-        List<CustomViewValuesObject> CurrentValues = valuesPreset.getPreset(CondPreset);
+        List<CustomViewValuesObject> CurrentValues = valuesPreset.getFieldPreset(CondPreset);
 
         init(CurrentValues);
         for (int i = 0; i < CustomViewsArr.size(); ++i) {

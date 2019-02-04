@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         NavigationUI.setupWithNavController(navigationView, navController);
-        NavigationUI.setupActionBarWithNavController(this, navController, drawer);
+        //NavigationUI.setupActionBarWithNavController(this, navController, drawer);
 
 
         //Вешаем слушатель позиции на навигационный контроллер.
