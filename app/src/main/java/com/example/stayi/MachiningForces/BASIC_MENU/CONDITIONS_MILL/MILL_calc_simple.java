@@ -116,10 +116,7 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
             View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext());
-            LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
-            BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
-            behavior.setPeekHeight(700);
-            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
         } catch (Exception e) {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }

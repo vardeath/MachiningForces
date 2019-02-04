@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/CustomOutput"
+    android:layout_width="match_parent"
+    android:weightSum="1"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/outputMain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:gravity="center"
+        android:text="@string/zero"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/outputDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7"
+        android:text="@string/Output_Description"
+        android:textSize="18sp" />
+
+</LinearLayout>

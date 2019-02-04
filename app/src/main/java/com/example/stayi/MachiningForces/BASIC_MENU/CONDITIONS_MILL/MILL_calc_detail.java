@@ -116,6 +116,7 @@ public class MILL_calc_detail extends Fragment implements Runnable {
         Underground.getLayoutParams().height = 0;*/
 
         try {
+            View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             CustomViewArray CustomViewArr = new CustomViewArray(getContext(), customViewObjects, MillDetail);
             CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);
             CustomViewArr.setRelativeButton(R.id.HoldButton2, MillToothFeed, MillMinuteFeed, ButtonLockPosition.TWO);
@@ -125,12 +126,8 @@ public class MILL_calc_detail extends Fragment implements Runnable {
             FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
             ButHoldAdapt.setRelativeButton(CustomViewArr.getRelativeButtonArr());
 
-            View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);
-            LinearLayout llBottomSheet = getActivity().findViewById(R.id.bottom_sheet);
-            BottomSheetBehavior behavior = BottomSheetBehavior.from(llBottomSheet);
-            behavior.setPeekHeight(0);
-            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
         } catch (Exception e) {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }

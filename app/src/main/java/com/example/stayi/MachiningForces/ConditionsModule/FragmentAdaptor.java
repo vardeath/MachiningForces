@@ -1,11 +1,15 @@
 package com.example.stayi.MachiningForces.ConditionsModule;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-
+import android.widget.LinearLayout;
+import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.Storage;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.util.ArrayList;
 import java.util.List;
+import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.*;
 
 public class FragmentAdaptor implements View.OnClickListener {
 
@@ -23,6 +27,7 @@ public class FragmentAdaptor implements View.OnClickListener {
     private FieldAdaptedObject[] mFieldAdaptedObjects; //Массив обьектов с информацией о поле ввода, его состоянии выделения, дуступе к изменению состояния выделения, состоянии блокировки.
     private List<HoldButtonRelatives> mHoldButtonRelatives = new ArrayList<>(); //Массив с данными ID кнопки блокировки поля, и родственных полей ввода.
     private int current_selected_position; //Позиция текущего выделенного поля ввода.
+    private BottomSheetBehavior behavior;
 
     public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context context, String tag) {
         this.context = context;
@@ -38,7 +43,17 @@ public class FragmentAdaptor implements View.OnClickListener {
                 current_selected_position = 0;
             } else mFieldAdaptedObjects[i].setSelectedState(false); //Поле ввода не выделено.
         }
+        initializeBottomSheet();
         restoreStorageValues();
+    }
+
+    private void initializeBottomSheet() {
+        Activity activity = (Activity) context;
+        LinearLayout llBottomSheet = activity.findViewById(R.id.bottom_sheet);
+        behavior = BottomSheetBehavior.from(llBottomSheet);
+        if (String.valueOf(MillDetail) == mTAG)  behavior.setPeekHeight(50);
+        else behavior.setPeekHeight(700);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
     private void restoreStorageValues() { //Восстановить значения полей ввода из хранилища.
@@ -121,6 +136,8 @@ public class FragmentAdaptor implements View.OnClickListener {
             }
         }
         refreshInputFields();
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
         return result;
     }
 

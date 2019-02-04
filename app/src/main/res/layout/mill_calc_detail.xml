@@ -182,10 +182,10 @@
                 android:id="@+id/MillField13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/MillField12">
 
             </com.example.stayi.MachiningForces.CustomView.CustomViewObject>
@@ -193,9 +193,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/tableLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -203,54 +203,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        android:orientation="vertical">
 
-        <TableRow
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+            android:id="@+id/MillField14"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+            android:id="@+id/MillField15"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+            android:id="@+id/MillField16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+            android:id="@+id/MillField17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+            android:id="@+id/MillField18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </TableRow>
-
-    </TableLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
