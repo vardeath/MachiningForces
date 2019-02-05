@@ -16,5 +16,10 @@ public enum FieldType {
     MillCuttingWidth,
     MillPathLength,
     MillToolLength,
-    MillAttackAngle
+    MillAttackAngle,
+    MillAverageChipWidth,
+    MillSpecificMaterialRemoval,
+    MillCuttingTime,
+    MillMoment,
+    MillPower
 }

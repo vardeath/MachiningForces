@@ -56,7 +56,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/MillField5" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField1" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField2" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField3" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField4" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

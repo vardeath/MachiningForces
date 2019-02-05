@@ -15,19 +15,19 @@ public class HoldButtonRelatives {
         ButtonPos = pos;
     }
 
-    public int getButtonId() {
+    int getButtonId() {
         return Button_ID;
     }
 
-    public int getFirstFieldPosition() {
+    int getFirstFieldPosition() {
         return FirstFieldPosition;
     }
 
-    public int getSecondFieldPosition() {
+    int getSecondFieldPosition() {
         return SecondFieldPosition;
     }
 
-    public ButtonLockPosition getLockedFieldPosition() {
+    ButtonLockPosition getLockedFieldPosition() {
         return ButtonPos;
     }
 }

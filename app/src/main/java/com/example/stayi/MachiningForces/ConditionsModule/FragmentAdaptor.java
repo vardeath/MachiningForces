@@ -51,7 +51,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         Activity activity = (Activity) context;
         LinearLayout llBottomSheet = activity.findViewById(R.id.bottom_sheet);
         behavior = BottomSheetBehavior.from(llBottomSheet);
-        if (String.valueOf(MillDetail) == mTAG)  behavior.setPeekHeight(50);
+        if (String.valueOf(MillDetail).equals(mTAG))  behavior.setPeekHeight(50);
         else behavior.setPeekHeight(700);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }

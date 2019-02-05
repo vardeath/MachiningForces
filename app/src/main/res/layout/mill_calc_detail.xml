@@ -70,7 +70,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/MillField5" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/butGetMaterial" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField1" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField2" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField3" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField4" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField5" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField6" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField7" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField8" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField10"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField9" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField10" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField11" />
 
-            <com.example.stayi.MachiningForces.CustomView.CustomViewObject
+            <com.example.stayi.MachiningForces.CustomView.CustomInputField
                 android:id="@+id/MillField13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MillField12">
 
-            </com.example.stayi.MachiningForces.CustomView.CustomViewObject>
+            </com.example.stayi.MachiningForces.CustomView.CustomInputField>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -206,24 +206,24 @@
         app:layout_constraintVertical_bias="1.0"
         android:orientation="vertical">
 
-        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <com.example.stayi.MachiningForces.CustomView.CustomOutputObject
+        <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

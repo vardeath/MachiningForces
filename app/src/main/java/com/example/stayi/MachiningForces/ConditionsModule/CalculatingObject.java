@@ -21,10 +21,6 @@ class CalculatingObject {
         return FObject.getBaseObject().getFieldTypeValue();
     }
 
-    boolean getAccessPermission(){
-        return FObject.getAllowedToSelectState();
-    }
-
     int getFieldMaxValue(){
         return FObject.getBaseObject().getMaxFieldValue();
     }

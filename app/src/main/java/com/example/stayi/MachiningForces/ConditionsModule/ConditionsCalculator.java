@@ -24,29 +24,24 @@ class ConditionsCalculator {
         int currentPosition = mFieldAdaptor.getCurrentSelectedPosition();
 
         for (int i = currentPosition; i < mCalcObjects.length; ++i) {
-            if (mCalcObjects[i].getFieldType() == MillDiameter || mCalcObjects[i].getFieldType() == MillTeethQuantity)
-                continue;
-            if (mCalcObjects[i].getAccessPermission()) {
-                if (mCalcObjects[i].getFieldType() == MillCuttingSpeed) {
+            switch (mCalcObjects[i].getFieldType()) {
+                case MillDiameter: case MillTeethQuantity:
+                    break;
+                case MillCuttingSpeed:
                     calculateMillRevolution();
-                    continue;
-                }
-                if (mCalcObjects[i].getFieldType() == MillRevolutionQuantity) {
+                    break;
+                case MillRevolutionQuantity:
                     calculateMillCuttingSpeed();
-                    continue;
-                }
-                if (mCalcObjects[i].getFieldType() == MillToothFeed) {
+                    break;
+                case MillToothFeed:
                     calculateMillMinuteFeed();
-                    continue;
-                }
-                if (mCalcObjects[i].getFieldType() == MillMinuteFeed) {
+                    break;
+                case MillMinuteFeed:
                     calculateMillToothFeed();
-                    continue;
-                }
-                if (mCalcObjects[i].getFieldType() == MillRevolutionFeed) {
+                    break;
+                case MillRevolutionFeed:
                     calculateMillRevolutionFeed();
-                    continue;
-                }
+                    break;
             }
         }
     }

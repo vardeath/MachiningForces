@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Applicatin information -->
+    <!-- Application information -->
     <string name="app_name">Machining Forces</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -75,6 +75,12 @@
 
     <string name="Output_Description">Параметр</string>
     <string name="Output_Unit">Единица измерения</string>
+
+    <string name="Mill_Average_Chip_Width">Средняя ширина стружки | hm, мм.</string>
+    <string name="Mill_Specific_Material_Removal_Description">Удельный сьём материала | cm3/мин.</string>
+    <string name="Mill_Cutting_Time_Description">Время обработки | мин.</string>
+    <string name="Mill_Moment_Description">Удельный сьём материала | cm3/мин.</string>
+    <string name="Mill_Power_Description">Требуемая мощность | кВт.</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Go_to_MILL">Go_to_MILL</string>

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +15,8 @@ import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
 import com.example.stayi.MachiningForces.ConditionsModule.FragmentAdaptor;
 import com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener;
 import com.example.stayi.MachiningForces.R;
-import com.example.stayi.MachiningForces.CustomView.CustomViewObject;
-import com.example.stayi.MachiningForces.CustomView.CustomViewArray;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.example.stayi.MachiningForces.CustomView.CustomInputField;
+import com.example.stayi.MachiningForces.CustomView.CustomFieldInitializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,17 +90,17 @@ public class MILL_calc_simple extends Fragment implements View.OnClickListener {
 
         String TAG = String.valueOf(MillSimple); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
-        List<CustomViewObject> customViewObjects = new ArrayList<CustomViewObject>();
-        customViewObjects.add(rootView.findViewById(R.id.MillField1));
-        customViewObjects.add(rootView.findViewById(R.id.MillField2));
-        customViewObjects.add(rootView.findViewById(R.id.MillField3));
-        customViewObjects.add(rootView.findViewById(R.id.MillField4));
-        customViewObjects.add(rootView.findViewById(R.id.MillField5));
-        customViewObjects.add(rootView.findViewById(R.id.MillField6));
+        List<CustomInputField> customInputFields = new ArrayList<CustomInputField>();
+        customInputFields.add(rootView.findViewById(R.id.MillField1));
+        customInputFields.add(rootView.findViewById(R.id.MillField2));
+        customInputFields.add(rootView.findViewById(R.id.MillField3));
+        customInputFields.add(rootView.findViewById(R.id.MillField4));
+        customInputFields.add(rootView.findViewById(R.id.MillField5));
+        customInputFields.add(rootView.findViewById(R.id.MillField6));
         //Инициализация полей TextVIew для хранения и ввода данных.
 
         try {
-            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), customViewObjects, MillSimple);
+            CustomFieldInitializer CustomViewArr = new CustomFieldInitializer(getContext(), customInputFields, MillSimple);
             CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);
             CustomViewArr.setRelativeButton(R.id.HoldButton2, MillToothFeed, MillMinuteFeed, ButtonLockPosition.TWO);
 

@@ -20,6 +20,7 @@ import com.example.stayi.MachiningForces.BASIC_MENU.MAIN_MENU_CONDITIONS;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,20 @@ public class MainActivity extends AppCompatActivity
 
     BottomSheetBehavior behavior; //Обработчик поведения нижней панели с кастомной клавиатурой.
     private NavController navController; //Контроллер навигации по всему приложению.
+    private Locale myLocale;
+
+    public void changeLang(String lang)
+    {
+        if (lang.equalsIgnoreCase(""))
+            return;
+        myLocale = new Locale(lang);
+        //saveLocale(lang);
+        Locale.setDefault(myLocale);
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.locale = myLocale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        //updateTexts();
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -49,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         //Стандартные инициализации.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        changeLang("RU");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

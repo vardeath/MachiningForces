@@ -4,34 +4,34 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.example.stayi.MachiningForces.CustomView.CustomOutputObject;
-import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
-import com.example.stayi.MachiningForces.CustomView.CustomViewObject;
 import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
 import com.example.stayi.MachiningForces.ConditionsModule.FragmentAdaptor;
 import com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener;
+import com.example.stayi.MachiningForces.CustomView.CustomOutputField;
+import com.example.stayi.MachiningForces.CustomView.CustomFieldInitializer;
+import com.example.stayi.MachiningForces.CustomView.CustomInputField;
+import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 import com.example.stayi.MachiningForces.R;
-import com.example.stayi.MachiningForces.CustomView.CustomViewArray;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
-import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
+import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.MillDetail;
+import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillCuttingSpeed;
+import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillMinuteFeed;
+import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillRevolutionQuantity;
+import static com.example.stayi.MachiningForces.Enumerations.FieldType.MillToothFeed;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +66,7 @@ public class MILL_calc_detail extends Fragment implements Runnable {
      * @return A new instance of fragment MILL_calc_detail.
      */
     // TODO: Rename and change types and number of parameters
-    public static MILL_calc_detail newInstance(String param1, String param2) {
+    private static MILL_calc_detail newInstance(String param1, String param2) {
         MILL_calc_detail fragment = new MILL_calc_detail();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -95,34 +95,35 @@ public class MILL_calc_detail extends Fragment implements Runnable {
 
         String TAG = String.valueOf(MillDetail); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
-        List<CustomViewObject> customViewObjects = new ArrayList<>();
-        customViewObjects.add(rootView.findViewById(R.id.MillField1));
-        customViewObjects.add(rootView.findViewById(R.id.MillField2));
-        customViewObjects.add(rootView.findViewById(R.id.MillField3));
-        customViewObjects.add(rootView.findViewById(R.id.MillField4));
-        customViewObjects.add(rootView.findViewById(R.id.MillField5));
-        customViewObjects.add(rootView.findViewById(R.id.MillField6));
-        customViewObjects.add(rootView.findViewById(R.id.MillField7));
-        customViewObjects.add(rootView.findViewById(R.id.MillField8));
-        customViewObjects.add(rootView.findViewById(R.id.MillField9));
-        customViewObjects.add(rootView.findViewById(R.id.MillField10));
-        customViewObjects.add(rootView.findViewById(R.id.MillField11));
-        customViewObjects.add(rootView.findViewById(R.id.MillField12));
-        customViewObjects.add(rootView.findViewById(R.id.MillField13));
+        List<CustomInputField> mCustomInputField = new ArrayList<>();
+        mCustomInputField.add(rootView.findViewById(R.id.MillField1));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField2));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField3));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField4));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField5));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField6));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField7));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField8));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField9));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField10));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField11));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField12));
+        mCustomInputField.add(rootView.findViewById(R.id.MillField13));
 
-        List<CustomOutputObject> customOutputObjectsObjects = new ArrayList<>();
-        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField14));
-        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField15));
-        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField16));
-        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField17));
-        customOutputObjectsObjects.add(rootView.findViewById(R.id.MillField18));
+        List<CustomOutputField> mCustomOutputField = new ArrayList<>();
+        mCustomOutputField.add(rootView.findViewById(R.id.MillField14));
+        mCustomOutputField.add(rootView.findViewById(R.id.MillField15));
+        mCustomOutputField.add(rootView.findViewById(R.id.MillField16));
+        mCustomOutputField.add(rootView.findViewById(R.id.MillField17));
+        mCustomOutputField.add(rootView.findViewById(R.id.MillField18));
 
         /*LinearLayout Underground = rootView.findViewById(R.id.LAY_RESULTS);
         Underground.getLayoutParams().height = 0;*/
 
         try {
-            View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
-            CustomViewArray CustomViewArr = new CustomViewArray(getContext(), customViewObjects, MillDetail);
+
+            CustomFieldInitializer CustomViewArr = new CustomFieldInitializer(getContext(), mCustomInputField, MillDetail);
+            CustomViewArr.setCustomOutputObjectsFields(mCustomOutputField);
             CustomViewArr.setRelativeButton(R.id.HoldButton1, MillCuttingSpeed, MillRevolutionQuantity, ButtonLockPosition.TWO);
             CustomViewArr.setRelativeButton(R.id.HoldButton2, MillToothFeed, MillMinuteFeed, ButtonLockPosition.TWO);
 
@@ -131,6 +132,7 @@ public class MILL_calc_detail extends Fragment implements Runnable {
             FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
             ButHoldAdapt.setRelativeButton(CustomViewArr.getRelativeButtonArr());
 
+            View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);
 
         } catch (Exception e) {
