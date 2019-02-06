@@ -34,7 +34,7 @@ public class CustomFieldInitializer {
         List<PrimaryValue> mPrimaryValue = PrimaryValuesPreset.getFieldPreset(CondPreset);
 
         initInputFields(mPrimaryValue);
-        for (int i = 0; i < CustomViewsArr.size(); ++i) {
+        for (int i = 0; i < mCustomInputField.size(); ++i) {
             mFieldBaseObject.add(new FieldBaseObject(mCustomInputField.get(i).getMainTextViewId(), mCustomInputField.get(i).getMainTextViewFieldType()));
         }
     }
@@ -43,6 +43,9 @@ public class CustomFieldInitializer {
         mCustomOutputFields = customOutputField;
         List<PrimaryValue> CurrentValues = PrimaryValuesPreset.getFieldOutputPreset(CondPreset);
         initOutputFields(CurrentValues);
+        for (int i = 0; i < mCustomOutputFields.size(); ++i) {
+            mFieldBaseObject.add(new FieldBaseObject(mCustomOutputFields.get(i).getMainTextViewId(), mCustomOutputFields.get(i).getMainTextViewFieldType()));
+        }
     }
 
     private void initInputFields(List<PrimaryValue> ValuesObject) {

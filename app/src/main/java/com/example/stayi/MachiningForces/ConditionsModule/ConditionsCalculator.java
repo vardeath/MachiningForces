@@ -42,6 +42,9 @@ class ConditionsCalculator {
                 case MillRevolutionFeed:
                     calculateMillRevolutionFeed();
                     break;
+                case MillCuttingWidth:
+                    calculateMillSpecificMaterialRemoval();
+                    break;
             }
         }
     }
@@ -88,12 +91,16 @@ class ConditionsCalculator {
     }
 
     private void calculateMillToothFeed() {
-        double maxValue = getMaxValue(MillToothFeed);
-        if (getMillToothFeed() > maxValue) {
-            setMillToothFeed(maxValue);
-            setMillMinuteFeed(getMillMinuteFeed());
-            Toast.makeText(context, "Достигнут предел по подаче на зуб, значение минутной подачи изменено в соответствии с пределом подачи на зуб", Toast.LENGTH_SHORT).show();
-        } else setMillToothFeed(getMillToothFeed());
+        if (getMillToothFeed() > 0) {
+            double maxValue = getMaxValue(MillToothFeed);
+            if (getMillToothFeed() > maxValue) {
+                setMillToothFeed(maxValue);
+                setMillMinuteFeed(getMillMinuteFeed());
+                Toast.makeText(context, "Достигнут предел по подаче на зуб, значение минутной подачи изменено в соответствии с пределом подачи на зуб", Toast.LENGTH_SHORT).show();
+            } else setMillToothFeed(getMillToothFeed());
+        } else {
+            setMillToothFeed(0);
+        }
     }
 
     private void calculateMillRevolutionFeed() {
@@ -101,6 +108,10 @@ class ConditionsCalculator {
         if (getMillRevolutionFeed() > maxValue) {
             setMillRevolutionFeed(maxValue);
         } else setMillRevolutionFeed(getMillRevolutionFeed());
+    }
+
+    private void calculateMillSpecificMaterialRemoval() {
+        setMillSpecificMaterialRemoval(getMillSpecificMaterialRemoval());
     }
 
     private double getDoubleValue(FieldType fieldType) {
@@ -133,6 +144,11 @@ class ConditionsCalculator {
 
     private double getMillRevolutionFeed() {
         return getDoubleValue(MillTeethQuantity) * getDoubleValue(MillToothFeed);
+    }
+
+    private double getMillSpecificMaterialRemoval() {
+        int divider = 1000;
+        return (getMillCuttingDepth() * getMillCuttingWidth() * getDoubleValue(MillMinuteFeed)) / divider;
     }
 
     private double getMillDiameter() {
@@ -181,6 +197,10 @@ class ConditionsCalculator {
 
     private void setMillRevolutionFeed(double value) {
         setDoubleValue(MillRevolutionFeed, value);
+    }
+
+    private void setMillSpecificMaterialRemoval(double value) {
+        setDoubleValue(MillSpecificMaterialRemoval, value);
     }
 
     private double getMaxValue(FieldType fieldType) {

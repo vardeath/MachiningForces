@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.example.stayi.MachiningForces.Enumerations.FieldMode;
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.Storage;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.util.ArrayList;
 import java.util.List;
 import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.*;
+import static com.example.stayi.MachiningForces.Enumerations.FieldMode.INPUT;
 
 public class FragmentAdaptor implements View.OnClickListener {
 
@@ -36,8 +39,10 @@ public class FragmentAdaptor implements View.OnClickListener {
         mFieldAdaptedObjects = new FieldAdaptedObject[FieldBaseObject.size()];
         for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
             mFieldAdaptedObjects[i] = new FieldAdaptedObject(FieldBaseObject.get(i), v, context); //Инициализация адаптированных обьектов.
-            mFieldAdaptedObjects[i].setAccessToSelectState(true); //Разрешаение доступа к выделению поля ввода.
-            mFieldAdaptedObjects[i].getField().setOnClickListener(this);
+            if (mFieldAdaptedObjects[i].isInput()) {
+                mFieldAdaptedObjects[i].setAccessToSelectState(true);//Разрешаение доступа к выделению поля ввода.
+                mFieldAdaptedObjects[i].getField().setOnClickListener(this);
+            }
             if (i == 0) {
                 mFieldAdaptedObjects[i].setSelectedState(true); //Первое поле ввода выделено по умолчанию.
                 current_selected_position = 0;
@@ -125,6 +130,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         boolean result = false;
         for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
             if (mFieldAdaptedObjects[i].getFieldID() == id) {
+                if (!mFieldAdaptedObjects[i].isInput()) return false;
                 if (mFieldAdaptedObjects[i].getAllowedToSelectState()) {
                     mFieldAdaptedObjects[getCurrentSelectedPosition()].setSelectedState(false);
                     mFieldAdaptedObjects[i].setSelectedState(true);

@@ -5,7 +5,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.stayi.MachiningForces.Enumerations.FieldMode;
 import com.example.stayi.MachiningForces.R;
+
+import static com.example.stayi.MachiningForces.Enumerations.FieldMode.*;
 import static java.lang.String.format;
 
 class FieldAdaptedObject {
@@ -14,8 +17,9 @@ class FieldAdaptedObject {
     private FieldBaseObject BaseObject; //Обьект с базовой информацией о поле воода.
     private int TextView_id;
     private TextView Text_view;
-    private boolean SelectedState; //Состояние выделения пользователем поля ввода: выделено/не выделено.
+    private boolean SelectedState = false; //Состояние выделения пользователем поля ввода: выделено/не выделено.
     private boolean AccessToSelect; //Представляет разрешение для выделения поля ввода.
+    private FieldMode mFieldMode;
 
     //Набор значений, для расчета числа знаков после запятой числа с плавающей точкой при округлении.
     private final int stageONE; //Степень округления - до целого числа.
@@ -31,6 +35,7 @@ class FieldAdaptedObject {
         BaseObject = fieldBaseObject;
         TextView_id = BaseObject.getFieldId();
         Text_view = v.findViewById(TextView_id);
+        mFieldMode = BaseObject.getmFieldMode();
 
         stageONE = 1;
         stageTEN = 10;
@@ -38,6 +43,10 @@ class FieldAdaptedObject {
         stageTHOUSAND = 1000;
         stageTEN_THOUSAND = 10000;
         Zero = "0";
+    }
+
+    boolean isInput() {
+        return mFieldMode == INPUT;
     }
 
     FieldBaseObject getBaseObject() {
@@ -63,11 +72,13 @@ class FieldAdaptedObject {
     }
 
     void setSelectedState(boolean state) {
-        if (AccessToSelect) {
-            SelectedState = state;
-            if (state) Text_view.setBackgroundResource(R.drawable.textstyle_selected);
-            else Text_view.setBackgroundResource(R.drawable.textstyle);
-        } else Text_view.setBackgroundResource(R.drawable.textstyle_not_active);
+        if (isInput()) {
+            if (AccessToSelect) {
+                SelectedState = state;
+                if (state) Text_view.setBackgroundResource(R.drawable.textstyle_selected);
+                else Text_view.setBackgroundResource(R.drawable.textstyle);
+            } else Text_view.setBackgroundResource(R.drawable.textstyle_not_active);
+        }
     }
 
     //Меняем право допуска на изменение состояния выделения.
