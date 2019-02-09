@@ -10,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import java.lang.FunctionalInterface;
+import java.lang.annotation.Repeatable;
+import java.lang.reflect.Method.*;
+import java.util.function.*;
+
 import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
 import com.example.stayi.MachiningForces.ConditionsModule.FragmentAdaptor;
 import com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener;
@@ -46,6 +51,7 @@ public class MILL_calc_detail extends Fragment implements Runnable {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;

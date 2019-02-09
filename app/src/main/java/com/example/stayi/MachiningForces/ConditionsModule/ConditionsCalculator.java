@@ -2,8 +2,11 @@ package com.example.stayi.MachiningForces.ConditionsModule;
 
 import android.content.Context;
 import android.widget.Toast;
+
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
+
 import java.util.concurrent.atomic.AtomicInteger;
+
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 
 class ConditionsCalculator {
@@ -14,8 +17,8 @@ class ConditionsCalculator {
     private FragmentAdaptor mFieldAdaptor; //Подключаем фрагмент адаптор. Нужен для получения массива вычисляемых обьектов.
     private CalculatingObject[] mCalcObjects; //Массив обьектов для вычисления.
 
-    ConditionsCalculator(FragmentAdaptor fragmentAdaptor, Context cont) {
-        context = cont;
+    ConditionsCalculator(FragmentAdaptor fragmentAdaptor, Context context) {
+        this.context = context;
         mFieldAdaptor = fragmentAdaptor;
         mCalcObjects = fragmentAdaptor.getCalculatingObjects();
     }
@@ -24,27 +27,29 @@ class ConditionsCalculator {
         int currentPosition = mFieldAdaptor.getCurrentSelectedPosition();
 
         for (int i = currentPosition; i < mCalcObjects.length; ++i) {
-            switch (mCalcObjects[i].getFieldType()) {
-                case MillDiameter: case MillTeethQuantity:
-                    break;
-                case MillCuttingSpeed:
+            if (mCalcObjects[i].getFieldType() == MillDiameter || mCalcObjects[i].getFieldType() == MillTeethQuantity)
+                continue;
+            if (mCalcObjects[i].isLocked()) {
+                if (mCalcObjects[i].getFieldType() == MillCuttingSpeed) {
                     calculateMillRevolution();
-                    break;
-                case MillRevolutionQuantity:
+                    continue;
+                }
+                if (mCalcObjects[i].getFieldType() == MillRevolutionQuantity) {
                     calculateMillCuttingSpeed();
-                    break;
-                case MillToothFeed:
+                    continue;
+                }
+                if (mCalcObjects[i].getFieldType() == MillToothFeed) {
                     calculateMillMinuteFeed();
-                    break;
-                case MillMinuteFeed:
+                    continue;
+                }
+                if (mCalcObjects[i].getFieldType() == MillMinuteFeed) {
                     calculateMillToothFeed();
-                    break;
-                case MillRevolutionFeed:
+                    continue;
+                }
+                if (mCalcObjects[i].getFieldType() == MillRevolutionFeed) {
                     calculateMillRevolutionFeed();
-                    break;
-                case MillCuttingWidth:
-                    calculateMillSpecificMaterialRemoval();
-                    break;
+                    continue;
+                }
             }
         }
     }
@@ -78,7 +83,9 @@ class ConditionsCalculator {
                 setMillRevolution(getMillRevolution());
                 Toast.makeText(context, "Достигнут предел по скорости резания, значение оборотов изменено в соответствии с пределом по скорости", Toast.LENGTH_SHORT).show();
             } else setMillCuttingSpeed(getMillCuttingSpeed());
-        } else setMillCuttingSpeed(0);
+        } else {
+            setMillCuttingSpeed(0);
+        }
     }
 
     private void calculateMillMinuteFeed() {
@@ -91,16 +98,13 @@ class ConditionsCalculator {
     }
 
     private void calculateMillToothFeed() {
-        if (getMillToothFeed() > 0) {
-            double maxValue = getMaxValue(MillToothFeed);
-            if (getMillToothFeed() > maxValue) {
-                setMillToothFeed(maxValue);
-                setMillMinuteFeed(getMillMinuteFeed());
-                Toast.makeText(context, "Достигнут предел по подаче на зуб, значение минутной подачи изменено в соответствии с пределом подачи на зуб", Toast.LENGTH_SHORT).show();
-            } else setMillToothFeed(getMillToothFeed());
-        } else {
-            setMillToothFeed(0);
-        }
+        if (getMillToothFeed() == 0) return;
+        double maxValue = getMaxValue(MillToothFeed);
+        if (getMillToothFeed() > maxValue) {
+            setMillToothFeed(maxValue);
+            setMillMinuteFeed(getMillMinuteFeed());
+            Toast.makeText(context, "Достигнут предел по подаче на зуб, значение минутной подачи изменено в соответствии с пределом подачи на зуб", Toast.LENGTH_SHORT).show();
+        } else setMillToothFeed(getMillToothFeed());
     }
 
     private void calculateMillRevolutionFeed() {

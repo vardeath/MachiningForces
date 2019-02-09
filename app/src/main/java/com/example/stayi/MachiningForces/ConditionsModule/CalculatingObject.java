@@ -3,25 +3,29 @@ package com.example.stayi.MachiningForces.ConditionsModule;
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
 
 class CalculatingObject {
-    private FieldAdaptedObject FObject;
+    private FieldAdaptedObject mFieldAdaptedObject;
 
     CalculatingObject(FieldAdaptedObject AdaptedObject) {
-        FObject = AdaptedObject;
+        mFieldAdaptedObject = AdaptedObject;
     }
 
     double getFieldDoubleValue() {
-        return FObject.getFieldDoubleValue();
+        return mFieldAdaptedObject.getFieldDoubleValue();
     }
 
     void setFieldDoubleValue(double value){
-        FObject.setFieldDoubleValue(value);
+        mFieldAdaptedObject.setFieldDoubleValue(value);
     }
 
     FieldType getFieldType() {
-        return FObject.getBaseObject().getFieldTypeValue();
+        return mFieldAdaptedObject.getBaseObject().getFieldTypeValue();
     }
 
     int getFieldMaxValue(){
-        return FObject.getBaseObject().getMaxFieldValue();
+        return mFieldAdaptedObject.getBaseObject().getMaxFieldValue();
+    }
+
+    boolean isLocked() {
+        return mFieldAdaptedObject.getAllowedToSelectState();
     }
 }

@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         //Стандартные инициализации.
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         changeLang("RU");
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         NavigationUI.setupWithNavController(navigationView, navController);
-        //NavigationUI.setupActionBarWithNavController(this, navController, drawer);
+        NavigationUI.setupActionBarWithNavController(this, navController, drawer);
 
 
         //Вешаем слушатель позиции на навигационный контроллер.
