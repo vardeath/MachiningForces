@@ -2,11 +2,10 @@ package com.example.stayi.MachiningForces.ConditionsModule;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
+import androidx.annotation.NonNull;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 
 class ConditionsCalculator {
@@ -17,7 +16,7 @@ class ConditionsCalculator {
     private FragmentAdaptor mFieldAdaptor; //Подключаем фрагмент адаптор. Нужен для получения массива вычисляемых обьектов.
     private CalculatingObject[] mCalcObjects; //Массив обьектов для вычисления.
 
-    ConditionsCalculator(FragmentAdaptor fragmentAdaptor, Context context) {
+    ConditionsCalculator(@NonNull FragmentAdaptor fragmentAdaptor, Context context) {
         this.context = context;
         mFieldAdaptor = fragmentAdaptor;
         mCalcObjects = fragmentAdaptor.getCalculatingObjects();
@@ -27,6 +26,7 @@ class ConditionsCalculator {
         int currentPosition = mFieldAdaptor.getCurrentSelectedPosition();
 
         for (int i = currentPosition; i < mCalcObjects.length; ++i) {
+            getMillAverageChipWidth();
             if (mCalcObjects[i].getFieldType() == MillDiameter || mCalcObjects[i].getFieldType() == MillTeethQuantity)
                 continue;
             if (mCalcObjects[i].isLocked()) {
@@ -51,6 +51,9 @@ class ConditionsCalculator {
                     continue;
                 }
             }
+            if (mCalcObjects[i].getFieldType() == MillCuttingWidth)
+                calculateMillSpecificMaterialRemoval();
+            if (mCalcObjects[i].getFieldType() == MillGeneralAngle) calculateMillAverageChipWidth();
         }
     }
 
@@ -118,6 +121,11 @@ class ConditionsCalculator {
         setMillSpecificMaterialRemoval(getMillSpecificMaterialRemoval());
     }
 
+    private void calculateMillAverageChipWidth() {
+        getMillAverageChipWidth();
+        setMillAverageChipWidth(getMillAverageChipWidth());
+    }
+
     private double getDoubleValue(FieldType fieldType) {
         return mCalcObjects[findPositionOnCalcObjectsArray(fieldType)].getFieldDoubleValue();
     }
@@ -153,6 +161,15 @@ class ConditionsCalculator {
     private double getMillSpecificMaterialRemoval() {
         int divider = 1000;
         return (getMillCuttingDepth() * getMillCuttingWidth() * getDoubleValue(MillMinuteFeed)) / divider;
+    }
+
+    private double getMillAverageChipWidth() {
+        double coefficent = 114.7;
+        double angle = 90;
+        double value = (coefficent * getDoubleValue(MillToothFeed) * Math.sin(getDoubleValue(MillGeneralAngle)) *
+                (getDoubleValue(MillCuttingWidth) / getMillDiameter())) / (angle + Math.asin((getDoubleValue(MillCuttingWidth) - (getMillDiameter() / 2)) / (getMillDiameter() / 2)));
+        Toast.makeText(context, "" + value, Toast.LENGTH_SHORT).show();
+        return value;
     }
 
     private double getMillDiameter() {
@@ -205,6 +222,10 @@ class ConditionsCalculator {
 
     private void setMillSpecificMaterialRemoval(double value) {
         setDoubleValue(MillSpecificMaterialRemoval, value);
+    }
+
+    private void setMillAverageChipWidth(double value) {
+        setDoubleValue(MillAverageChipWidth, value);
     }
 
     private double getMaxValue(FieldType fieldType) {

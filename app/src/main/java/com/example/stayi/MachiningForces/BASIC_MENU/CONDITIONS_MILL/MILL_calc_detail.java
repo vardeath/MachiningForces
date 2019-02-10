@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +101,8 @@ public class MILL_calc_detail extends Fragment implements Runnable {
         ScrollView myScroll = rootView.findViewById(R.id.millScroll);
 
         String TAG = String.valueOf(MillDetail); //Тэг используется для создания имени переменных для хранения значений полей ввода.
+
+        Log.d(TAG, "вроде бы работает");
 
         List<CustomInputField> mCustomInputField = new ArrayList<>();
         mCustomInputField.add(rootView.findViewById(R.id.MillField1));
