@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.Storage;
@@ -11,6 +12,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.MillDetail;
 
@@ -56,9 +59,23 @@ public class FragmentAdaptor implements View.OnClickListener {
         Activity activity = (Activity) context;
         LinearLayout llBottomSheet = activity.findViewById(R.id.bottom_sheet);
         behavior = BottomSheetBehavior.from(llBottomSheet);
+        //mCollapsedLay.getLayoutParams().height = 500;
         if (String.valueOf(MillDetail).equals(mTAG))  behavior.setPeekHeight(0);
         else behavior.setPeekHeight(700);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View view, int i) {
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
+                Toast.makeText(context,""+ v, Toast.LENGTH_SHORT).show();
+                LinearLayout mCollapsedLay = view.findViewById(R.id.collapser);
+                mCollapsedLay.getLayoutParams().height = 0;
+            }
+        });
     }
 
     private void restoreStorageValues() { //Восстановить значения полей ввода из хранилища.

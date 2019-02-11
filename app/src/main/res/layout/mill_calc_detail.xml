@@ -199,12 +199,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/collapser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:orientation="vertical">
+        app:layout_constraintVertical_bias="1.0">
 
         <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField14"
@@ -215,19 +215,31 @@
             android:id="@+id/MillField15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <com.example.stayi.MachiningForces.CustomView.CustomOutputField
             android:id="@+id/MillField18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/collapser"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
