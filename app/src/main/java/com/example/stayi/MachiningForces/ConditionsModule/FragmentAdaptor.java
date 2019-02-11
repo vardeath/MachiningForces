@@ -5,14 +5,14 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.stayi.MachiningForces.Enumerations.FieldMode;
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.Storage;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import java.util.ArrayList;
 import java.util.List;
-import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.*;
-import static com.example.stayi.MachiningForces.Enumerations.FieldMode.INPUT;
+
+import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.MillDetail;
 
 public class FragmentAdaptor implements View.OnClickListener {
 
@@ -56,7 +56,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         Activity activity = (Activity) context;
         LinearLayout llBottomSheet = activity.findViewById(R.id.bottom_sheet);
         behavior = BottomSheetBehavior.from(llBottomSheet);
-        if (String.valueOf(MillDetail).equals(mTAG))  behavior.setPeekHeight(50);
+        if (String.valueOf(MillDetail).equals(mTAG))  behavior.setPeekHeight(0);
         else behavior.setPeekHeight(700);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }

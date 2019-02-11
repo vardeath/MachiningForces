@@ -21,6 +21,7 @@
         android:layout_weight="0.7"
         android:text="@string/Output_Description"
         android:textColorHighlight="@color/TextView_back"
-        android:textSize="18sp" />
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -79,7 +79,7 @@
     <string name="Mill_Average_Chip_Width">Средняя ширина стружки | hm, мм.</string>
     <string name="Mill_Specific_Material_Removal_Description">Удельный сьём материала | cm3/мин.</string>
     <string name="Mill_Cutting_Time_Description">Время обработки | мин.</string>
-    <string name="Mill_Moment_Description">Удельный сьём материала | cm3/мин.</string>
+    <string name="Mill_Moment_Description">Момент | Н*м.</string>
     <string name="Mill_Power_Description">Требуемая мощность | кВт.</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

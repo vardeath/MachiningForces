@@ -21,21 +21,21 @@ import static com.example.stayi.MachiningForces.Enumerations.FieldDataType.FLOAT
 public class KeyboardListener extends Activity implements View.OnClickListener {
 
     private ScrollView CurrentScrollView = null;
-    private TextView EDITABLE = null;
-    private FieldAdaptedObject SelectedField = null;
-    private String TextValue = "";
-    private CharSequence Zero = "0";
-    private FragmentAdaptor FieldAdaptor = null;
+    private TextView mEditable = null;
+    private FieldAdaptedObject mSelectedField = null;
+    private String mTextValue = "";
+    private CharSequence mZero = "0";
+    private FragmentAdaptor mFieldAdaptor = null;
     private Context context = null;
-    private ConditionsCalculator ConditionsCalc = null;
+    private ConditionsCalculator mConditionsCalc = null;
 
     //конструктор по умолчанию
-    public KeyboardListener(View view, FragmentAdaptor fieldAdaptor, Context cont) {
-        init(view, fieldAdaptor, cont);
+    public KeyboardListener(View view, FragmentAdaptor mFieldAdaptor, Context cont) {
+        init(view, mFieldAdaptor, cont);
     }
 
-    public KeyboardListener(View view, FragmentAdaptor fieldAdaptor, Context cont, ScrollView ScView) {
-        init(view, fieldAdaptor, cont);
+    public KeyboardListener(View view, FragmentAdaptor mFieldAdaptor, Context cont, ScrollView ScView) {
+        init(view, mFieldAdaptor, cont);
         CurrentScrollView = ScView;
     }
 
@@ -51,53 +51,53 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
             BUTTONS[i] = (Button) view.findViewById(BUTTON_IDS[i]);
             BUTTONS[i].setOnClickListener(this);
         }
-        FieldAdaptor = fieldAdaptor;
-        SelectedField = FieldAdaptor.getSelectedFieldAdaptedObject();
-        EDITABLE = SelectedField.getField();
-        ConditionsCalc = new ConditionsCalculator(FieldAdaptor, context);
+        mFieldAdaptor = fieldAdaptor;
+        mSelectedField = mFieldAdaptor.getSelectedFieldAdaptedObject();
+        mEditable = mSelectedField.getField();
+        mConditionsCalc = new ConditionsCalculator(mFieldAdaptor, context);
     }
 
     private void RefreshEditableField() {
-        FieldAdaptor.getSelectedFieldAdaptedObject().getFieldStringValue();
-        SelectedField = FieldAdaptor.getSelectedFieldAdaptedObject();
-        EDITABLE = SelectedField.getField();
+        mFieldAdaptor.getSelectedFieldAdaptedObject().getFieldStringValue();
+        mSelectedField = mFieldAdaptor.getSelectedFieldAdaptedObject();
+        mEditable = mSelectedField.getField();
     }
 
     private void ChangeFieldValue(KeyDigit i) {
-        if (EDITABLE.getText().length() < FieldAdaptor.getSelectedMaxLength()) {
-            TextValue = (String) EDITABLE.getText();
-            if (TextValue.contentEquals(Zero))
-                TextValue = ""; //Убираем ноль перед вводом нового значения в строку.
-            TextValue += i.getValue();
-            EDITABLE.setText(TextValue);
+        if (mEditable.getText().length() < mFieldAdaptor.getSelectedMaxLength()) {
+            mTextValue = (String) mEditable.getText();
+            if (mTextValue.contentEquals(mZero))
+                mTextValue = ""; //Убираем ноль перед вводом нового значения в строку.
+            mTextValue += i.getValue();
+            mEditable.setText(mTextValue);
         } else Toast.makeText(context, "Достигнут предел поля ввода", Toast.LENGTH_SHORT).show();
     }
 
     private void FieldValueAddDot() {
-        TextValue = (String) EDITABLE.getText();
+        mTextValue = (String) mEditable.getText();
         CharSequence dot = ".";
-        if (!TextValue.contains(dot)) TextValue += dot;
-        EDITABLE.setText(TextValue);
+        if (!mTextValue.contains(dot)) mTextValue += dot;
+        mEditable.setText(mTextValue);
     }
 
     private void FieldValueClear() {
-        EDITABLE.setText(Zero);
+        mEditable.setText(mZero);
     }
 
     private void FieldValueDelSymbol() {
         CharSequence SmallVal = "E";
-        TextValue = (String) EDITABLE.getText();
-        if (TextValue.contains(SmallVal)) {
+        mTextValue = (String) mEditable.getText();
+        if (mTextValue.contains(SmallVal)) {
             FieldValueClear();
         } else {
-            if (TextValue.length() == 3 && TextValue.contentEquals(".0")) {
+            if (mTextValue.length() == 3 && mTextValue.contentEquals(".0")) {
                 FieldValueClear();
-            } else if (TextValue.length() > 1) {
+            } else if (mTextValue.length() > 1) {
                 StringBuilder temp_str_arr = new StringBuilder();
-                for (int i = 0; i < TextValue.length() - 1; ++i) {
-                    temp_str_arr.append(TextValue.charAt(i));
+                for (int i = 0; i < mTextValue.length() - 1; ++i) {
+                    temp_str_arr.append(mTextValue.charAt(i));
                 }
-                EDITABLE.setText(temp_str_arr.toString());
+                mEditable.setText(temp_str_arr.toString());
             } else {
                 FieldValueClear();
             }
@@ -111,75 +111,75 @@ public class KeyboardListener extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.SL_KEY_0:
                 ChangeFieldValue(KeyDigit.Zero);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_1:
                 ChangeFieldValue(KeyDigit.One);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_2:
                 ChangeFieldValue(KeyDigit.Two);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_3:
                 ChangeFieldValue(KeyDigit.Three);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_4:
                 ChangeFieldValue(KeyDigit.Four);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_5:
                 ChangeFieldValue(KeyDigit.Five);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_6:
                 ChangeFieldValue(KeyDigit.Six);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_7:
                 ChangeFieldValue(KeyDigit.Seven);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_8:
                 ChangeFieldValue(KeyDigit.Eight);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_9:
                 ChangeFieldValue(KeyDigit.Nine);
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_DOT:
-                if (SelectedField.getBaseObject().getFieldFieldDataTypeValue() == FLOAT)
+                if (mSelectedField.getBaseObject().getFieldFieldDataTypeValue() == FLOAT)
                     FieldValueAddDot();
                 break;
             case R.id.SL_KEY_UP:
-                FieldAdaptor.decrementSelectedPosition();
+                mFieldAdaptor.decrementSelectedPosition();
                 if (CurrentScrollView != null) {
                     CurrentScrollView.scrollTo(0, 0);
                 }
                 break;
             case R.id.SL_KEY_DOWN:
-                FieldAdaptor.incrementSelectedPosition();
+                mFieldAdaptor.incrementSelectedPosition();
                 if (CurrentScrollView != null) {
                     //CurrentScrollView.scrollTo(0, 300);
                     //CurrentScrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                    CurrentScrollView.endViewTransition(FieldAdaptor.getSelectedFieldAdaptedObject().getField());
+                    CurrentScrollView.endViewTransition(mFieldAdaptor.getSelectedFieldAdaptedObject().getField());
                 }
                 break;
             case R.id.SL_KEY_DEL:
                 FieldValueDelSymbol();
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_CLEAR:
                 FieldValueClear();
-                ConditionsCalc.calculate();
+                mConditionsCalc.calculate();
                 break;
             case R.id.SL_KEY_CLEAR_ALL:
-                FieldAdaptor.makeSelectDefault();
-                FieldAdaptor.setZeroValuesAll();
+                mFieldAdaptor.makeSelectDefault();
+                mFieldAdaptor.setZeroValuesAll();
                 break;
         }
-        FieldAdaptor.setStorageValues();
+        mFieldAdaptor.setStorageValues();
     }
 }

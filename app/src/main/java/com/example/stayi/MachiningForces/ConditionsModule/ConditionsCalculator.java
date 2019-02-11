@@ -1,10 +1,10 @@
 package com.example.stayi.MachiningForces.ConditionsModule;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 import com.example.stayi.MachiningForces.Enumerations.FieldType;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import androidx.annotation.NonNull;
 import static com.example.stayi.MachiningForces.Enumerations.FieldType.*;
 
@@ -26,7 +26,7 @@ class ConditionsCalculator {
         int currentPosition = mFieldAdaptor.getCurrentSelectedPosition();
 
         for (int i = currentPosition; i < mCalcObjects.length; ++i) {
-            getMillAverageChipWidth();
+            //getMillAverageChipWidth();
             if (mCalcObjects[i].getFieldType() == MillDiameter || mCalcObjects[i].getFieldType() == MillTeethQuantity)
                 continue;
             if (mCalcObjects[i].isLocked()) {
@@ -54,6 +54,7 @@ class ConditionsCalculator {
             if (mCalcObjects[i].getFieldType() == MillCuttingWidth)
                 calculateMillSpecificMaterialRemoval();
             if (mCalcObjects[i].getFieldType() == MillGeneralAngle) calculateMillAverageChipWidth();
+            if (mCalcObjects[i].getFieldType() == MillPathLength) calculateMillCuttingTime();
         }
     }
 
@@ -122,8 +123,12 @@ class ConditionsCalculator {
     }
 
     private void calculateMillAverageChipWidth() {
-        getMillAverageChipWidth();
+        //getMillAverageChipWidth();
         setMillAverageChipWidth(getMillAverageChipWidth());
+    }
+
+    private void  calculateMillCuttingTime() {
+        setMillCuttingTime(getMillCuttingTime());
     }
 
     private double getDoubleValue(FieldType fieldType) {
@@ -164,12 +169,19 @@ class ConditionsCalculator {
     }
 
     private double getMillAverageChipWidth() {
-        double coefficent = 114.7;
-        double angle = 90;
-        double value = (coefficent * getDoubleValue(MillToothFeed) * Math.sin(getDoubleValue(MillGeneralAngle)) *
-                (getDoubleValue(MillCuttingWidth) / getMillDiameter())) / (angle + Math.asin((getDoubleValue(MillCuttingWidth) - (getMillDiameter() / 2)) / (getMillDiameter() / 2)));
-        Toast.makeText(context, "" + value, Toast.LENGTH_SHORT).show();
+        double mDefaultCoefficent = 114.7;
+        double mDefauiltAngle = 90;
+        String tag = "CALC";
+        double tempVal = Math.sin(Math.toRadians(getDoubleValue(MillGeneralAngle)));
+        Log.d(tag, ""+tempVal);
+        double value = (mDefaultCoefficent * getDoubleValue(MillToothFeed) * Math.sin(Math.toRadians(getDoubleValue(MillGeneralAngle))) *
+                (getDoubleValue(MillCuttingWidth) / getMillDiameter())) / (mDefauiltAngle + Math.toDegrees(Math.asin((getDoubleValue(MillCuttingWidth) - (getMillDiameter() / 2)) / (getMillDiameter() / 2))));
+        //Toast.makeText(context, "" + value, Toast.LENGTH_SHORT).show();
         return value;
+    }
+
+    private double getMillCuttingTime() {
+        return getDoubleValue(MillPathLength) / getDoubleValue(MillMinuteFeed);
     }
 
     private double getMillDiameter() {
@@ -226,6 +238,10 @@ class ConditionsCalculator {
 
     private void setMillAverageChipWidth(double value) {
         setDoubleValue(MillAverageChipWidth, value);
+    }
+
+    private void setMillCuttingTime (double value) {
+        setDoubleValue(MillCuttingTime, value);
     }
 
     private double getMaxValue(FieldType fieldType) {
