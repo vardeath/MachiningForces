@@ -1,10 +1,11 @@
 package com.example.stayi.MachiningForces.ConditionsModule;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.Storage;
@@ -34,6 +35,7 @@ public class FragmentAdaptor implements View.OnClickListener {
     private List<HoldButtonRelatives> mHoldButtonRelatives = new ArrayList<>(); //Массив с данными ID кнопки блокировки поля, и родственных полей ввода.
     private int current_selected_position; //Позиция текущего выделенного поля ввода.
     private BottomSheetBehavior behavior;
+    LinearLayout mCollapsedLay;
 
     public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context context, String tag) {
         this.context = context;
@@ -55,6 +57,10 @@ public class FragmentAdaptor implements View.OnClickListener {
         restoreStorageValues();
     }
 
+    public void setmCollapsedLay( LinearLayout mCollapsedLay) {
+        this.mCollapsedLay = mCollapsedLay;
+    }
+
     private void initializeBottomSheet() {
         Activity activity = (Activity) context;
         LinearLayout llBottomSheet = activity.findViewById(R.id.bottom_sheet);
@@ -63,17 +69,35 @@ public class FragmentAdaptor implements View.OnClickListener {
         if (String.valueOf(MillDetail).equals(mTAG))  behavior.setPeekHeight(0);
         else behavior.setPeekHeight(700);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        TextView vd = view.findViewById(R.id.textView2);
+        vd.setText("ssd");
+
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+
             @Override
             public void onStateChanged(@NonNull View view, int i) {
-
+                //mCollapsedLay.getLayoutParams().height = 50;
+                //mCollapsedLay.startAnimation(new Anima());
+                TextView vd = view.findViewById(R.id.textView2);
+                //vd.setText("" + v);
+                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(vd, "translationY",
+                        0, 1000);
+// 2
+                objectAnimator.setDuration(100);
+                objectAnimator.start();
             }
 
             @Override
-            public void onSlide(@NonNull View view, float v) {
-                Toast.makeText(context,""+ v, Toast.LENGTH_SHORT).show();
-                LinearLayout mCollapsedLay = view.findViewById(R.id.collapser);
-                mCollapsedLay.getLayoutParams().height = 0;
+            public void onSlide(@NonNull View views, float v) {
+                //Toast.makeText(context,""+ v, Toast.LENGTH_SHORT).show();
+
+                //vd.getLayoutParams().height = 100;
+                /*ConstraintLayout.LayoutParams lParams1 = (ConstraintLayout.LayoutParams) mCollapsedLay.getLayoutParams();
+                lParams1.verticalWeight = (float) 0.5;*/
+                /*int max = 500;
+                int value = max * (int) v / 100;
+                mCollapsedLay.getLayoutParams().height = value;*/
             }
         });
     }

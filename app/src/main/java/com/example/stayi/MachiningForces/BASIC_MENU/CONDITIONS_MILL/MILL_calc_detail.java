@@ -8,20 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
-
-import java.lang.FunctionalInterface;
-import java.lang.annotation.Repeatable;
-import java.lang.reflect.Method.*;
-import java.util.function.*;
 
 import com.example.stayi.MachiningForces.ConditionsModule.FieldBaseObject;
 import com.example.stayi.MachiningForces.ConditionsModule.FragmentAdaptor;
 import com.example.stayi.MachiningForces.ConditionsModule.KeyboardListener;
-import com.example.stayi.MachiningForces.CustomView.CustomOutputField;
 import com.example.stayi.MachiningForces.CustomView.CustomFieldInitializer;
 import com.example.stayi.MachiningForces.CustomView.CustomInputField;
+import com.example.stayi.MachiningForces.CustomView.CustomOutputField;
 import com.example.stayi.MachiningForces.Enumerations.ButtonLockPosition;
 import com.example.stayi.MachiningForces.R;
 
@@ -59,6 +55,7 @@ public class MILL_calc_detail extends Fragment implements Runnable {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    LinearLayout mCollapsedLay;
 
     public MILL_calc_detail() {
         // Required empty public constructor
@@ -99,6 +96,9 @@ public class MILL_calc_detail extends Fragment implements Runnable {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.mill_calc_detail, container, false);
         ScrollView myScroll = rootView.findViewById(R.id.millScroll);
+        mCollapsedLay = rootView.findViewById(R.id.collapser);
+        //mCollapsedLay.getLayoutAnimation().getAnimation();
+        mCollapsedLay.getLayoutParams().height = 0;
 
         String TAG = String.valueOf(MillDetail); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 
@@ -140,6 +140,7 @@ public class MILL_calc_detail extends Fragment implements Runnable {
 
             FragmentAdaptor ButHoldAdapt = new FragmentAdaptor(BaseFieldObjects, rootView, getContext(), TAG);
             ButHoldAdapt.setRelativeButton(CustomViewArr.getRelativeButtonArr());
+            ButHoldAdapt.setmCollapsedLay(mCollapsedLay);
 
             View key_board = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_sheet);
             KeyboardListener board = new KeyboardListener(key_board, ButHoldAdapt, getContext(), myScroll);
