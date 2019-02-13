@@ -98,7 +98,6 @@ public class MILL_calc_detail extends Fragment implements Runnable {
         ScrollView myScroll = rootView.findViewById(R.id.millScroll);
         mCollapsedLay = rootView.findViewById(R.id.collapser);
         //mCollapsedLay.getLayoutAnimation().getAnimation();
-        mCollapsedLay.getLayoutParams().height = 0;
 
         String TAG = String.valueOf(MillDetail); //Тэг используется для создания имени переменных для хранения значений полей ввода.
 

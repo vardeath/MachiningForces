@@ -1,11 +1,10 @@
 package com.example.stayi.MachiningForces.ConditionsModule;
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.stayi.MachiningForces.R;
 import com.example.stayi.MachiningForces.Storage;
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import static com.example.stayi.MachiningForces.Enumerations.ConditionsPreset.MillDetail;
 
@@ -37,6 +37,7 @@ public class FragmentAdaptor implements View.OnClickListener {
     private BottomSheetBehavior behavior;
     LinearLayout mCollapsedLay;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context context, String tag) {
         this.context = context;
         view = v;
@@ -61,43 +62,32 @@ public class FragmentAdaptor implements View.OnClickListener {
         this.mCollapsedLay = mCollapsedLay;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void initializeBottomSheet() {
         Activity activity = (Activity) context;
         LinearLayout llBottomSheet = activity.findViewById(R.id.bottom_sheet);
         behavior = BottomSheetBehavior.from(llBottomSheet);
-        //mCollapsedLay.getLayoutParams().height = 500;
+
         if (String.valueOf(MillDetail).equals(mTAG))  behavior.setPeekHeight(0);
         else behavior.setPeekHeight(700);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
-        TextView vd = view.findViewById(R.id.textView2);
-        vd.setText("ssd");
-
+        int x = llBottomSheet.getMeasuredHeight();
+        //Toast.makeText(context, ""+ x,Toast.LENGTH_SHORT).show();
+        int max = x;
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 
             @Override
             public void onStateChanged(@NonNull View view, int i) {
-                //mCollapsedLay.getLayoutParams().height = 50;
-                //mCollapsedLay.startAnimation(new Anima());
-                TextView vd = view.findViewById(R.id.textView2);
-                //vd.setText("" + v);
-                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(vd, "translationY",
-                        0, 1000);
-// 2
-                objectAnimator.setDuration(100);
-                objectAnimator.start();
+
             }
 
             @Override
             public void onSlide(@NonNull View views, float v) {
-                //Toast.makeText(context,""+ v, Toast.LENGTH_SHORT).show();
-
-                //vd.getLayoutParams().height = 100;
-                /*ConstraintLayout.LayoutParams lParams1 = (ConstraintLayout.LayoutParams) mCollapsedLay.getLayoutParams();
-                lParams1.verticalWeight = (float) 0.5;*/
-                /*int max = 500;
-                int value = max * (int) v / 100;
-                mCollapsedLay.getLayoutParams().height = value;*/
+                int value = (int) (max *  v );
+                //Toast.makeText(context, ""+ value,Toast.LENGTH_SHORT).show();
+                if (mCollapsedLay != null) {mCollapsedLay.getLayoutParams().height = value;
+                mCollapsedLay.requestLayout();}
             }
         });
     }
@@ -167,6 +157,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private boolean setSelectedField(int id) { //Выделить поле ввода.
         boolean result = false;
         for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
@@ -184,7 +175,7 @@ public class FragmentAdaptor implements View.OnClickListener {
         }
         refreshInputFields();
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
+        mFieldAdaptedObjects[current_selected_position].getField().setFocusable(View.FOCUSABLE);
         return result;
     }
 
