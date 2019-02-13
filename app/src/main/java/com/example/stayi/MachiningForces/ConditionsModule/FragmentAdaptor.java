@@ -35,7 +35,7 @@ public class FragmentAdaptor implements View.OnClickListener {
     private List<HoldButtonRelatives> mHoldButtonRelatives = new ArrayList<>(); //Массив с данными ID кнопки блокировки поля, и родственных полей ввода.
     private int current_selected_position; //Позиция текущего выделенного поля ввода.
     private BottomSheetBehavior behavior;
-    LinearLayout mCollapsedLay;
+    private LinearLayout mCollapsedLay;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public FragmentAdaptor(List<FieldBaseObject> FieldBaseObject, View v, Context context, String tag) {
@@ -157,7 +157,6 @@ public class FragmentAdaptor implements View.OnClickListener {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private boolean setSelectedField(int id) { //Выделить поле ввода.
         boolean result = false;
         for (int i = 0; i < mFieldAdaptedObjects.length; ++i) {
@@ -175,7 +174,6 @@ public class FragmentAdaptor implements View.OnClickListener {
         }
         refreshInputFields();
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        mFieldAdaptedObjects[current_selected_position].getField().setFocusable(View.FOCUSABLE);
         return result;
     }
 

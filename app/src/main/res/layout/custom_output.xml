@@ -9,16 +9,17 @@
         android:id="@+id/outputMain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
+        android:layout_weight="0.2"
         android:gravity="center"
         android:text="@string/zero"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/outputDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.7"
+        android:layout_weight="0.8"
         android:text="@string/Output_Description"
         android:textColorHighlight="@color/TextView_back"
         android:textSize="14sp"
